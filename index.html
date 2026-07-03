@@ -8,20 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-dark: #B87D7D;
-            --pink-primary: #D4A0A0;
-            --pink-medium: #EEC9C4;
-            --pink-soft: #F7E0DC;
-            --green-dark: #3F4E33;
-            --green-medium: #5C704D;
-            --green-light: #8FA882;
-            --green-soft: #C5D3BB;
-            --cream: #FDFBF8;
-            --cream-dark: #F8F4EF;
-            --text-dark: #2C3328;
-            --text-soft: #5A6954;
-            --text-light: #8A9584;
+            --emerald-dark: #0B3D2E;
+            --emerald: #0F5C3E;
+            --emerald-medium: #1A7A54;
+            --emerald-light: #5CBF9B;
+            --emerald-soft: #B5E3D4;
+            --blue-dark: #1B2838;
+            --blue-medium: #2C4053;
+            --blue-light: #6B8BA4;
+            --blue-soft: #C5D5E0;
+            --cream: #F9FBF9;
+            --cream-dark: #F2F5F2;
+            --text-dark: #1C2A24;
+            --text-soft: #4A5C53;
+            --text-light: #7A8A82;
             --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.03);
+            --accent: #D4A574;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,613 +35,110 @@
             overflow-x: hidden;
             position: relative;
             background-image:
-                radial-gradient(ellipse at 20% 10%, rgba(215, 208, 200, 0.15) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 85%, rgba(238, 201, 196, 0.12) 0%, transparent 55%);
+                radial-gradient(ellipse at 20% 10%, rgba(181, 227, 212, 0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 85%, rgba(197, 213, 224, 0.10) 0%, transparent 55%);
             background-attachment: fixed;
         }
 
-        .container {
-            max-width: 430px;
-            width: 100%;
-            margin: 0 auto;
-            background: transparent;
-            min-height: 100vh;
-            padding: 0 20px 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section {
-            padding: 40px 0 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-        }
-
-        .section:first-child {
-            min-height: 100vh;
-            padding-top: 0;
-            margin-left: -20px;
-            margin-right: -20px;
-            width: calc(100% + 40px);
-        }
-
+        .container { max-width: 430px; width: 100%; margin: 0 auto; background: transparent; min-height: 100vh; padding: 0 20px 50px; position: relative; z-index: 1; }
+        .section { padding: 40px 0 20px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; }
+        .section:first-child { min-height: 100vh; padding-top: 0; margin-left: -20px; margin-right: -20px; width: calc(100% + 40px); }
         .section:last-child { min-height: 50vh; padding-bottom: 30px; }
 
-        .curtain-wrapper {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .curtain-center {
-            position: absolute;
-            top: -40px; left: -10px;
-            width: calc(100% + 20px);
-            height: calc(100% + 10px);
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0;
-            transform: translateY(-80px);
-            transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
-        }
-
+        .curtain-wrapper { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .curtain-center { position: absolute; top: -40px; left: -10px; width: calc(100% + 20px); height: calc(100% + 10px); z-index: 1; pointer-events: none; opacity: 0; transform: translateY(-80px); transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1); overflow: hidden; }
         .curtain-center.show { opacity: 1; transform: translateY(0); }
+        .curtain-center img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0; }
 
-        .curtain-center img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            position: absolute;
-            top: 0; left: 0;
-        }
+        .content-overlay { position: relative; z-index: 2; text-align: center; max-width: 340px; width: 100%; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; margin: 0 auto; }
+        .ornament-top { font-size: 0.7rem; letter-spacing: 8px; color: var(--emerald-light); margin-bottom: 20px; opacity: 0.6; }
+        .guest-name { font-family: 'Great Vibes', cursive; font-size: clamp(1.8rem, 8vw, 3.5rem); color: var(--emerald-dark); line-height: 1.2; word-break: break-word; max-width: 100%; padding: 0 5px; }
+        .youre-invited { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--text-soft); letter-spacing: 6px; text-transform: uppercase; font-style: italic; margin: 18px 0 15px; }
+        .couple-names { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--emerald-dark); line-height: 1.3; font-weight: 700; }
+        .couple-names .and { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--accent); display: block; font-style: italic; margin: 2px 0; }
+        .wedding-date { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--text-soft); margin-top: 20px; letter-spacing: 3px; font-style: italic; display: flex; align-items: center; gap: 8px; }
+        .wedding-date i { color: var(--emerald-medium); font-size: 0.8rem; }
+        .scroll-indicator { margin-top: 45px; font-size: 1.2rem; color: var(--emerald-medium); animation: bounceArrow 2s ease-in-out infinite; opacity: 0.5; }
 
-        .content-overlay {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 340px;
-            width: 100%;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 85vh;
-            margin: 0 auto;
-        }
-
-        .ornament-top {
-            font-size: 0.7rem;
-            letter-spacing: 8px;
-            color: var(--pink-primary);
-            margin-bottom: 20px;
-            opacity: 0.6;
-        }
-
-        .guest-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.8rem, 8vw, 3.5rem);
-            color: var(--pink-dark);
-            line-height: 1.2;
-            word-break: break-word;
-            max-width: 100%;
-            padding: 0 5px;
-        }
-
-        .youre-invited {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            color: var(--text-soft);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-style: italic;
-            margin: 18px 0 15px;
-        }
-
-        .couple-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            color: var(--pink-dark);
-            line-height: 1.3;
-            font-weight: 700;
-        }
-
-        .couple-names .and {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--pink-primary);
-            display: block;
-            font-style: italic;
-            margin: 2px 0;
-        }
-
-        .wedding-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: var(--text-soft);
-            margin-top: 20px;
-            letter-spacing: 3px;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .wedding-date i { color: var(--pink-primary); font-size: 0.8rem; }
-
-        .scroll-indicator {
-            margin-top: 45px;
-            font-size: 1.2rem;
-            color: var(--pink-primary);
-            animation: bounceArrow 2s ease-in-out infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes bounceArrow {
-            0%, 100% { transform: translateY(0); opacity: 0.3; }
-            50% { transform: translateY(10px); opacity: 0.7; }
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.7s ease;
-        }
-
+        @keyframes bounceArrow { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(10px); opacity: 0.7; } }
+        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
         .fade-up.show { opacity: 1; transform: translateY(0); }
-
-        .content-overlay .fade-up {
-            transform: translateY(50px);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+        .content-overlay .fade-up { transform: translateY(50px); transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .content-overlay .fade-up.show { transform: translateY(0); }
+        .fade-up.delay-1 { transition-delay: 0.4s; } .fade-up.delay-2 { transition-delay: 0.6s; } .fade-up.delay-3 { transition-delay: 0.8s; } .fade-up.delay-4 { transition-delay: 1.0s; } .fade-up.delay-5 { transition-delay: 1.2s; }
+        .section-title { font-family: 'Great Vibes', cursive; font-size: 2.8rem; margin-bottom: 22px; color: var(--emerald-dark); }
 
-        .fade-up.delay-1 { transition-delay: 0.4s; }
-        .fade-up.delay-2 { transition-delay: 0.6s; }
-        .fade-up.delay-3 { transition-delay: 0.8s; }
-        .fade-up.delay-4 { transition-delay: 1.0s; }
-        .fade-up.delay-5 { transition-delay: 1.2s; }
-
-        .section-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            margin-bottom: 22px;
-            color: var(--pink-dark);
-        }
-
-        /* ==========================================================
-           MUSIC PLAYER - HIJAU ESTETIK + PUTIH KLASIK
-           ========================================================== */
-        .music-player {
-            background: #3F4E33;
-            border-radius: 35px;
-            padding: 20px 16px;
-            max-width: 340px;
-            width: 100%;
-            box-shadow: 0 20px 50px rgba(63, 78, 51, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .music-player::before {
-            content: '♫';
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            font-size: 3.5rem;
-            color: rgba(255,255,255,0.04);
-            pointer-events: none;
-            font-family: serif;
-        }
-
-        .music-player::after {
-            content: '♪';
-            position: absolute;
-            bottom: -8px;
-            left: 20px;
-            font-size: 2.5rem;
-            color: rgba(255,255,255,0.03);
-            pointer-events: none;
-            font-family: serif;
-        }
-
-        .album-art {
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8FA882, #C5D3BB);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            color: white;
-            overflow: hidden;
-            margin: 0;
-            border: 3px solid rgba(255,255,255,0.25);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .album-art img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
+        /* MUSIC PLAYER */
+        .music-player { background: var(--emerald-dark); border-radius: 35px; padding: 20px 16px; max-width: 340px; width: 100%; box-shadow: 0 20px 50px rgba(11, 61, 46, 0.15); display: flex; align-items: center; gap: 16px; position: relative; overflow: hidden; }
+        .music-player::before { content: '♫'; position: absolute; top: -10px; right: 15px; font-size: 3.5rem; color: rgba(255,255,255,0.04); pointer-events: none; font-family: serif; }
+        .music-player::after { content: '♪'; position: absolute; bottom: -8px; left: 20px; font-size: 2.5rem; color: rgba(255,255,255,0.03); pointer-events: none; font-family: serif; }
+        .album-art { width: 100px; height: 100px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(135deg, var(--emerald-light), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: white; overflow: hidden; margin: 0; border: 3px solid rgba(255,255,255,0.25); box-shadow: 0 8px 25px rgba(0,0,0,0.1); position: relative; z-index: 1; }
+        .album-art img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .progress-container { margin: 0 0 5px; position: relative; z-index: 1; }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: white;
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.1s linear;
-            box-shadow: 0 0 8px rgba(255,255,255,0.4);
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.6);
-            margin-top: 4px;
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .controls button {
-            background: none;
-            border: none;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 3px;
-        }
-
+        .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 10px; cursor: pointer; overflow: hidden; }
+        .progress-fill { height: 100%; background: white; border-radius: 10px; width: 0%; transition: width 0.1s linear; box-shadow: 0 0 8px rgba(255,255,255,0.4); }
+        .time-display { display: flex; justify-content: space-between; font-size: 0.6rem; color: rgba(255,255,255,0.6); margin-top: 4px; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; position: relative; z-index: 1; }
+        .controls { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; position: relative; z-index: 1; }
+        .controls button { background: none; border: none; font-size: 0.85rem; color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease; padding: 3px; }
         .controls button:hover { color: white; transform: scale(1.1); }
-
-        .btn-play {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: white !important;
-            color: #3F4E33 !important;
-            font-size: 1rem !important;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease !important;
-            border: none !important;
-        }
-
+        .btn-play { width: 42px; height: 42px; border-radius: 50%; background: white !important; color: var(--emerald-dark) !important; font-size: 1rem !important; box-shadow: 0 6px 20px rgba(0,0,0,0.12); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease !important; border: none !important; }
         .btn-play:hover { transform: scale(1.1) !important; box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
-        .btn-play.playing { background: #f5f0eb !important; color: #3F4E33 !important; box-shadow: 0 6px 25px rgba(0,0,0,0.15), 0 0 0 6px rgba(255,255,255,0.1); }
+        .btn-play.playing { background: #f5f0eb !important; color: var(--emerald-dark) !important; box-shadow: 0 6px 25px rgba(0,0,0,0.15), 0 0 0 6px rgba(255,255,255,0.1); }
 
-        /* ==========================================================
-           FRAME
-           ========================================================== */
-        .frame-container {
-            background: white;
-            border-radius: 35px;
-            padding: 28px 22px 32px;
-            max-width: 340px;
-            width: 100%;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(0,0,0,0.03);
-            text-align: center;
-        }
-
-        .frame-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 25px;
-            background: linear-gradient(135deg, var(--cream-dark), var(--pink-soft));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--pink-primary);
-            overflow: hidden;
-            margin-bottom: 18px;
-        }
-
+        /* FRAME */
+        .frame-container { background: white; border-radius: 35px; padding: 28px 22px 32px; max-width: 340px; width: 100%; box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.03); text-align: center; }
+        .frame-image { width: 100%; height: 200px; border-radius: 25px; background: linear-gradient(135deg, var(--cream-dark), var(--emerald-soft)); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--emerald-medium); overflow: hidden; margin-bottom: 18px; }
         .frame-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 25px; }
+        .ayat-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--text-dark); line-height: 1.8; font-style: italic; padding: 8px 0; }
+        .ayat-surah { font-size: 0.8rem; color: var(--emerald); font-style: italic; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; }
 
-        .ayat-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--text-dark);
-            line-height: 1.8;
-            font-style: italic;
-            padding: 8px 0;
-        }
-
-        .ayat-surah {
-            font-size: 0.8rem;
-            color: var(--pink-dark);
-            font-style: italic;
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 1px;
-        }
-
-        /* ==========================================================
-           BRIDE & GROOM - FOTO+TEXT HORIZONTAL
-           ========================================================== */
+        /* BRIDE & GROOM */
         .couple-container { max-width: 340px; width: 100%; text-align: center; }
-
-        .couple-card {
-            background: white;
-            border-radius: 30px;
-            padding: 18px;
-            margin-bottom: 14px;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(0,0,0,0.03);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-        }
-
+        .couple-card { background: white; border-radius: 30px; padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.03); display: flex; align-items: center; gap: 16px; transition: all 0.3s ease; }
         .couple-card.bride { flex-direction: row; }
         .couple-card.groom { flex-direction: row-reverse; }
-
-        .photo-frame {
-            width: 90px;
-            height: 90px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-            background: var(--cream-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--pink-primary);
-        }
-
+        .photo-frame { width: 90px; height: 90px; flex-shrink: 0; border-radius: 50%; overflow: hidden; background: var(--cream-dark); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--emerald-medium); }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
         .couple-info { flex: 1; text-align: center; }
+        .couple-info .name { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); }
+        .couple-info .parents { font-size: 0.75rem; color: var(--text-soft); margin-top: 4px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .couple-info .child-of { font-size: 0.7rem; color: var(--text-light); margin-top: 4px; }
 
-        .couple-info .name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .couple-info .parents {
-            font-size: 0.75rem;
-            color: var(--text-soft);
-            margin-top: 4px;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-        }
-
-        .couple-info .child-of {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        /* ==========================================================
-           DETAILS
-           ========================================================== */
-        .details-container {
-            max-width: 340px;
-            width: 100%;
-            background: white;
-            border-radius: 30px;
-            padding: 30px 24px;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 14px 0;
-            border-bottom: 1px solid #f0e8e8;
-        }
-
+        /* DETAILS */
+        .details-container { max-width: 340px; width: 100%; background: white; border-radius: 30px; padding: 30px 24px; box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.03); }
+        .detail-item { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid #e8edeb; }
         .detail-item:last-child { border-bottom: none; }
+        .detail-item .icon { font-size: 1.1rem; color: white; background: var(--emerald); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .detail-item .text .label { font-size: 0.65rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 2px; font-family: 'Cormorant Garamond', serif; }
+        .detail-item .text .value { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; margin-top: 2px; }
+        .btn-route { display: inline-flex; align-items: center; gap: 10px; background: var(--emerald); color: white; padding: 14px 34px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 16px; box-shadow: 0 10px 30px rgba(11, 61, 46, 0.2); transition: all 0.3s ease; font-size: 0.9rem; }
+        .btn-route:hover { transform: translateY(-2px); background: var(--emerald-medium); }
 
-        .detail-item .icon {
-            font-size: 1.1rem;
-            color: white;
-            background: var(--pink-dark);
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+        /* GIFT */
+        .gift-container { max-width: 340px; width: 100%; background: white; border-radius: 30px; padding: 30px 24px; box-shadow: var(--shadow-card); border: 1px solid rgba(0,0,0,0.03); text-align: center; }
+        .gift-container .address-box { background: var(--cream-dark); border-radius: 18px; padding: 16px; margin: 14px 0; font-size: 0.9rem; color: var(--text-dark); line-height: 1.8; border: 1px dashed var(--emerald-soft); font-family: 'Cormorant Garamond', serif; }
 
-        .detail-item .text .label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--text-light);
-            letter-spacing: 2px;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .detail-item .text .value {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        .btn-route {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--pink-dark);
-            color: white;
-            padding: 14px 34px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 16px;
-            box-shadow: 0 10px 30px rgba(180, 125, 125, 0.2);
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .btn-route:hover { transform: translateY(-2px); background: var(--pink-primary); }
-
-        /* ==========================================================
-           WEDDING GIFT
-           ========================================================== */
-        .gift-container {
-            max-width: 340px;
-            width: 100%;
-            background: white;
-            border-radius: 30px;
-            padding: 30px 24px;
-            box-shadow: var(--shadow-card);
-            border: 1px solid rgba(0,0,0,0.03);
-            text-align: center;
-        }
-
-        .gift-container .address-box {
-            background: var(--cream-dark);
-            border-radius: 18px;
-            padding: 16px;
-            margin: 14px 0;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            line-height: 1.8;
-            border: 1px dashed var(--pink-soft);
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* ==========================================================
-           GALLERY
-           ========================================================== */
-        .album-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            max-width: 340px;
-            width: 100%;
-        }
-
-        .album-item {
-            aspect-ratio: 1;
-            border-radius: 22px;
-            background: white;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--pink-primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
+        /* GALLERY */
+        .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 340px; width: 100%; }
+        .album-item { aspect-ratio: 1; border-radius: 22px; background: white; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--emerald-medium); box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease; cursor: pointer; }
         .album-item img { width: 100%; height: 100%; object-fit: cover; }
         .album-item:hover { transform: scale(1.03); }
 
-        /* ==========================================================
-           CLOSING
-           ========================================================== */
+        /* CLOSING */
         .closing-container { max-width: 340px; width: 100%; text-align: center; }
+        .closing-container h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; line-height: 1.3; color: var(--emerald-dark); }
+        .closing-container p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.9; font-family: 'Cormorant Garamond', serif; }
+        .guest-name-footer { font-family: 'Great Vibes', cursive; font-size: clamp(1rem, 4vw, 1.4rem); color: var(--emerald); word-break: break-word; }
 
-        .closing-container h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            line-height: 1.3;
-            color: var(--pink-dark);
-        }
-
-        .closing-container p {
-            color: var(--text-soft);
-            font-size: 0.95rem;
-            line-height: 1.9;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .guest-name-footer {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(1rem, 4vw, 1.4rem);
-            color: var(--pink-primary);
-            word-break: break-word;
-        }
-
-        /* ==========================================================
-           RESPONSIVE
-           ========================================================== */
         @media (max-width: 430px) {
-            .container { padding: 0 16px 40px; }
-            .section { padding: 30px 0 15px; min-height: 55vh; }
+            .container { padding: 0 16px 40px; } .section { padding: 30px 0 15px; min-height: 55vh; }
             .section:first-child { min-height: 100vh; margin-left: -16px; margin-right: -16px; width: calc(100% + 32px); }
             .curtain-center { top: -25px; left: -5px; width: calc(100% + 10px); height: calc(100% + 5px); }
-            .couple-names { font-size: 2.5rem; }
-            .content-overlay { max-width: 280px; padding: 20px 10px; }
-            .album-art { width: 80px; height: 80px; font-size: 1.8rem; }
-            .frame-image { height: 160px; }
-            .photo-frame { width: 75px; height: 75px; font-size: 2rem; }
-            .btn-play { width: 38px; height: 38px; font-size: 0.9rem !important; }
-            .controls { gap: 8px; }
-            .section-title { font-size: 2.4rem; }
-            .music-player { padding: 16px 12px; gap: 12px; }
-            .couple-card { padding: 14px; gap: 12px; }
-            .couple-info .name { font-size: 1.1rem; }
-        }
-
-        @media (max-width: 360px) {
-            .container { padding: 0 12px 30px; }
-            .section:first-child { margin-left: -12px; margin-right: -12px; width: calc(100% + 24px); }
-            .couple-names { font-size: 2rem; }
-            .content-overlay { max-width: 240px; }
-            .album-art { width: 65px; height: 65px; font-size: 1.5rem; }
-            .photo-frame { width: 65px; height: 65px; font-size: 1.8rem; }
-            .music-player { padding: 14px 10px; gap: 10px; }
-            .btn-play { width: 34px; height: 34px; font-size: 0.8rem !important; }
-            .couple-card { padding: 12px; gap: 10px; }
-            .couple-info .name { font-size: 1rem; }
+            .couple-names { font-size: 2.5rem; } .content-overlay { max-width: 280px; padding: 20px 10px; }
+            .album-art { width: 80px; height: 80px; font-size: 1.8rem; } .frame-image { height: 160px; }
+            .photo-frame { width: 75px; height: 75px; font-size: 2rem; } .btn-play { width: 38px; height: 38px; font-size: 0.9rem !important; }
+            .controls { gap: 8px; } .section-title { font-size: 2.4rem; } .music-player { padding: 16px 12px; gap: 12px; }
+            .couple-card { padding: 14px; gap: 12px; } .couple-info .name { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -647,12 +146,9 @@
 
 <div class="container" id="app">
 
-    <!-- SECTION 1: PEMBUKA -->
     <section class="section" id="section1">
         <div class="curtain-wrapper">
-            <div class="curtain-center" id="curtainCenter">
-                <img src="bebe.png" alt="">
-            </div>
+            <div class="curtain-center" id="curtainCenter"><img src="bebe.png" alt=""></div>
             <div class="content-overlay">
                 <div class="ornament-top fade-up delay-1">— ✦ —</div>
                 <div class="guest-name fade-up delay-1" id="guestNameDisplay">Tamu Undangan,</div>
@@ -664,7 +160,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: MUSIC PLAYER -->
     <section class="section" id="section2">
         <div class="music-player fade-up" id="musicPlayer">
             <div class="album-art" id="albumArt"><i class="fas fa-heart"></i></div>
@@ -682,7 +177,6 @@
         </div>
     </section>
 
-    <!-- SECTION 3: FIGURA + AYAT -->
     <section class="section" id="section3">
         <div class="frame-container fade-up">
             <div class="frame-image" id="figureImage"><i class="fas fa-image"></i></div>
@@ -691,68 +185,38 @@
         </div>
     </section>
 
-    <!-- SECTION 4: BRIDE & GROOM -->
     <section class="section" id="section4">
         <div class="couple-container">
             <h2 class="section-title fade-up">The Bride & Groom</h2>
-            <!-- AMELIA: Foto KIRI, Teks KANAN -->
             <div class="couple-card bride fade-up delay-1">
                 <div class="photo-frame" id="bridePhoto"><i class="fas fa-female"></i></div>
-                <div class="couple-info">
-                    <div class="name" id="brideName">Amelia</div>
-                    <div class="parents">Putri dari</div>
-                    <div class="child-of" id="brideParents">Bapak ... & Ibu ...</div>
-                </div>
+                <div class="couple-info"><div class="name" id="brideName">Amelia</div><div class="parents">Putri dari</div><div class="child-of" id="brideParents">Bapak ... & Ibu ...</div></div>
             </div>
-            <!-- RICHY: Foto KANAN, Teks KIRI -->
             <div class="couple-card groom fade-up delay-3">
                 <div class="photo-frame" id="groomPhoto"><i class="fas fa-male"></i></div>
-                <div class="couple-info">
-                    <div class="name" id="groomName">Richy</div>
-                    <div class="parents">Putra dari</div>
-                    <div class="child-of" id="groomParents">Bapak ... & Ibu ...</div>
-                </div>
+                <div class="couple-info"><div class="name" id="groomName">Richy</div><div class="parents">Putra dari</div><div class="child-of" id="groomParents">Bapak ... & Ibu ...</div></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: DETAIL -->
     <section class="section" id="section5">
         <div class="details-container fade-up">
             <h2 class="section-title" style="font-size:2.5rem;">The Details</h2>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="text"><div class="label">Tanggal</div><div class="value" id="detailDate">Sabtu, 2 Juli 2026</div></div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-clock"></i></div>
-                <div class="text"><div class="label">Waktu</div><div class="value" id="detailTime">09:00 - 15:00 WIB</div></div>
-            </div>
-            <div class="detail-item">
-                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="text"><div class="label">Lokasi</div><div class="value" id="detailLocation">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div></div>
-            </div>
-            <div style="text-align:center; margin-top:10px;">
-                <a href="https://maps.google.com/?q=-6.2088,106.8456" target="_blank" class="btn-route" id="btnRoute">
-                    <i class="fas fa-directions"></i> Buka Rute
-                </a>
-            </div>
+            <div class="detail-item"><div class="icon"><i class="fas fa-calendar-alt"></i></div><div class="text"><div class="label">Tanggal</div><div class="value" id="detailDate">Sabtu, 2 Juli 2026</div></div></div>
+            <div class="detail-item"><div class="icon"><i class="fas fa-clock"></i></div><div class="text"><div class="label">Waktu</div><div class="value" id="detailTime">09:00 - 15:00 WIB</div></div></div>
+            <div class="detail-item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div class="text"><div class="label">Lokasi</div><div class="value" id="detailLocation">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div></div></div>
+            <div style="text-align:center; margin-top:10px;"><a href="https://maps.google.com/?q=-6.2088,106.8456" target="_blank" class="btn-route" id="btnRoute"><i class="fas fa-directions"></i> Buka Rute</a></div>
         </div>
     </section>
 
-    <!-- SECTION 6: WEDDING GIFT -->
     <section class="section" id="section6">
         <div class="gift-container fade-up">
             <h2 class="section-title">Wedding Gift</h2>
             <p style="color:var(--text-soft); margin:8px 0 12px; font-size:0.9rem; font-family:'Cormorant Garamond',serif; font-style:italic;">Doa dan kehadiran Anda adalah hadiah terbaik.</p>
-            <div class="address-box" id="giftAddress">
-                <i class="fas fa-home"></i> Jl. Melati No. 45, RT 02/RW 03, Kel. Bahagia, Kec. Sentosa, Jakarta 12345
-                <br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: <span id="giftNames">Richy & Amelia</span></span>
-            </div>
+            <div class="address-box" id="giftAddress"><i class="fas fa-home"></i> Jl. Melati No. 45, RT 02/RW 03, Kel. Bahagia, Kec. Sentosa, Jakarta 12345<br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: <span id="giftNames">Richy & Amelia</span></span></div>
         </div>
     </section>
 
-    <!-- SECTION 7: GALLERY -->
     <section class="section" id="section7">
         <h2 class="section-title fade-up">Our Gallery</h2>
         <div class="album-grid">
@@ -763,18 +227,12 @@
         </div>
     </section>
 
-    <!-- SECTION 8: CLOSING -->
     <section class="section" id="section8">
         <div class="closing-container fade-up">
             <h2>See You<br>at Our Wedding Day</h2>
-            <p>Merupakan suatu kehormatan bagi kami,<br>
-            <strong style="color:var(--pink-dark);" id="closingGroom">Richy</strong> & <strong style="color:var(--pink-dark);" id="closingBride">Amelia</strong><br>jika Anda berkenan hadir.</p>
-            <div style="margin-top:18px; font-size:1.2rem;">
-                <span style="font-family:'Great Vibes', cursive; font-size:2rem; color:var(--pink-dark);">Terima Kasih</span>
-            </div>
-            <div style="margin-top:14px; font-size:0.9rem; color:var(--text-light);">
-                Untuk <span class="guest-name-footer" id="guestNameFooter">Tamu Undangan</span>
-            </div>
+            <p>Merupakan suatu kehormatan bagi kami,<br><strong style="color:var(--emerald);" id="closingGroom">Richy</strong> & <strong style="color:var(--emerald);" id="closingBride">Amelia</strong><br>jika Anda berkenan hadir.</p>
+            <div style="margin-top:18px; font-size:1.2rem;"><span style="font-family:'Great Vibes', cursive; font-size:2rem; color:var(--emerald-dark);">Terima Kasih</span></div>
+            <div style="margin-top:14px; font-size:0.9rem; color:var(--text-light);">Untuk <span class="guest-name-footer" id="guestNameFooter">Tamu Undangan</span></div>
         </div>
     </section>
 
@@ -783,24 +241,17 @@
 <script>
 const CONFIG = {
     guestName: 'Tamu Undangan',
-    bride: 'Amelia',
-    groom: 'Richy',
-    brideParents: 'Bapak ... & Ibu ...',
-    groomParents: 'Bapak ... & Ibu ...',
-    date: 'Sabtu, 2 Juli 2026',
-    time: '09:00 - 15:00 WIB',
+    bride: 'Amelia', groom: 'Richy',
+    brideParents: 'Bapak ... & Ibu ...', groomParents: 'Bapak ... & Ibu ...',
+    date: 'Sabtu, 2 Juli 2026', time: '09:00 - 15:00 WIB',
     location: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
     giftAddress: 'Jl. Melati No. 45, RT 02/RW 03, Kel. Bahagia, Kec. Sentosa, Jakarta 12345',
-    // LAGU PIANO ROMANTIS
     songs: [
-        { src: 'https://cdn.pixabay.com/audio/2022/03/10/audio_1a9b2c3d4e.mp3' },
-        { src: 'https://cdn.pixabay.com/audio/2022/01/18/audio_5f6g7h8i9j.mp3' },
-        { src: 'https://cdn.pixabay.com/audio/2021/11/22/audio_0k1l2m3n4o.mp3' }
+        { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' }
     ]
 };
 
-// Ambil nama dari URL (support %20, +, dan -)
 (function() {
     const urlParams = new URLSearchParams(window.location.search);
     const toParam = urlParams.get('to');
@@ -808,129 +259,58 @@ const CONFIG = {
     let name = toParam || path;
     if (name && name !== 'index.html') {
         name = decodeURIComponent(name);
-        name = name.replace(/\+/g, ' ');
-        name = name.replace(/-/g, ' ');
-        let formatted = name.replace(/\b\w/g, c => c.toUpperCase());
+        name = name.replace(/\+/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+        let formatted = name.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         if (formatted) CONFIG.guestName = formatted;
     }
 })();
 
 function populateData() {
-    const guestNameDisplay = document.getElementById('guestNameDisplay');
-    if (guestNameDisplay) guestNameDisplay.textContent = CONFIG.guestName + ',';
-    const coupleNamesDisplay = document.getElementById('coupleNamesDisplay');
-    if (coupleNamesDisplay) coupleNamesDisplay.innerHTML = CONFIG.groom + ' <span class="and">&</span> ' + CONFIG.bride;
-    document.getElementById('brideName') && (document.getElementById('brideName').textContent = CONFIG.bride);
-    document.getElementById('groomName') && (document.getElementById('groomName').textContent = CONFIG.groom);
-    document.getElementById('brideParents') && (document.getElementById('brideParents').textContent = CONFIG.brideParents);
-    document.getElementById('groomParents') && (document.getElementById('groomParents').textContent = CONFIG.groomParents);
-    document.getElementById('detailDate') && (document.getElementById('detailDate').textContent = CONFIG.date);
-    document.getElementById('detailTime') && (document.getElementById('detailTime').textContent = CONFIG.time);
-    document.getElementById('detailLocation') && (document.getElementById('detailLocation').textContent = CONFIG.location);
-    document.getElementById('btnRoute') && (document.getElementById('btnRoute').href = CONFIG.gmapsLink);
-    const giftAddress = document.getElementById('giftAddress');
-    if (giftAddress) {
-        giftAddress.innerHTML = '<i class="fas fa-home"></i> ' + CONFIG.giftAddress +
-            '<br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: ' + CONFIG.groom + ' & ' + CONFIG.bride + '</span>';
-    }
-    document.getElementById('closingGroom') && (document.getElementById('closingGroom').textContent = CONFIG.groom);
-    document.getElementById('closingBride') && (document.getElementById('closingBride').textContent = CONFIG.bride);
-    document.getElementById('guestNameFooter') && (document.getElementById('guestNameFooter').textContent = CONFIG.guestName);
+    document.getElementById('guestNameDisplay').textContent = CONFIG.guestName + ',';
+    document.getElementById('coupleNamesDisplay').innerHTML = CONFIG.groom + ' <span class="and">&</span> ' + CONFIG.bride;
+    document.getElementById('brideName').textContent = CONFIG.bride;
+    document.getElementById('groomName').textContent = CONFIG.groom;
+    document.getElementById('brideParents').textContent = CONFIG.brideParents;
+    document.getElementById('groomParents').textContent = CONFIG.groomParents;
+    document.getElementById('detailDate').textContent = CONFIG.date;
+    document.getElementById('detailTime').textContent = CONFIG.time;
+    document.getElementById('detailLocation').textContent = CONFIG.location;
+    document.getElementById('btnRoute').href = CONFIG.gmapsLink;
+    document.getElementById('giftAddress').innerHTML = '<i class="fas fa-home"></i> ' + CONFIG.giftAddress + '<br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: ' + CONFIG.groom + ' & ' + CONFIG.bride + '</span>';
+    document.getElementById('closingGroom').textContent = CONFIG.groom;
+    document.getElementById('closingBride').textContent = CONFIG.bride;
+    document.getElementById('guestNameFooter').textContent = CONFIG.guestName;
 }
 
-let currentSongIndex = 0;
-let audio = null;
-let isPlaying = false;
+let currentSongIndex = 0, audio = null, isPlaying = false;
 
 function initMusicPlayer() {
     audio = new Audio(CONFIG.songs[currentSongIndex].src);
-    const btnPlay = document.getElementById('btnPlay');
-    const progressFill = document.getElementById('progressFill');
-    const currentTimeEl = document.getElementById('currentTime');
-    const durationEl = document.getElementById('duration');
-    const progressBar = document.getElementById('progressBar');
-
-    function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return mins + ':' + secs.toString().padStart(2, '0');
-    }
-
-    function updateProgress() {
-        if (isPlaying && audio.duration) {
-            progressFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-        }
-    }
-
-    btnPlay.addEventListener('click', function() {
-        if (isPlaying) {
-            audio.pause();
-            isPlaying = false;
-            btnPlay.innerHTML = '<i class="fas fa-play"></i>';
-            btnPlay.classList.remove('playing');
-        } else {
-            audio.play().catch(() => {});
-            isPlaying = true;
-            btnPlay.innerHTML = '<i class="fas fa-pause"></i>';
-            btnPlay.classList.add('playing');
-        }
+    const btnPlay = document.getElementById('btnPlay'), progressFill = document.getElementById('progressFill'),
+          currentTimeEl = document.getElementById('currentTime'), durationEl = document.getElementById('duration'),
+          progressBar = document.getElementById('progressBar');
+    const ft = s => { let m = Math.floor(s/60), sec = Math.floor(s%60); return m + ':' + sec.toString().padStart(2,'0'); };
+    const up = () => { if(isPlaying && audio.duration){ progressFill.style.width = (audio.currentTime/audio.duration)*100 + '%'; currentTimeEl.textContent = ft(audio.currentTime); } };
+    btnPlay.addEventListener('click', () => {
+        if(isPlaying){ audio.pause(); isPlaying=false; btnPlay.innerHTML='<i class="fas fa-play"></i>'; btnPlay.classList.remove('playing'); }
+        else { audio.play().catch(()=>{}); isPlaying=true; btnPlay.innerHTML='<i class="fas fa-pause"></i>'; btnPlay.classList.add('playing'); }
     });
-
-    audio.addEventListener('timeupdate', updateProgress);
-    audio.addEventListener('loadedmetadata', function() { durationEl.textContent = formatTime(audio.duration); });
-    audio.addEventListener('ended', function() {
-        currentSongIndex = (currentSongIndex + 1) % CONFIG.songs.length;
-        audio.src = CONFIG.songs[currentSongIndex].src;
-        if (isPlaying) audio.play().catch(() => {});
-        progressFill.style.width = '0%';
-        currentTimeEl.textContent = '0:00';
-    });
-
-    document.getElementById('btnNext').addEventListener('click', function() {
-        currentSongIndex = (currentSongIndex + 1) % CONFIG.songs.length;
-        audio.src = CONFIG.songs[currentSongIndex].src;
-        progressFill.style.width = '0%';
-        currentTimeEl.textContent = '0:00';
-        if (isPlaying) audio.play().catch(() => {});
-    });
-
-    document.getElementById('btnPrev').addEventListener('click', function() {
-        currentSongIndex = (currentSongIndex - 1 + CONFIG.songs.length) % CONFIG.songs.length;
-        audio.src = CONFIG.songs[currentSongIndex].src;
-        progressFill.style.width = '0%';
-        currentTimeEl.textContent = '0:00';
-        if (isPlaying) audio.play().catch(() => {});
-    });
-
-    progressBar.addEventListener('click', function(e) {
-        if (audio.duration) {
-            const rect = this.getBoundingClientRect();
-            audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-        }
-    });
-
+    audio.addEventListener('timeupdate', up);
+    audio.addEventListener('loadedmetadata', () => { durationEl.textContent = ft(audio.duration); });
+    audio.addEventListener('ended', () => { currentSongIndex = (currentSongIndex+1) % CONFIG.songs.length; audio.src = CONFIG.songs[currentSongIndex].src; if(isPlaying) audio.play().catch(()=>{}); progressFill.style.width='0%'; currentTimeEl.textContent='0:00'; });
+    document.getElementById('btnNext').addEventListener('click', () => { currentSongIndex = (currentSongIndex+1) % CONFIG.songs.length; audio.src = CONFIG.songs[currentSongIndex].src; progressFill.style.width='0%'; currentTimeEl.textContent='0:00'; if(isPlaying) audio.play().catch(()=>{}); });
+    document.getElementById('btnPrev').addEventListener('click', () => { currentSongIndex = (currentSongIndex-1+CONFIG.songs.length) % CONFIG.songs.length; audio.src = CONFIG.songs[currentSongIndex].src; progressFill.style.width='0%'; currentTimeEl.textContent='0:00'; if(isPlaying) audio.play().catch(()=>{}); });
+    progressBar.addEventListener('click', e => { if(audio.duration){ let r = progressBar.getBoundingClientRect(); audio.currentTime = ((e.clientX-r.left)/r.width)*audio.duration; } });
     durationEl.textContent = '3:45';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     populateData();
-
-    const curtainCenter = document.getElementById('curtainCenter');
-    if (curtainCenter) setTimeout(() => { curtainCenter.classList.add('show'); }, 300);
-
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-    }, { threshold: 0.15 });
-    fadeElements.forEach(el => observer.observe(el));
-
+    setTimeout(() => { document.getElementById('curtainCenter').classList.add('show'); }, 300);
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); }); }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     initMusicPlayer();
-
-    document.getElementById('btnRoute').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open(this.href, '_blank');
-    });
+    document.getElementById('btnRoute').addEventListener('click', function(e){ e.preventDefault(); window.open(this.href, '_blank'); });
 });
 </script>
 </body>
