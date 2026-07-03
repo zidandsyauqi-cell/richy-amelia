@@ -22,11 +22,9 @@
             --text-dark: #2C3328;
             --text-soft: #5A6954;
             --text-light: #8A9584;
-            --text-pink: #B87D7D;
-            --shadow-soft: rgba(180, 125, 125, 0.05);
-            --shadow-medium: rgba(180, 125, 125, 0.10);
             --white-glass: rgba(255, 255, 255, 0.6);
-            --white-glass-strong: rgba(255, 255, 255, 0.8);
+            --white-glass-strong: rgba(255, 255, 255, 0.85);
+            --shadow-card: 0 15px 45px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.03);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,11 +36,6 @@
             background: var(--cream);
             overflow-x: hidden;
             position: relative;
-            background-image:
-                radial-gradient(ellipse at 15% 10%, rgba(238, 201, 196, 0.2) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 90%, rgba(247, 224, 220, 0.2) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 50%, rgba(197, 211, 187, 0.08) 0%, transparent 60%);
-            background-attachment: fixed;
         }
 
         .container {
@@ -51,13 +44,13 @@
             margin: 0 auto;
             background: transparent;
             min-height: 100vh;
-            padding: 0 20px 60px;
+            padding: 0 20px 50px;
             position: relative;
             z-index: 1;
         }
 
         .section {
-            padding: 40px 0 30px;
+            padding: 40px 0 20px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -74,21 +67,15 @@
             width: calc(100% + 40px);
         }
 
-        .section:last-child {
-            min-height: 60vh;
-            padding-bottom: 40px;
-        }
+        .section:last-child { min-height: 50vh; padding-bottom: 30px; }
 
         .curtain-wrapper {
             position: relative;
             width: 100%;
-            max-width: 100%;
-            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            top: 0; left: 0; right: 0;
         }
 
         .curtain-center {
@@ -144,8 +131,6 @@
             line-height: 1.2;
         }
 
-        .guest-name .comma { font-size: 2.8rem; color: var(--pink-primary); }
-
         .youre-invited {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.9rem;
@@ -154,17 +139,6 @@
             text-transform: uppercase;
             font-style: italic;
             margin: 18px 0 15px;
-        }
-
-        .youre-invited::before,
-        .youre-invited::after {
-            content: '•';
-            position: relative;
-            top: -2px;
-            color: var(--pink-primary);
-            margin: 0 10px;
-            font-size: 0.5rem;
-            opacity: 0.6;
         }
 
         .couple-names {
@@ -213,29 +187,21 @@
 
         .fade-up {
             opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            filter: blur(8px);
+            transform: translateY(40px);
+            transition: all 0.7s ease;
         }
 
-        .fade-up.show { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        .fade-up.show { opacity: 1; transform: translateY(0); }
 
-        .content-overlay .fade-up {
-            transform: translateY(50px) scale(0.85);
-            filter: blur(12px);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .content-overlay .fade-up.show { transform: translateY(0) scale(1); filter: blur(0); }
+        .content-overlay .fade-up { transform: translateY(50px); transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .content-overlay .fade-up.show { transform: translateY(0); }
 
         .fade-up.delay-1 { transition-delay: 0.4s; }
         .fade-up.delay-2 { transition-delay: 0.6s; }
         .fade-up.delay-3 { transition-delay: 0.8s; }
         .fade-up.delay-4 { transition-delay: 1.0s; }
         .fade-up.delay-5 { transition-delay: 1.2s; }
-        .fade-up.delay-6 { transition-delay: 1.4s; }
 
-        /* SECTION TITLE - ALL HEADING */
         .section-title {
             font-family: 'Great Vibes', cursive;
             font-size: 2.8rem;
@@ -248,31 +214,28 @@
             background: var(--white-glass-strong);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 35px;
-            padding: 20px;
+            border-radius: 30px;
+            padding: 18px;
             max-width: 340px;
             width: 100%;
-            box-shadow: 0 20px 60px var(--shadow-soft), 0 2px 8px var(--shadow-medium);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
             display: flex;
             align-items: center;
-            gap: 18px;
-            position: relative;
-            overflow: hidden;
+            gap: 16px;
         }
 
         .album-art {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             flex-shrink: 0;
-            border-radius: 25px;
-            background: linear-gradient(135deg, var(--pink-soft), var(--pink-primary));
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--green-soft), var(--green-medium));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: white;
-            box-shadow: 0 10px 25px rgba(180, 125, 125, 0.15);
             overflow: hidden;
             margin: 0;
         }
@@ -280,7 +243,7 @@
         .album-art img {
             width: 100%; height: 100%;
             object-fit: cover;
-            border-radius: 25px;
+            border-radius: 22px;
         }
 
         .progress-container { margin: 0 0 6px; }
@@ -288,7 +251,7 @@
         .progress-bar {
             width: 100%;
             height: 5px;
-            background: var(--pink-soft);
+            background: #e8e8e8;
             border-radius: 10px;
             cursor: pointer;
             overflow: hidden;
@@ -305,24 +268,23 @@
         .time-display {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-light);
-            margin-top: 5px;
-            font-family: 'Cormorant Garamond', serif;
+            margin-top: 4px;
         }
 
         .controls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 6px;
         }
 
         .controls button {
             background: none;
             border: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-soft);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -333,28 +295,22 @@
         .controls button:active { transform: scale(0.9); }
 
         .btn-play {
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: var(--pink-dark) !important;
-            color: white !important;
-            font-size: 1.1rem !important;
-            box-shadow: 0 8px 20px rgba(180, 125, 125, 0.25);
+            background: white !important;
+            color: var(--pink-dark) !important;
+            font-size: 1rem !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease !important;
+            border: 1px solid #eee !important;
         }
 
-        .btn-play:hover {
-            transform: scale(1.08) !important;
-            background: var(--pink-primary) !important;
-        }
-
-        .btn-play.playing {
-            background: var(--green-dark) !important;
-            box-shadow: 0 8px 20px rgba(63, 78, 51, 0.25);
-        }
+        .btn-play:hover { transform: scale(1.08) !important; }
+        .btn-play.playing { background: var(--green-dark) !important; color: white !important; border-color: var(--green-dark) !important; }
 
         .btn-shuffle.active,
         .btn-repeat.active { color: var(--pink-primary); }
@@ -364,21 +320,19 @@
             background: var(--white-glass-strong);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 40px;
+            border-radius: 35px;
             padding: 28px 22px 32px;
             max-width: 340px;
             width: 100%;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 20px 60px var(--shadow-soft);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .frame-image {
             width: 100%;
             height: 200px;
-            border-radius: 28px;
+            border-radius: 25px;
             background: linear-gradient(135deg, var(--cream-dark), var(--pink-soft));
             display: flex;
             align-items: center;
@@ -392,7 +346,7 @@
         .frame-image img {
             width: 100%; height: 100%;
             object-fit: cover;
-            border-radius: 28px;
+            border-radius: 25px;
         }
 
         .ayat-text {
@@ -406,7 +360,7 @@
 
         .ayat-surah {
             font-size: 0.8rem;
-            color: var(--text-pink);
+            color: var(--pink-dark);
             font-style: italic;
             font-family: 'Cormorant Garamond', serif;
             letter-spacing: 1px;
@@ -419,39 +373,27 @@
             background: var(--white-glass-strong);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 32px;
+            border-radius: 30px;
             padding: 22px 18px;
             margin-bottom: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 15px 45px var(--shadow-soft);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
             transition: all 0.3s ease;
         }
 
-        .couple-card:hover { transform: translateY(-2px); }
-
         .photo-frame {
-            width: 115px;
-            height: 115px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             margin: 0 auto 12px;
-            border: 3px solid var(--pink-soft);
             overflow: hidden;
             background: var(--cream-dark);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.2rem;
+            font-size: 3rem;
             color: var(--pink-primary);
-            box-shadow: 0 10px 30px var(--shadow-soft);
-        }
-
-        .photo-frame::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            border: 2px solid var(--green-soft);
-            opacity: 0.4;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
 
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -483,10 +425,10 @@
             background: var(--white-glass-strong);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 35px;
+            border-radius: 30px;
             padding: 30px 24px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 20px 60px var(--shadow-soft);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
         }
 
         .detail-item {
@@ -494,17 +436,17 @@
             align-items: flex-start;
             gap: 16px;
             padding: 14px 0;
-            border-bottom: 1px solid var(--pink-soft);
+            border-bottom: 1px solid #f0e8e8;
         }
 
         .detail-item:last-child { border-bottom: none; }
 
         .detail-item .icon {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: white;
             background: var(--pink-dark);
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -543,12 +485,7 @@
             font-size: 0.9rem;
         }
 
-        .btn-route:hover {
-            transform: translateY(-2px);
-            background: var(--pink-primary);
-        }
-
-        .btn-route:active { transform: scale(0.95); }
+        .btn-route:hover { transform: translateY(-2px); background: var(--pink-primary); }
 
         /* GIFT */
         .gift-container {
@@ -557,18 +494,18 @@
             background: var(--white-glass-strong);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 35px;
+            border-radius: 30px;
             padding: 30px 24px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 20px 60px var(--shadow-soft);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.03);
             text-align: center;
         }
 
-        .gift-icon { font-size: 3rem; color: var(--pink-primary); margin-bottom: 10px; }
+        .gift-icon { font-size: 2.5rem; color: var(--pink-primary); margin-bottom: 10px; }
 
         .gift-container .address-box {
             background: var(--cream-dark);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 16px;
             margin: 14px 0;
             font-size: 0.9rem;
@@ -577,8 +514,6 @@
             border: 1px dashed var(--pink-soft);
             font-family: 'Cormorant Garamond', serif;
         }
-
-        .gift-container .address-box i { color: var(--pink-dark); margin-right: 6px; }
 
         /* GALLERY */
         .album-grid {
@@ -591,22 +526,20 @@
 
         .album-item {
             aspect-ratio: 1;
-            border-radius: 24px;
-            background: linear-gradient(135deg, var(--pink-soft), var(--cream-dark));
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--cream-dark), var(--pink-soft));
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--pink-primary);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 25px rgba(180, 125, 125, 0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .album-item img { width: 100%; height: 100%; object-fit: cover; }
-
         .album-item:hover { transform: scale(1.03); }
 
         /* CLOSING */
@@ -618,8 +551,6 @@
             line-height: 1.3;
             color: var(--pink-dark);
         }
-
-        .closing-flower { font-size: 2.5rem; margin: 12px 0; }
 
         .closing-container p {
             color: var(--text-soft);
@@ -634,48 +565,21 @@
             color: var(--pink-primary);
         }
 
-        /* SEPARATOR */
-        .separator {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--pink-soft), var(--green-soft), transparent);
-            margin: 15px auto;
-            border-radius: 10px;
-        }
-
-        .separator-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--pink-primary);
-            border-radius: 50%;
-            margin: -4px auto 0;
-            opacity: 0.5;
-        }
-
-        .bg-decor {
-            position: absolute;
-            opacity: 0.03;
-            z-index: 0;
-            pointer-events: none;
-            font-size: 4rem;
-        }
-
-        /* RESPONSIVE */
         @media (max-width: 430px) {
             .container { padding: 0 16px 40px; }
-            .section { padding: 30px 0 20px; min-height: 60vh; }
-            .section:first-child { min-height: 100vh; padding-top: 0; margin-left: -16px; margin-right: -16px; width: calc(100% + 32px); }
+            .section { padding: 30px 0 15px; min-height: 55vh; }
+            .section:first-child { min-height: 100vh; margin-left: -16px; margin-right: -16px; width: calc(100% + 32px); }
             .curtain-center { top: -25px; left: -5px; width: calc(100% + 10px); height: calc(100% + 5px); }
             .guest-name { font-size: 2.8rem; }
             .couple-names { font-size: 2.5rem; }
-            .content-overlay { max-width: 280px; padding: 20px 10px; min-height: 80vh; }
-            .album-art { width: 100px; height: 100px; font-size: 2.5rem; }
-            .frame-image { height: 170px; }
-            .photo-frame { width: 100px; height: 100px; font-size: 2.8rem; }
-            .music-player { padding: 16px; gap: 14px; }
-            .btn-play { width: 40px; height: 40px; font-size: 1rem !important; }
-            .controls { gap: 8px; }
-            .controls button { font-size: 0.85rem; }
+            .content-overlay { max-width: 280px; padding: 20px 10px; }
+            .album-art { width: 90px; height: 90px; font-size: 2.2rem; }
+            .frame-image { height: 160px; }
+            .photo-frame { width: 95px; height: 95px; font-size: 2.5rem; }
+            .btn-play { width: 38px; height: 38px; font-size: 0.9rem !important; }
+            .controls { gap: 6px; }
+            .controls button { font-size: 0.8rem; }
+            .section-title { font-size: 2.4rem; }
         }
 
         @media (max-width: 360px) {
@@ -683,17 +587,10 @@
             .section:first-child { margin-left: -12px; margin-right: -12px; width: calc(100% + 24px); }
             .guest-name { font-size: 2.2rem; }
             .couple-names { font-size: 2rem; }
-            .content-overlay { max-width: 240px; padding: 15px 10px; }
-            .album-art { width: 85px; height: 85px; font-size: 2rem; }
-            .photo-frame { width: 85px; height: 85px; font-size: 2.5rem; }
-            .section { min-height: 50vh; }
-            .section:first-child { min-height: 100vh; }
-            .music-player { gap: 10px; padding: 12px; }
+            .content-overlay { max-width: 240px; }
+            .album-art { width: 75px; height: 75px; font-size: 1.8rem; }
+            .photo-frame { width: 80px; height: 80px; font-size: 2rem; }
         }
-
-        .container::-webkit-scrollbar { width: 3px; }
-        .container::-webkit-scrollbar-track { background: var(--cream); }
-        .container::-webkit-scrollbar-thumb { background: var(--pink-soft); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -707,8 +604,6 @@
                 <img src="bebe.png" alt="">
             </div>
             <div class="content-overlay">
-                <span class="bg-decor" style="top:8%;left:5%;">🌿</span>
-                <span class="bg-decor" style="bottom:12%;right:5%;">🌸</span>
                 <div class="ornament-top fade-up delay-1">— ✦ —</div>
                 <div class="guest-name fade-up delay-1" id="guestNameDisplay">Tamu Undangan<span class="comma">,</span></div>
                 <div class="youre-invited fade-up delay-2">You're Invited to the Wedding of</div>
@@ -719,34 +614,26 @@
         </div>
     </section>
 
-    <div class="separator"></div><div class="separator-dot"></div>
-
     <!-- SECTION 2: MUSIC PLAYER -->
     <section class="section" id="section2">
-        <span class="bg-decor" style="top:10%;right:8%;">🎵</span>
         <div class="music-player fade-up" id="musicPlayer">
-            <div class="album-art" id="albumArt"><i class="fas fa-music"></i></div>
+            <div class="album-art" id="albumArt"><i class="fas fa-image"></i></div>
             <div style="flex:1; text-align:center;">
                 <div class="progress-container">
                     <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
                     <div class="time-display"><span id="currentTime">0:00</span><span id="duration">3:45</span></div>
                 </div>
                 <div class="controls">
-                    <button class="btn-shuffle" id="btnShuffle"><i class="fas fa-random"></i></button>
                     <button id="btnPrev"><i class="fas fa-step-backward"></i></button>
                     <button class="btn-play" id="btnPlay"><i class="fas fa-play"></i></button>
                     <button id="btnNext"><i class="fas fa-step-forward"></i></button>
-                    <button class="btn-repeat" id="btnRepeat"><i class="fas fa-redo"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="separator"></div><div class="separator-dot"></div>
-
     <!-- SECTION 3: FIGURA + AYAT -->
     <section class="section" id="section3">
-        <span class="bg-decor" style="top:5%;left:5%;">🌷</span>
         <div class="frame-container fade-up">
             <div class="frame-image" id="figureImage"><i class="fas fa-image"></i></div>
             <div class="ayat-text">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri..."</div>
@@ -754,11 +641,8 @@
         </div>
     </section>
 
-    <div class="separator"></div><div class="separator-dot"></div>
-
     <!-- SECTION 4: BRIDE & GROOM -->
     <section class="section" id="section4">
-        <span class="bg-decor" style="bottom:15%;right:8%;">🌹</span>
         <div class="couple-container">
             <h2 class="section-title fade-up">The Bride & Groom</h2>
             <div class="couple-card fade-up delay-1">
@@ -775,8 +659,6 @@
             </div>
         </div>
     </section>
-
-    <div class="separator"></div><div class="separator-dot"></div>
 
     <!-- SECTION 5: DETAIL -->
     <section class="section" id="section5">
@@ -802,24 +684,17 @@
         </div>
     </section>
 
-    <div class="separator"></div><div class="separator-dot"></div>
-
     <!-- SECTION 6: WEDDING GIFT -->
     <section class="section" id="section6">
-        <span class="bg-decor" style="bottom:10%;left:5%;">🎁</span>
         <div class="gift-container fade-up">
-            <div class="gift-icon"><i class="fas fa-gift"></i></div>
             <h2 class="section-title">Wedding Gift</h2>
             <p style="color:var(--text-soft); margin:8px 0 12px; font-size:0.9rem; font-family:'Cormorant Garamond',serif; font-style:italic;">Doa dan kehadiran Anda adalah hadiah terbaik.</p>
             <div class="address-box" id="giftAddress">
                 <i class="fas fa-home"></i> Jl. Melati No. 45, RT 02/RW 03, Kel. Bahagia, Kec. Sentosa, Jakarta 12345
                 <br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: <span id="giftNames">Richy & Amelia</span></span>
             </div>
-            <div style="font-size:2rem; margin-top:8px;">💝💐💝</div>
         </div>
     </section>
-
-    <div class="separator"></div><div class="separator-dot"></div>
 
     <!-- SECTION 7: GALLERY -->
     <section class="section" id="section7">
@@ -832,23 +707,17 @@
         </div>
     </section>
 
-    <div class="separator"></div><div class="separator-dot"></div>
-
     <!-- SECTION 8: CLOSING -->
     <section class="section" id="section8">
         <div class="closing-container fade-up">
-            <div class="closing-flower">🌿💐🌸</div>
             <h2>See You<br>at Our Wedding Day</h2>
-            <div style="font-size:2.5rem; margin:12px 0;">💑</div>
             <p>Merupakan suatu kehormatan bagi kami,<br>
             <strong style="color:var(--pink-dark);" id="closingGroom">Richy</strong> & <strong style="color:var(--pink-dark);" id="closingBride">Amelia</strong><br>jika Anda berkenan hadir.</p>
             <div style="margin-top:18px; font-size:1.2rem;">
-                <i class="fas fa-heart" style="color:var(--pink-primary);"></i>
-                <span style="font-family:'Great Vibes', cursive; font-size:2rem; margin:0 10px; color:var(--pink-dark);">Terima Kasih</span>
-                <i class="fas fa-heart" style="color:var(--pink-primary);"></i>
+                <span style="font-family:'Great Vibes', cursive; font-size:2rem; color:var(--pink-dark);">Terima Kasih</span>
             </div>
             <div style="margin-top:14px; font-size:0.9rem; color:var(--text-light);">
-                <i class="fas fa-feather-alt"></i> Untuk <span class="guest-name-footer" id="guestNameFooter">Tamu Undangan</span>
+                Untuk <span class="guest-name-footer" id="guestNameFooter">Tamu Undangan</span>
             </div>
         </div>
     </section>
@@ -875,13 +744,16 @@ const CONFIG = {
     ]
 };
 
+// Ambil nama dari URL
 (function() {
     const urlParams = new URLSearchParams(window.location.search);
     const toParam = urlParams.get('to');
-    if (toParam) {
-        let name = toParam.trim();
-        name = name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-        if (name) CONFIG.guestName = name;
+    // Juga support /nama via path (dengan vercel.json)
+    const path = window.location.pathname.replace('/', '').trim();
+    const name = toParam || path;
+    if (name && name !== 'index.html') {
+        let formatted = name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+        if (formatted) CONFIG.guestName = formatted;
     }
 })();
 
@@ -890,48 +762,31 @@ function populateData() {
     if (guestNameDisplay) guestNameDisplay.innerHTML = CONFIG.guestName + '<span class="comma">,</span>';
     const coupleNamesDisplay = document.getElementById('coupleNamesDisplay');
     if (coupleNamesDisplay) coupleNamesDisplay.innerHTML = CONFIG.groom + ' <span class="and">&</span> ' + CONFIG.bride;
-    const brideName = document.getElementById('brideName');
-    const groomName = document.getElementById('groomName');
-    const brideParents = document.getElementById('brideParents');
-    const groomParents = document.getElementById('groomParents');
-    if (brideName) brideName.textContent = CONFIG.bride;
-    if (groomName) groomName.textContent = CONFIG.groom;
-    if (brideParents) brideParents.textContent = CONFIG.brideParents;
-    if (groomParents) groomParents.textContent = CONFIG.groomParents;
-    const detailDate = document.getElementById('detailDate');
-    const detailTime = document.getElementById('detailTime');
-    const detailLocation = document.getElementById('detailLocation');
-    const btnRoute = document.getElementById('btnRoute');
-    if (detailDate) detailDate.textContent = CONFIG.date;
-    if (detailTime) detailTime.textContent = CONFIG.time;
-    if (detailLocation) detailLocation.textContent = CONFIG.location;
-    if (btnRoute) btnRoute.href = CONFIG.gmapsLink;
+    document.getElementById('brideName') && (document.getElementById('brideName').textContent = CONFIG.bride);
+    document.getElementById('groomName') && (document.getElementById('groomName').textContent = CONFIG.groom);
+    document.getElementById('brideParents') && (document.getElementById('brideParents').textContent = CONFIG.brideParents);
+    document.getElementById('groomParents') && (document.getElementById('groomParents').textContent = CONFIG.groomParents);
+    document.getElementById('detailDate') && (document.getElementById('detailDate').textContent = CONFIG.date);
+    document.getElementById('detailTime') && (document.getElementById('detailTime').textContent = CONFIG.time);
+    document.getElementById('detailLocation') && (document.getElementById('detailLocation').textContent = CONFIG.location);
+    document.getElementById('btnRoute') && (document.getElementById('btnRoute').href = CONFIG.gmapsLink);
     const giftAddress = document.getElementById('giftAddress');
     if (giftAddress) {
         giftAddress.innerHTML = '<i class="fas fa-home"></i> ' + CONFIG.giftAddress +
             '<br><span style="font-size:0.8rem; color:var(--text-light);"><i class="fas fa-info-circle"></i> Atas nama: ' + CONFIG.groom + ' & ' + CONFIG.bride + '</span>';
     }
-    const closingGroom = document.getElementById('closingGroom');
-    const closingBride = document.getElementById('closingBride');
-    const guestNameFooter = document.getElementById('guestNameFooter');
-    if (closingGroom) closingGroom.textContent = CONFIG.groom;
-    if (closingBride) closingBride.textContent = CONFIG.bride;
-    if (guestNameFooter) guestNameFooter.textContent = CONFIG.guestName;
+    document.getElementById('closingGroom') && (document.getElementById('closingGroom').textContent = CONFIG.groom);
+    document.getElementById('closingBride') && (document.getElementById('closingBride').textContent = CONFIG.bride);
+    document.getElementById('guestNameFooter') && (document.getElementById('guestNameFooter').textContent = CONFIG.guestName);
 }
 
 let currentSongIndex = 0;
 let audio = null;
 let isPlaying = false;
-let isShuffle = false;
-let isRepeat = false;
 
 function initMusicPlayer() {
     audio = new Audio(CONFIG.songs[currentSongIndex].src);
     const btnPlay = document.getElementById('btnPlay');
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
-    const btnShuffle = document.getElementById('btnShuffle');
-    const btnRepeat = document.getElementById('btnRepeat');
     const progressFill = document.getElementById('progressFill');
     const currentTimeEl = document.getElementById('currentTime');
     const durationEl = document.getElementById('duration');
@@ -943,67 +798,61 @@ function initMusicPlayer() {
         return mins + ':' + secs.toString().padStart(2, '0');
     }
 
-    function loadSong(index) {
-        currentSongIndex = index;
-        audio.src = CONFIG.songs[index].src;
-        if (progressFill) progressFill.style.width = '0%';
-        if (currentTimeEl) currentTimeEl.textContent = '0:00';
-        if (isPlaying) audio.play().catch(() => {});
-    }
-
     function updateProgress() {
         if (isPlaying && audio.duration) {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            if (progressFill) progressFill.style.width = percent + '%';
-            if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+            progressFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
         }
     }
 
-    if (btnPlay) {
-        btnPlay.addEventListener('click', function() {
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                btnPlay.innerHTML = '<i class="fas fa-play"></i>';
-                btnPlay.classList.remove('playing');
-            } else {
-                audio.play().catch(() => {});
-                isPlaying = true;
-                btnPlay.innerHTML = '<i class="fas fa-pause"></i>';
-                btnPlay.classList.add('playing');
-            }
-        });
-    }
+    btnPlay.addEventListener('click', function() {
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+            btnPlay.innerHTML = '<i class="fas fa-play"></i>';
+            btnPlay.classList.remove('playing');
+        } else {
+            audio.play().catch(() => {});
+            isPlaying = true;
+            btnPlay.innerHTML = '<i class="fas fa-pause"></i>';
+            btnPlay.classList.add('playing');
+        }
+    });
 
     audio.addEventListener('timeupdate', updateProgress);
-    audio.addEventListener('loadedmetadata', function() {
-        if (durationEl) durationEl.textContent = formatTime(audio.duration);
+    audio.addEventListener('loadedmetadata', function() { durationEl.textContent = formatTime(audio.duration); });
+    audio.addEventListener('ended', function() {
+        currentSongIndex = (currentSongIndex + 1) % CONFIG.songs.length;
+        audio.src = CONFIG.songs[currentSongIndex].src;
+        if (isPlaying) audio.play().catch(() => {});
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
     });
 
-    audio.addEventListener('ended', function() {
-        if (isRepeat) { audio.currentTime = 0; audio.play(); }
-        else {
-            let nextIndex = isShuffle ? Math.floor(Math.random() * CONFIG.songs.length) : (currentSongIndex + 1) % CONFIG.songs.length;
-            loadSong(nextIndex);
-            if (isPlaying) audio.play().catch(() => {});
+    document.getElementById('btnNext').addEventListener('click', function() {
+        currentSongIndex = (currentSongIndex + 1) % CONFIG.songs.length;
+        audio.src = CONFIG.songs[currentSongIndex].src;
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+        if (isPlaying) audio.play().catch(() => {});
+    });
+
+    document.getElementById('btnPrev').addEventListener('click', function() {
+        currentSongIndex = (currentSongIndex - 1 + CONFIG.songs.length) % CONFIG.songs.length;
+        audio.src = CONFIG.songs[currentSongIndex].src;
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+        if (isPlaying) audio.play().catch(() => {});
+    });
+
+    progressBar.addEventListener('click', function(e) {
+        if (audio.duration) {
+            const rect = this.getBoundingClientRect();
+            audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
         }
     });
 
-    if (btnNext) btnNext.addEventListener('click', function() { loadSong(isShuffle ? Math.floor(Math.random() * CONFIG.songs.length) : (currentSongIndex + 1) % CONFIG.songs.length); });
-    if (btnPrev) btnPrev.addEventListener('click', function() { loadSong(isShuffle ? Math.floor(Math.random() * CONFIG.songs.length) : (currentSongIndex - 1 + CONFIG.songs.length) % CONFIG.songs.length); });
-    if (btnShuffle) btnShuffle.addEventListener('click', function() { isShuffle = !isShuffle; btnShuffle.classList.toggle('active'); });
-    if (btnRepeat) btnRepeat.addEventListener('click', function() { isRepeat = !isRepeat; btnRepeat.classList.toggle('active'); });
-
-    if (progressBar) {
-        progressBar.addEventListener('click', function(e) {
-            if (audio.duration) {
-                const rect = this.getBoundingClientRect();
-                audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-            }
-        });
-    }
-
-    if (durationEl) durationEl.textContent = '3:45';
+    durationEl.textContent = '3:45';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1015,15 +864,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const fadeElements = document.querySelectorAll('.fade-up');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.15 });
     fadeElements.forEach(el => observer.observe(el));
 
     initMusicPlayer();
 
-    const btnRoute = document.getElementById('btnRoute');
-    if (btnRoute) btnRoute.addEventListener('click', function(e) { e.preventDefault(); window.open(this.href, '_blank'); });
-
-    console.log('💕 Undangan Pernikahan - Richy & Amelia 💕');
+    document.getElementById('btnRoute').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(this.href, '_blank');
+    });
 });
 </script>
 </body>
