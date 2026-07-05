@@ -74,7 +74,7 @@
         }
         .envelope-front {
             transform: rotateY(0deg);
-            background: #f5f0eb;
+            background: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -92,7 +92,7 @@
         }
         .envelope-back {
             transform: rotateY(180deg);
-            background: #f5f0eb;
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,27 +113,28 @@
         }
         .envelope-text .guest-label {
             font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 5px;
         }
         .envelope-text .guest-name-env {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
             letter-spacing: 2px;
+            margin-top: 5px;
         }
         .envelope-text .invited-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.9rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-top: 8px;
+            margin-top: 10px;
             opacity: 0.7;
         }
         .envelope-text .click-hint {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.85rem;
-            margin-top: 15px;
+            margin-top: 20px;
             opacity: 0.5;
             animation: pulseHint 2s ease-in-out infinite;
         }
@@ -247,19 +248,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-        .vinyl-disc::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, #ff6b6b, #c0392b);
-            border: 3px solid #333;
-            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+            overflow: hidden;
         }
         .vinyl-disc .disc-lines {
             position: absolute;
@@ -268,11 +257,35 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: repeating-radial-gradient(circle at 50% 50%, 
-                transparent 0px, 
-                transparent 8px, 
-                rgba(255,255,255,0.03) 8px, 
-                rgba(255,255,255,0.03) 9px);
+            background: 
+                repeating-radial-gradient(circle at 50% 50%, 
+                    transparent 0px, 
+                    transparent 10px, 
+                    rgba(255,255,255,0.05) 10px, 
+                    rgba(255,255,255,0.05) 11px),
+                repeating-radial-gradient(circle at 50% 50%, 
+                    transparent 0px, 
+                    transparent 22px, 
+                    rgba(255,255,255,0.02) 22px, 
+                    rgba(255,255,255,0.02) 23px);
+        }
+        .vinyl-disc .couple-photo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.3);
+            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+        .vinyl-disc .couple-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .vinyl-disc.spinning {
             animation: spinVinyl 3s linear infinite;
@@ -365,11 +378,13 @@
             text-align: center;
         }
         .countdown-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-style: italic;
             color: #0e2340;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
         }
         .countdown-grid {
             display: grid;
@@ -449,49 +464,67 @@
         .calendar-grid .day.empty {
             color: #ddd;
         }
-        .calendar-grid .day .love-symbol {
+        .calendar-grid .day .wedding-ring {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.8rem;
-            color: #e74c3c;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid rgba(14, 35, 64, 0.15);
             opacity: 0;
-            animation: loveBreath 2s ease-in-out infinite;
             pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .calendar-grid .day .wedding-ring::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(14, 35, 64, 0.08);
         }
         .calendar-grid .day.wedding-day {
-            background: #0e2340;
-            color: white !important;
+            background: transparent;
+            color: #0e2340 !important;
             font-weight: 700;
         }
-        .calendar-grid .day.wedding-day .love-symbol {
+        .calendar-grid .day.wedding-day .wedding-ring {
             opacity: 1;
-            animation: loveBreath 2s ease-in-out infinite;
-            color: #ff6b6b;
+            animation: ringBreath 2s ease-in-out infinite;
         }
-        @keyframes loveBreath {
+        @keyframes ringBreath {
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
         }
 
         /* ========== VENUE CARD ========== */
         .venue-section {
             background: #f8f6f3;
             border-radius: 30px;
-            overflow: hidden;
+            padding: 30px 20px;
             margin-bottom: 30px;
+            text-align: center;
             box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
         }
-        .venue-section img {
-            width: 100%;
+        .venue-circle {
+            width: 200px;
             height: 200px;
-            object-fit: cover;
-            display: block;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 4px solid #e8ddd0;
+            box-shadow: 0 10px 30px rgba(14, 35, 64, 0.1);
+            position: relative;
         }
-        .venue-content {
-            padding: 25px 20px;
-            text-align: center;
+        .venue-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .venue-content h3 {
             font-family: 'Great Vibes', cursive;
@@ -641,8 +674,16 @@
                 width: 120px;
                 height: 120px;
             }
+            .vinyl-disc .couple-photo {
+                width: 40px;
+                height: 40px;
+            }
             .countdown-item .number {
                 font-size: 1.8rem;
+            }
+            .venue-circle {
+                width: 160px;
+                height: 160px;
             }
         }
         @media (max-width: 380px) {
@@ -657,6 +698,14 @@
                 width: 100px;
                 height: 100px;
             }
+            .vinyl-disc .couple-photo {
+                width: 34px;
+                height: 34px;
+            }
+            .venue-circle {
+                width: 140px;
+                height: 140px;
+            }
         }
     </style>
 </head>
@@ -668,7 +717,7 @@
         <div class="envelope-container" id="envelopeContainer">
             <!-- SAMPUL DEPAN (TERTUTUP) -->
             <div class="envelope-front" id="envelopeFront">
-                <img src="" alt="Amplop Tertutup" id="envelopeClosedImg">
+                <img src="/amplop-1.jpeg" alt="Amplop Tertutup" id="envelopeClosedImg">
                 <div class="envelope-text">
                     <div class="guest-label">Untuk</div>
                     <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
@@ -678,7 +727,7 @@
             </div>
             <!-- SAMPUL BELAKANG (TERBUKA) -->
             <div class="envelope-back" id="envelopeBack">
-                <img src="" alt="Amplop Terbuka" id="envelopeOpenImg">
+                <img src="/amplop-2.png" alt="Amplop Terbuka" id="envelopeOpenImg">
             </div>
         </div>
     </div>
@@ -689,7 +738,7 @@
 
     <!-- HERO -->
     <section class="hero-section">
-        <img src="" alt="Wedding" id="mainHeroImg">
+        <img src="/amplop-3.png" alt="Wedding" id="mainHeroImg">
         <div class="hero-overlay">
             <div class="ornament-top">✦ ✦ ✦</div>
             <div class="the-wedding-of">The Wedding of</div>
@@ -698,7 +747,7 @@
                 <span class="and">&</span>
                 <span id="heroBride">Amelia</span>
             </div>
-            <div class="hero-date" id="heroDate">Sabtu, 2 Juli 2026</div>
+            <div class="hero-date" id="heroDate">Selasa, 6 Oktober 2026</div>
         </div>
     </section>
 
@@ -707,6 +756,9 @@
         <div class="vinyl-player">
             <div class="vinyl-disc" id="vinylDisc">
                 <div class="disc-lines"></div>
+                <div class="couple-photo">
+                    <img src="/amplop-1.jpeg" alt="Couple Photo" id="couplePhoto">
+                </div>
             </div>
             <div class="vinyl-controls">
                 <div class="song-title" id="songTitle">Lagu Pernikahan</div>
@@ -753,7 +805,7 @@
     <!-- CALENDAR -->
     <section class="calendar-section">
         <div class="calendar-header">
-            <span class="month" id="calendarMonth">July</span>
+            <span class="month" id="calendarMonth">October</span>
             <span class="year" id="calendarYear">2026</span>
         </div>
         <div class="calendar-grid" id="calendarGrid">
@@ -774,7 +826,9 @@
 
     <!-- VENUE -->
     <section class="venue-section">
-        <img src="" alt="Venue" id="venueImg">
+        <div class="venue-circle">
+            <img src="/venue.png" alt="Venue" id="venueImg">
+        </div>
         <div class="venue-content">
             <h3>Our Venue</h3>
             <div class="venue-address" id="venueAddress">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div>
@@ -798,10 +852,10 @@
     <section class="gallery-section">
         <h3>Our Gallery</h3>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="" alt="Gallery 1" id="gallery1"></div>
-            <div class="gallery-item"><img src="" alt="Gallery 2" id="gallery2"></div>
-            <div class="gallery-item"><img src="" alt="Gallery 3" id="gallery3"></div>
-            <div class="gallery-item"><img src="" alt="Gallery 4" id="gallery4"></div>
+            <div class="gallery-item"><img src="/amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
+            <div class="gallery-item"><img src="/amplop-2.png" alt="Gallery 2" id="gallery2"></div>
+            <div class="gallery-item"><img src="/amplop-3.png" alt="Gallery 3" id="gallery3"></div>
+            <div class="gallery-item"><img src="/venue.png" alt="Gallery 4" id="gallery4"></div>
         </div>
     </section>
 
@@ -813,44 +867,45 @@
 // ============================================================
 const CONFIG = {
     // --- NAMA & DATA PRIBADI ---
-    guestName: 'Tamu Undangan',      // Ganti dengan nama tamu
-    bride: 'Amelia',                 // Ganti nama pengantin wanita
-    groom: 'Richy',                  // Ganti nama pengantin pria
+    guestName: 'Tamu Undangan',
+    bride: 'Amelia',
+    groom: 'Richy',
 
-    // --- TANGGAL PERNIKAHAN (untuk countdown & kalender) ---
-    weddingDate: '2026-10-06',       // Format: YYYY-MM-DD
+    // --- TANGGAL PERNIKAHAN ---
+    weddingDate: '2026-10-06',
     weddingDateDisplay: 'Selasa, 6 Oktober 2026',
 
     // --- LOKASI ---
     venueAddress: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
 
-    // --- GIFT / REKENING ---
+    // --- GIFT ---
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
 
     // --- LAGU ---
-    songSrc: 'https://github.com/zidandsyauqi-cell/richy-amelia/raw/refs/heads/dev/bermuara.mp3',                     // Ganti dengan URL lagu Anda (MP3)
+    songSrc: '/bermuara.mp3',
     songTitle: 'Lagu Pernikahan',
     songArtist: 'Artist Name',
 
-    // --- GAMBAR - UPLOAD URL GAMBAR ANDA DI SINI ---
+    // --- GAMBAR (gunakan path lokal) ---
     images: {
-        envelopeClosed: '/amplop-1.jpeg',          // URL gambar amplop tertutup
-        envelopeOpen: '/amplop-2.png',            // URL gambar amplop terbuka
-        mainHero: '/amplop-3.png',                // URL gambar utama (hero)
-        venue: '/venue.png',                   // URL gambar tempat
-        gallery: [                   // URL 4 gambar galeri
-            'https://ibb.co.com/x88J8qcX',
-            '',
-            '',
-            ''
+        envelopeClosed: '/amplop-1.jpeg',
+        envelopeOpen: '/amplop-2.png',
+        mainHero: '/amplop-3.png',
+        venue: '/venue.png',
+        couplePhoto: '/amplop-1.jpeg',
+        gallery: [
+            '/amplop-1.jpeg',
+            '/amplop-2.png',
+            '/amplop-3.png',
+            '/venue.png'
         ]
     }
 };
 
 // ============================================================
-// 🚀 JANGAN UBAH KODE DI BAWAH INI (kecuali Anda paham)
+// 🚀 JANGAN UBAH KODE DI BAWAH INI
 // ============================================================
 
 // --- AMBIL NAMA DARI URL ---
@@ -869,15 +924,16 @@ const CONFIG = {
 // --- SETUP GAMBAR ---
 function setupImages() {
     const img = CONFIG.images;
-    document.getElementById('envelopeClosedImg').src = img.envelopeClosed || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"%3E%3Crect fill="%23f5f0eb" width="400" height="500" rx="20"/%3E%3Cpath d="M200 250 L50 120 L350 120 Z" fill="%23e8ddd0"/%3E%3Crect x="50" y="120" width="300" height="300" rx="5" fill="%23faf7f2"/%3E%3Ctext x="200" y="300" text-anchor="middle" font-family="Georgia" font-size="28" fill="%230e2340"%3E%3Ctspan x="200" dy="-10"%3E%3C/tspan%3E%3C/text%3E%3C/svg%3E';
-    document.getElementById('envelopeOpenImg').src = img.envelopeOpen || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"%3E%3Crect fill="%23f5f0eb" width="400" height="500" rx="20"/%3E%3Cpath d="M200 250 L50 120 L350 120 Z" fill="%23e8ddd0"/%3E%3Crect x="50" y="120" width="300" height="300" rx="5" fill="%23faf7f2"/%3E%3Ctext x="200" y="300" text-anchor="middle" font-family="Georgia" font-size="32" fill="%230e2340"%3E❤%3C/text%3E%3C/svg%3E';
-    document.getElementById('mainHeroImg').src = img.mainHero || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"%3E%3Crect fill="%230e2340" width="800" height="500"/%3E%3Ctext x="400" y="250" text-anchor="middle" font-family="Georgia" font-size="40" fill="white"%3EWedding%3C/text%3E%3C/svg%3E';
-    document.getElementById('venueImg').src = img.venue || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"%3E%3Crect fill="%23e8ddd0" width="800" height="200"/%3E%3Ctext x="400" y="110" text-anchor="middle" font-family="Georgia" font-size="30" fill="%230e2340"%3E📍 Venue%3C/text%3E%3C/svg%3E';
+    document.getElementById('envelopeClosedImg').src = img.envelopeClosed;
+    document.getElementById('envelopeOpenImg').src = img.envelopeOpen;
+    document.getElementById('mainHeroImg').src = img.mainHero;
+    document.getElementById('venueImg').src = img.venue;
+    document.getElementById('couplePhoto').src = img.couplePhoto;
     
     const g = img.gallery;
     const galleryIds = ['gallery1', 'gallery2', 'gallery3', 'gallery4'];
     g.forEach((url, i) => {
-        document.getElementById(galleryIds[i]).src = url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Crect fill="%23f5f0eb" width="200" height="200"/%3E%3Ctext x="100" y="110" text-anchor="middle" font-family="Georgia" font-size="40" fill="%23ccc"%3E📷%3C/text%3E%3C/svg%3E';
+        document.getElementById(galleryIds[i]).src = url;
     });
 }
 
@@ -906,10 +962,8 @@ envelopeWrapper.addEventListener('click', function(e) {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
     
-    // Buka amplop
     envelopeContainer.classList.add('opened');
     
-    // Play musik setelah 0.5s
     setTimeout(() => {
         if (audio) {
             audio.play().catch(() => {});
@@ -919,11 +973,9 @@ envelopeWrapper.addEventListener('click', function(e) {
         }
     }, 500);
     
-    // Sembunyikan amplop & tampilkan konten setelah 1.2s
     setTimeout(() => {
         envelopeSection.classList.add('hidden');
         mainContent.classList.add('show');
-        // Scroll ke atas
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1200);
 });
@@ -936,7 +988,6 @@ const songs = [CONFIG.songSrc];
 
 function initAudio() {
     if (!CONFIG.songSrc) {
-        // Jika tidak ada lagu, buat dummy
         audio = new Audio();
         audio.duration = 225;
     } else {
@@ -959,7 +1010,6 @@ function initAudio() {
     
     playBtn.addEventListener('click', () => {
         if (!CONFIG.songSrc) {
-            // Jika tidak ada lagu, hanya toggle animasi
             isPlaying = !isPlaying;
             if (isPlaying) {
                 vinylDisc.classList.add('spinning');
@@ -1084,10 +1134,9 @@ function buildCalendar() {
         
         if (d === weddingDay) {
             div.classList.add('wedding-day');
-            const love = document.createElement('span');
-            love.className = 'love-symbol';
-            love.textContent = '❤';
-            div.appendChild(love);
+            const ring = document.createElement('span');
+            ring.className = 'wedding-ring';
+            div.appendChild(ring);
         }
         
         grid.appendChild(div);
@@ -1102,25 +1151,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     buildCalendar();
     
-    // Update countdown setiap detik
     setInterval(updateCountdown, 1000);
-    
-    // Untuk preview jika tidak ada gambar, tampilkan konten langsung (opsional)
-    // Jika ingin langsung lihat konten tanpa klik amplop, hapus comment di bawah:
-    // setTimeout(() => {
-    //     envelopeSection.classList.add('hidden');
-    //     mainContent.classList.add('show');
-    // }, 500);
 });
-
-// ============================================================
-// 📌 PANDUAN EDIT:
-// 1. Cari CONFIG di atas (baris 225-252)
-// 2. Ganti semua nilai sesuai data Anda
-// 3. Upload gambar ke hosting, copy URL-nya
-// 4. Upload lagu MP3, copy URL-nya
-// 5. Untuk nama tamu dari URL: ?to=Nama+Tamu
-// ============================================================
 </script>
 </body>
 </html>
