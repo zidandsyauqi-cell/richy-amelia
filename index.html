@@ -1,948 +1,910 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Richy & Amelia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Richy & Amelia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      color: #0e2340;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #ffffff;
-            overflow-x: hidden;
-            color: #0e2340;
-        }
+    /* ===== ENVELOPE ===== */
+    #envelopeSection {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      flex-direction: column;
+    }
+    #envelopeSection.hidden {
+      opacity: 0;
+      transform: scale(1.1);
+      pointer-events: none;
+    }
 
-        /* ========== ENVELOPE SECTION ========== */
-        #envelopeSection {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            flex-direction: column;
-        }
-        #envelopeSection.hidden {
-            opacity: 0;
-            transform: scale(1.1);
-            pointer-events: none;
-        }
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 420px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    .envelope-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-style: preserve-3d;
+    }
+    .envelope-container.opened {
+      transform: rotateY(180deg);
+    }
 
-        .envelope-wrapper {
-            position: relative;
-            width: 320px;
-            height: 420px;
-            cursor: pointer;
-            perspective: 1000px;
-        }
+    .envelope-front, .envelope-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(14, 35, 64, 0.15);
+    }
+    .envelope-front {
+      transform: rotateY(0deg);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      border: none;
+    }
+    .envelope-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .envelope-back {
+      transform: rotateY(180deg);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+    .envelope-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .envelope-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-style: preserve-3d;
-        }
-        .envelope-container.opened {
-            transform: rotateY(180deg);
-        }
+    .envelope-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #ffffff;
+      padding: 20px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .envelope-text .guest-label {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 150px;
+      color: #ffffff;
+    }
+    .envelope-text .guest-name-env {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 150px;
+      color: #ffffff;
+    }
+    .envelope-text .invited-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 20px;
+      opacity: 0.8;
+      color: #ffffff;
+    }
+    .envelope-text .click-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      margin-top: 20px;
+      opacity: 0.6;
+      animation: pulseHint 2s ease-in-out infinite;
+      color: #ffffff;
+    }
+    @keyframes pulseHint {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.05); }
+    }
 
-        .envelope-front, .envelope-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(14, 35, 64, 0.15);
-        }
-        .envelope-front {
-            transform: rotateY(0deg);
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            border: 2px solid #e8ddd0;
-        }
-        .envelope-front img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .envelope-back {
-            transform: rotateY(180deg);
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #e8ddd0;
-        }
-        .envelope-back img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    /* ===== MAIN ===== */
+    #mainContent {
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      padding: 0 20px 50px;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+    #mainContent.show {
+      opacity: 1;
+    }
 
-        .envelope-text {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: #0e2340;
-            padding: 20px;
-        }
-        .envelope-text .guest-label {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            margin-bottom: 150px;
-            color: #f0f0f0;
-        }
-        .envelope-text .guest-name-env {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 150px;
-            color: #f0f0f0;
-        }
-        .envelope-text .invited-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            opacity: 0.7;
-            color: #f0f0f0;
-        }
-        .envelope-text .click-hint {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            margin-top: 20px;
-            opacity: 0.5;
-            animation: pulseHint 2s ease-in-out infinite;
-        }
-        @keyframes pulseHint {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
+    /* ===== HERO ===== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 40px rgba(14, 35, 64, 0.1);
+      background: #0e2340;
+      min-height: 500px;
+    }
+    .hero-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 500px;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(14,35,64,0.2) 0%, rgba(14,35,64,0.6) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      color: white;
+    }
+    .hero-overlay .ornament-top {
+      font-size: 0.7rem;
+      letter-spacing: 8px;
+      opacity: 0.6;
+      margin-bottom: 15px;
+    }
+    .hero-overlay .the-wedding-of {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-style: italic;
+      opacity: 0.8;
+    }
+    .hero-overlay .couple-names-hero {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin: 10px 0;
+    }
+    .hero-overlay .couple-names-hero .and {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      display: block;
+      font-style: italic;
+      opacity: 0.7;
+    }
+    .hero-overlay .hero-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
 
-        /* ========== MAIN CONTENT ========== */
-        #mainContent {
-            opacity: 0;
-            transition: opacity 1.5s ease;
-            padding: 0 20px 50px;
-            max-width: 430px;
-            margin: 0 auto;
-        }
-        #mainContent.show {
-            opacity: 1;
-        }
+    /* ===== VINYL ===== */
+    .vinyl-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
+    }
+    .vinyl-player {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    .vinyl-disc {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #2a2a2a, #0a0a0a);
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .vinyl-disc .disc-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: 
+        repeating-radial-gradient(circle at 50% 50%, 
+          transparent 0px, 
+          transparent 10px, 
+          rgba(255,255,255,0.05) 10px, 
+          rgba(255,255,255,0.05) 11px),
+        repeating-radial-gradient(circle at 50% 50%, 
+          transparent 0px, 
+          transparent 22px, 
+          rgba(255,255,255,0.02) 22px, 
+          rgba(255,255,255,0.02) 23px);
+    }
+    .vinyl-disc .couple-photo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+    .vinyl-disc .couple-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .vinyl-disc.spinning {
+      animation: spinVinyl 3s linear infinite;
+    }
+    @keyframes spinVinyl {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-        /* ========== HERO SECTION ========== */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            border-radius: 30px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(14, 35, 64, 0.1);
-            background: #0e2340;
-            min-height: 500px;
-        }
-        .hero-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            min-height: 500px;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(14, 35, 64, 0.2) 0%, rgba(14, 35, 64, 0.6) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            text-align: center;
-            color: white;
-        }
-        .hero-overlay .ornament-top {
-            font-size: 0.7rem;
-            letter-spacing: 8px;
-            opacity: 0.6;
-            margin-bottom: 15px;
-        }
-        .hero-overlay .the-wedding-of {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-style: italic;
-            opacity: 0.8;
-        }
-        .hero-overlay .couple-names-hero {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin: 10px 0;
-        }
-        .hero-overlay .couple-names-hero .and {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            display: block;
-            font-style: italic;
-            opacity: 0.7;
-        }
-        .hero-overlay .hero-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
+    .vinyl-controls {
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+    }
+    .vinyl-controls .song-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0e2340;
+      margin-bottom: 5px;
+    }
+    .vinyl-controls .song-artist {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .vinyl-progress {
+      width: 100%;
+      height: 4px;
+      background: #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .vinyl-progress-fill {
+      height: 100%;
+      background: #0e2340;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    .vinyl-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      color: #999;
+      margin-top: 4px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .vinyl-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .vinyl-buttons button {
+      background: none;
+      border: none;
+      color: #0e2340;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 5px;
+      transition: all 0.3s ease;
+    }
+    .vinyl-buttons button:hover {
+      transform: scale(1.1);
+    }
+    .vinyl-buttons .btn-play-vinyl {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0e2340;
+      color: white;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(14, 35, 64, 0.2);
+    }
+    .vinyl-buttons .btn-play-vinyl:hover {
+      transform: scale(1.05);
+      background: #1a3a5c;
+    }
 
-        /* ========== VINYL PLAYER ========== */
-        .vinyl-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 30px 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
-        }
-        .vinyl-player {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-        .vinyl-disc {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #2a2a2a, #0a0a0a);
-            position: relative;
-            flex-shrink: 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .vinyl-disc .disc-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: 
-                repeating-radial-gradient(circle at 50% 50%, 
-                    transparent 0px, 
-                    transparent 10px, 
-                    rgba(255,255,255,0.05) 10px, 
-                    rgba(255,255,255,0.05) 11px),
-                repeating-radial-gradient(circle at 50% 50%, 
-                    transparent 0px, 
-                    transparent 22px, 
-                    rgba(255,255,255,0.02) 22px, 
-                    rgba(255,255,255,0.02) 23px);
-        }
-        .vinyl-disc .couple-photo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid rgba(255,255,255,0.3);
-            overflow: hidden;
-            z-index: 2;
-            box-shadow: 0 0 30px rgba(255,255,255,0.1);
-        }
-        .vinyl-disc .couple-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .vinyl-disc.spinning {
-            animation: spinVinyl 3s linear infinite;
-        }
-        @keyframes spinVinyl {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    /* ===== COUNTDOWN ===== */
+    .countdown-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .countdown-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-style: italic;
+      color: #0e2340;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .countdown-item {
+      background: white;
+      border-radius: 20px;
+      padding: 15px 5px;
+      box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
+    }
+    .countdown-item .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0e2340;
+      line-height: 1;
+    }
+    .countdown-item .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
 
-        .vinyl-controls {
-            flex: 1;
-            min-width: 180px;
-        }
-        .vinyl-controls .song-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0e2340;
-            margin-bottom: 5px;
-        }
-        .vinyl-controls .song-artist {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 12px;
-        }
-        .vinyl-progress {
-            width: 100%;
-            height: 4px;
-            background: #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            overflow: hidden;
-        }
-        .vinyl-progress-fill {
-            height: 100%;
-            background: #0e2340;
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-        .vinyl-time {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.6rem;
-            color: #999;
-            margin-top: 4px;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        .vinyl-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
-        }
-        .vinyl-buttons button {
-            background: none;
-            border: none;
-            color: #0e2340;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 5px;
-            transition: all 0.3s ease;
-        }
-        .vinyl-buttons button:hover {
-            transform: scale(1.1);
-        }
-        .vinyl-buttons .btn-play-vinyl {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #0e2340;
-            color: white;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(14, 35, 64, 0.2);
-        }
-        .vinyl-buttons .btn-play-vinyl:hover {
-            transform: scale(1.05);
-            background: #1a3a5c;
-        }
+    /* ===== CALENDAR ===== */
+    .calendar-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 5px;
+    }
+    .calendar-header .month {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #0e2340;
+    }
+    .calendar-header .year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: #999;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    .calendar-grid .day-name {
+      text-align: center;
+      font-size: 0.6rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 0;
+      font-weight: 600;
+    }
+    .calendar-grid .day {
+      text-align: center;
+      padding: 8px 0;
+      border-radius: 15px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #0e2340;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .calendar-grid .day.empty {
+      color: #ddd;
+    }
+    .calendar-grid .day .wedding-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(14, 35, 64, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    .calendar-grid .day .wedding-ring::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(14, 35, 64, 0.08);
+    }
+    .calendar-grid .day.wedding-day {
+      background: transparent;
+      color: #0e2340 !important;
+      font-weight: 700;
+    }
+    .calendar-grid .day.wedding-day .wedding-ring {
+      opacity: 1;
+      animation: ringBreath 2s ease-in-out infinite;
+    }
+    @keyframes ringBreath {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    }
 
-        /* ========== COUNTDOWN ========== */
-        .countdown-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 25px 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .countdown-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            font-style: italic;
-            color: #0e2340;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-        }
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .countdown-item {
-            background: white;
-            border-radius: 20px;
-            padding: 15px 5px;
-            box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
-        }
-        .countdown-item .number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #0e2340;
-            line-height: 1;
-        }
-        .countdown-item .label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.7rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
+    /* ===== ANNOUNCEMENT (baru) ===== */
+    .announce-section {
+      margin-bottom: 30px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.08);
+    }
+    .announce-section img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+    }
 
-        /* ========== CALENDAR ========== */
-        .calendar-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 25px 20px;
-            margin-bottom: 30px;
-        }
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 0 5px;
-        }
-        .calendar-header .month {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: #0e2340;
-        }
-        .calendar-header .year {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: #999;
-        }
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-        .calendar-grid .day-name {
-            text-align: center;
-            font-size: 0.6rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 5px 0;
-            font-weight: 600;
-        }
-        .calendar-grid .day {
-            text-align: center;
-            padding: 8px 0;
-            border-radius: 15px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.95rem;
-            color: #0e2340;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .calendar-grid .day.empty {
-            color: #ddd;
-        }
-        .calendar-grid .day .wedding-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid rgba(14, 35, 64, 0.15);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        .calendar-grid .day .wedding-ring::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 1px solid rgba(14, 35, 64, 0.08);
-        }
-        .calendar-grid .day.wedding-day {
-            background: transparent;
-            color: #0e2340 !important;
-            font-weight: 700;
-        }
-        .calendar-grid .day.wedding-day .wedding-ring {
-            opacity: 1;
-            animation: ringBreath 2s ease-in-out infinite;
-        }
-        @keyframes ringBreath {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
-        }
+    /* ===== VENUE ===== */
+    .venue-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
+    }
+    .venue-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 4px solid #e8ddd0;
+      box-shadow: 0 10px 30px rgba(14, 35, 64, 0.1);
+      position: relative;
+    }
+    .venue-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .venue-content h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #0e2340;
+      margin-bottom: 5px;
+    }
+    .venue-content .venue-address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .btn-route {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0e2340;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(14, 35, 64, 0.2);
+    }
+    .btn-route:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(14, 35, 64, 0.3);
+    }
 
-        /* ========== VENUE CARD ========== */
-        .venue-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 30px 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
-        }
-        .venue-circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 20px;
-            border: 4px solid #e8ddd0;
-            box-shadow: 0 10px 30px rgba(14, 35, 64, 0.1);
-            position: relative;
-        }
-        .venue-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .venue-content h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: #0e2340;
-            margin-bottom: 5px;
-        }
-        .venue-content .venue-address {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        .btn-route {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #0e2340;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(14, 35, 64, 0.2);
-        }
-        .btn-route:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(14, 35, 64, 0.3);
-        }
+    /* ===== GIFT ===== */
+    .gift-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .gift-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      margin-bottom: 10px;
+    }
+    .gift-section .gift-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+    .gift-box {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      border: 2px dashed #e8ddd0;
+    }
+    .gift-box .bank-info {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #0e2340;
+      font-weight: 600;
+    }
+    .gift-box .bank-detail {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 5px;
+    }
 
-        /* ========== GIFT SECTION ========== */
-        .gift-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 25px 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .gift-section h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: #0e2340;
-            margin-bottom: 10px;
-        }
-        .gift-section .gift-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-        .gift-box {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            border: 2px dashed #e8ddd0;
-        }
-        .gift-box .bank-info {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: #0e2340;
-            font-weight: 600;
-        }
-        .gift-box .bank-detail {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 5px;
-        }
+    /* ===== RUNDOWN ===== */
+    .rundown-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+    }
+    .rundown-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .rundown-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8ddd0;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .rundown-item:last-child {
+      border-bottom: none;
+    }
+    .rundown-item .time {
+      font-weight: 600;
+      color: #0e2340;
+    }
+    .rundown-item .event {
+      color: #666;
+    }
 
-        /* ========== RUNDOWN ========== */
-        .rundown-section {
-            background: #f8f6f3;
-            border-radius: 30px;
-            padding: 25px 20px;
-            margin-bottom: 30px;
-        }
-        .rundown-section h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: #0e2340;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .rundown-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #e8ddd0;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        .rundown-item:last-child {
-            border-bottom: none;
-        }
-        .rundown-item .time {
-            font-weight: 600;
-            color: #0e2340;
-        }
-        .rundown-item .event {
-            color: #666;
-        }
+    /* ===== GALLERY ===== */
+    .gallery-section {
+      margin-bottom: 30px;
+    }
+    .gallery-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(14, 35, 64, 0.08);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
 
-        /* ========== GALLERY ========== */
-        .gallery-section {
-            margin-bottom: 30px;
-        }
-        .gallery-section h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: #0e2340;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .gallery-item {
-            aspect-ratio: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(14, 35, 64, 0.08);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-        .gallery-item img:hover {
-            transform: scale(1.05);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 430px) {
-            .envelope-wrapper {
-                width: 280px;
-                height: 370px;
-            }
-            .hero-overlay .couple-names-hero {
-                font-size: 2.8rem;
-            }
-            .vinyl-disc {
-                width: 120px;
-                height: 120px;
-            }
-            .vinyl-disc .couple-photo {
-                width: 40px;
-                height: 40px;
-            }
-            .countdown-item .number {
-                font-size: 1.8rem;
-            }
-            .venue-circle {
-                width: 160px;
-                height: 160px;
-            }
-        }
-        @media (max-width: 380px) {
-            .envelope-wrapper {
-                width: 240px;
-                height: 320px;
-            }
-            .hero-overlay .couple-names-hero {
-                font-size: 2.2rem;
-            }
-            .vinyl-disc {
-                width: 100px;
-                height: 100px;
-            }
-            .vinyl-disc .couple-photo {
-                width: 34px;
-                height: 34px;
-            }
-            .venue-circle {
-                width: 140px;
-                height: 140px;
-            }
-        }
-    </style>
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 430px) {
+      .envelope-wrapper { width: 280px; height: 370px; }
+      .hero-overlay .couple-names-hero { font-size: 2.8rem; }
+      .vinyl-disc { width: 120px; height: 120px; }
+      .vinyl-disc .couple-photo { width: 40px; height: 40px; }
+      .countdown-item .number { font-size: 1.8rem; }
+      .venue-circle { width: 160px; height: 160px; }
+    }
+    @media (max-width: 380px) {
+      .envelope-wrapper { width: 240px; height: 320px; }
+      .hero-overlay .couple-names-hero { font-size: 2.2rem; }
+      .vinyl-disc { width: 100px; height: 100px; }
+      .vinyl-disc .couple-photo { width: 34px; height: 34px; }
+      .venue-circle { width: 140px; height: 140px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ========== ENVELOPE ========== -->
+<!-- ===== ENVELOPE ===== -->
 <div id="envelopeSection">
-    <div class="envelope-wrapper" id="envelopeWrapper">
-        <div class="envelope-container" id="envelopeContainer">
-            <!-- SAMPUL DEPAN (TERTUTUP) -->
-            <div class="envelope-front" id="envelopeFront">
-                <img src="/amplop-1.jpeg" alt="Amplop Tertutup" id="envelopeClosedImg">
-                <div class="envelope-text">
-                    <div class="guest-label">Untuk</div>
-                    <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
-                    <div class="invited-text">You're Invited</div>
-                    <div class="click-hint">✦ Click the envelope to open ✦</div>
-                </div>
-            </div>
-            <!-- SAMPUL BELAKANG (TERBUKA) -->
-            <div class="envelope-back" id="envelopeBack">
-                <img src="/amplop-2.png" alt="Amplop Terbuka" id="envelopeOpenImg">
-            </div>
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope-container" id="envelopeContainer">
+      <!-- DEPAN (tertutup) -->
+      <div class="envelope-front" id="envelopeFront">
+        <img src="/amplop-1.jpeg" alt="amplop" id="envelopeClosedImg">
+        <div class="envelope-text">
+          <div class="guest-label">Untuk</div>
+          <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
+          <div class="invited-text">You're Invited</div>
+          <div class="click-hint">✦ Klik amplop untuk membuka ✦</div>
         </div>
+      </div>
+      <!-- BELAKANG (terbuka) -->
+      <div class="envelope-back" id="envelopeBack">
+        <img src="/amplop-2.png" alt="amplop terbuka" id="envelopeOpenImg">
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- ========== MAIN CONTENT ========== -->
+<!-- ===== MAIN ===== -->
 <div id="mainContent">
 
-    <!-- HERO -->
-    <section class="hero-section">
-        <img src="/amplop-3.png" alt="Wedding" id="mainHeroImg">
-        <div class="hero-overlay">
-            <div class="ornament-top">✦ ✦ ✦</div>
-            <div class="the-wedding-of">The Wedding of</div>
-            <div class="couple-names-hero">
-                <span id="heroGroom">Richy</span>
-                <span class="and">&</span>
-                <span id="heroBride">Amelia</span>
-            </div>
-            <div class="hero-date" id="heroDate">Selasa, 6 Oktober 2026</div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero-section">
+    <img src="/amplop-3.png" alt="Wedding" id="mainHeroImg">
+    <div class="hero-overlay">
+      <div class="ornament-top">✦ ✦ ✦</div>
+      <div class="the-wedding-of">The Wedding of</div>
+      <div class="couple-names-hero">
+        <span id="heroGroom">Richy</span>
+        <span class="and">&</span>
+        <span id="heroBride">Amelia</span>
+      </div>
+      <div class="hero-date" id="heroDate">Selasa, 6 Oktober 2026</div>
+    </div>
+  </section>
 
-    <!-- VINYL PLAYER -->
-    <section class="vinyl-section">
-        <div class="vinyl-player">
-            <div class="vinyl-disc" id="vinylDisc">
-                <div class="disc-lines"></div>
-                <div class="couple-photo">
-                    <img src="/amplop-1.jpeg" alt="Couple Photo" id="couplePhoto">
-                </div>
-            </div>
-            <div class="vinyl-controls">
-                <div class="song-title" id="songTitle">Bermuara</div>
-                <div class="song-artist" id="songArtist">Mahalini & Rizky Febian</div>
-                <div class="vinyl-progress" id="vinylProgress">
-                    <div class="vinyl-progress-fill" id="vinylProgressFill"></div>
-                </div>
-                <div class="vinyl-time">
-                    <span id="vinylCurrentTime">0:00</span>
-                    <span id="vinylDuration">5:07</span>
-                </div>
-                <div class="vinyl-buttons">
-                    <button id="vinylPrev"><i class="fas fa-step-backward"></i></button>
-                    <button class="btn-play-vinyl" id="vinylPlayBtn"><i class="fas fa-play"></i></button>
-                    <button id="vinylNext"><i class="fas fa-step-forward"></i></button>
-                </div>
-            </div>
+  <!-- VINYL -->
+  <section class="vinyl-section">
+    <div class="vinyl-player">
+      <div class="vinyl-disc" id="vinylDisc">
+        <div class="disc-lines"></div>
+        <div class="couple-photo">
+          <img src="/amplop-1.jpeg" alt="Couple" id="couplePhoto">
         </div>
-    </section>
+      </div>
+      <div class="vinyl-controls">
+        <div class="song-title" id="songTitle">Bermuara</div>
+        <div class="song-artist" id="songArtist">Mahalini & Rizky Febian</div>
+        <div class="vinyl-progress" id="vinylProgress">
+          <div class="vinyl-progress-fill" id="vinylProgressFill"></div>
+        </div>
+        <div class="vinyl-time">
+          <span id="vinylCurrentTime">0:00</span>
+          <span id="vinylDuration">5:07</span>
+        </div>
+        <div class="vinyl-buttons">
+          <button id="vinylPrev"><i class="fas fa-step-backward"></i></button>
+          <button class="btn-play-vinyl" id="vinylPlayBtn"><i class="fas fa-play"></i></button>
+          <button id="vinylNext"><i class="fas fa-step-forward"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- COUNTDOWN -->
-    <section class="countdown-section">
-        <div class="countdown-title">Counting Down to Our Special Day</div>
-        <div class="countdown-grid">
-            <div class="countdown-item">
-                <div class="number" id="days">00</div>
-                <div class="label">Days</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="hours">00</div>
-                <div class="label">Hours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="minutes">00</div>
-                <div class="label">Minutes</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="seconds">00</div>
-                <div class="label">Seconds</div>
-            </div>
-        </div>
-    </section>
+  <!-- COUNTDOWN -->
+  <section class="countdown-section">
+    <div class="countdown-title">Counting Down to Our Special Day</div>
+    <div class="countdown-grid">
+      <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
+      <div class="countdown-item"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+      <div class="countdown-item"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
+      <div class="countdown-item"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
+    </div>
+  </section>
 
-    <!-- CALENDAR -->
-    <section class="calendar-section">
-        <div class="calendar-header">
-            <span class="month" id="calendarMonth">October</span>
-            <span class="year" id="calendarYear">2026</span>
-        </div>
-        <div class="calendar-grid" id="calendarGrid">
-            <!-- Generated by JS -->
-        </div>
-    </section>
+  <!-- CALENDAR -->
+  <section class="calendar-section">
+    <div class="calendar-header">
+      <span class="month" id="calendarMonth">October</span>
+      <span class="year" id="calendarYear">2026</span>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </section>
 
-    <!-- RUNDOWN -->
-    <section class="rundown-section">
-        <h3>Wedding Timeline</h3>
-        <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
-        <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
-        <div class="rundown-item"><span class="time">10:30</span><span class="event">Foto Bersama</span></div>
-        <div class="rundown-item"><span class="time">11:00</span><span class="event">Resepsi Makan Siang</span></div>
-        <div class="rundown-item"><span class="time">13:00</span><span class="event">Hiburan &amp; Acara Keluarga</span></div>
-        <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
-    </section>
+  <!-- ===== ANNOUNCEMENT (baru) ===== -->
+  <section class="announce-section">
+    <img src="/anounce.jpeg" alt="Pengumuman" id="announceImg">
+  </section>
 
-    <!-- VENUE -->
-    <section class="venue-section">
-        <div class="venue-circle">
-            <img src="/venue.png" alt="Venue" id="venueImg">
-        </div>
-        <div class="venue-content">
-            <h3>Our Venue</h3>
-            <div class="venue-address" id="venueAddress">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div>
-            <a href="https://maps.google.com/?q=-6.2088,106.8456" target="_blank" class="btn-route" id="btnRoute">
-                <i class="fas fa-directions"></i> Buka Rute
-            </a>
-        </div>
-    </section>
+  <!-- RUNDOWN -->
+  <section class="rundown-section">
+    <h3>Wedding Timeline</h3>
+    <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
+    <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
+    <div class="rundown-item"><span class="time">10:30</span><span class="event">Foto Bersama</span></div>
+    <div class="rundown-item"><span class="time">11:00</span><span class="event">Resepsi Makan Siang</span></div>
+    <div class="rundown-item"><span class="time">13:00</span><span class="event">Hiburan &amp; Acara Keluarga</span></div>
+    <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
+  </section>
 
-    <!-- GIFT -->
-    <section class="gift-section">
-        <h3>Wedding Gift</h3>
-        <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
-        <div class="gift-box">
-            <div class="bank-info" id="giftBank">Bank BCA - 1234567890</div>
-            <div class="bank-detail" id="giftName">a.n Richy &amp; Amelia</div>
-        </div>
-    </section>
+  <!-- VENUE -->
+  <section class="venue-section">
+    <div class="venue-circle">
+      <img src="/venue.png" alt="Venue" id="venueImg">
+    </div>
+    <div class="venue-content">
+      <h3>Our Venue</h3>
+      <div class="venue-address" id="venueAddress">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div>
+      <a href="https://maps.google.com/?q=-6.2088,106.8456" target="_blank" class="btn-route" id="btnRoute">
+        <i class="fas fa-directions"></i> Buka Rute
+      </a>
+    </div>
+  </section>
 
-    <!-- GALLERY -->
-    <section class="gallery-section">
-        <h3>Our Gallery</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="/amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
-            <div class="gallery-item"><img src="/amplop-2.png" alt="Gallery 2" id="gallery2"></div>
-            <div class="gallery-item"><img src="/amplop-3.png" alt="Gallery 3" id="gallery3"></div>
-            <div class="gallery-item"><img src="/venue.png" alt="Gallery 4" id="gallery4"></div>
-        </div>
-    </section>
+  <!-- GIFT -->
+  <section class="gift-section">
+    <h3>Wedding Gift</h3>
+    <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
+    <div class="gift-box">
+      <div class="bank-info" id="giftBank">Bank BCA - 1234567890</div>
+      <div class="bank-detail" id="giftName">a.n Richy &amp; Amelia</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <h3>Our Gallery</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="/amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
+      <div class="gallery-item"><img src="/amplop-2.png" alt="Gallery 2" id="gallery2"></div>
+      <div class="gallery-item"><img src="/amplop-3.png" alt="Gallery 3" id="gallery3"></div>
+      <div class="gallery-item"><img src="/venue.png" alt="Gallery 4" id="gallery4"></div>
+    </div>
+  </section>
 
 </div>
 
 <script>
-// ============================================================
-// 🔧 KONFIGURASI - EDIT DI SINI SESUAI KEBUTUHAN ANDA
-// ============================================================
-const CONFIG = {
-    // --- NAMA & DATA PRIBADI ---
+  // ============================================================
+  // 🔧 KONFIGURASI
+  // ============================================================
+  const CONFIG = {
     guestName: 'Tamu Undangan',
     bride: 'Amelia',
     groom: 'Richy',
-
-    // --- TANGGAL PERNIKAHAN ---
     weddingDate: '2026-10-06',
     weddingDateDisplay: 'Selasa, 6 Oktober 2026',
-
-    // --- LOKASI ---
     venueAddress: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
-
-    // --- GIFT ---
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
-
-    // --- LAGU ---
     songSrc: '/bermuara.mp3',
     songTitle: 'Bermuara',
     songArtist: 'Mahalini & Rizky Febian',
-
-    // --- GAMBAR (gunakan path lokal) ---
     images: {
-        envelopeClosed: '/amplop-1.jpeg',
-        envelopeOpen: '/amplop-2.png',
-        mainHero: '/amplop-3.png',
-        venue: '/venue.png',
-        couplePhoto: '/amplop-1.jpeg',
-        gallery: [
-            '/amplop-1.jpeg',
-            '/amplop-2.png',
-            '/amplop-3.png',
-            '/venue.png'
-        ]
+      envelopeClosed: '/amplop-1.jpeg',
+      envelopeOpen: '/amplop-2.png',
+      mainHero: '/amplop-3.png',
+      venue: '/venue.png',
+      couplePhoto: '/amplop-1.jpeg',
+      announce: '/anounce.jpeg',
+      gallery: [
+        '/amplop-1.jpeg',
+        '/amplop-2.png',
+        '/amplop-3.png',
+        '/venue.png'
+      ]
     }
-};
+  };
 
-// ============================================================
-// 🚀 JANGAN UBAH KODE DI BAWAH INI
-// ============================================================
+  // ============================================================
+  // 🚀 JANGAN UBAH KODE DI BAWAH
+  // ============================================================
 
-// --- AMBIL NAMA DARI URL ---
-(function() {
+  // --- ambil nama dari URL ---
+  (function() {
     const urlParams = new URLSearchParams(window.location.search);
     const toParam = urlParams.get('to');
     const path = window.location.pathname.replace('/', '').trim();
     let name = toParam || path;
     if (name && name !== 'index.html') {
-        name = decodeURIComponent(name).replace(/\+/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
-        let formatted = name.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        if (formatted) CONFIG.guestName = formatted;
+      name = decodeURIComponent(name).replace(/\+/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+      let formatted = name.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      if (formatted) CONFIG.guestName = formatted;
     }
-})();
+  })();
 
-// --- SETUP GAMBAR ---
-function setupImages() {
+  function setupImages() {
     const img = CONFIG.images;
     document.getElementById('envelopeClosedImg').src = img.envelopeClosed;
     document.getElementById('envelopeOpenImg').src = img.envelopeOpen;
     document.getElementById('mainHeroImg').src = img.mainHero;
     document.getElementById('venueImg').src = img.venue;
     document.getElementById('couplePhoto').src = img.couplePhoto;
-    
+    document.getElementById('announceImg').src = img.announce;
     const g = img.gallery;
-    const galleryIds = ['gallery1', 'gallery2', 'gallery3', 'gallery4'];
-    g.forEach((url, i) => {
-        document.getElementById(galleryIds[i]).src = url;
+    ['gallery1','gallery2','gallery3','gallery4'].forEach((id, i) => {
+      document.getElementById(id).src = g[i] || '';
     });
-}
+  }
 
-// --- POPULATE DATA ---
-function populateData() {
+  function populateData() {
     document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
     document.getElementById('heroGroom').textContent = CONFIG.groom;
     document.getElementById('heroBride').textContent = CONFIG.bride;
@@ -953,210 +915,179 @@ function populateData() {
     document.getElementById('giftName').textContent = CONFIG.giftName;
     document.getElementById('songTitle').textContent = CONFIG.songTitle;
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
-}
+  }
 
-// --- ENVELOPE LOGIC ---
-let isEnvelopeOpened = false;
-const envelopeWrapper = document.getElementById('envelopeWrapper');
-const envelopeContainer = document.getElementById('envelopeContainer');
-const envelopeSection = document.getElementById('envelopeSection');
-const mainContent = document.getElementById('mainContent');
+  // --- ENVELOPE ---
+  let isEnvelopeOpened = false;
+  const envelopeWrapper = document.getElementById('envelopeWrapper');
+  const envelopeContainer = document.getElementById('envelopeContainer');
+  const envelopeSection = document.getElementById('envelopeSection');
+  const mainContent = document.getElementById('mainContent');
 
-envelopeWrapper.addEventListener('click', function(e) {
+  envelopeWrapper.addEventListener('click', function(e) {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
-    
     envelopeContainer.classList.add('opened');
-    
     setTimeout(() => {
-        if (audio) {
-            audio.play().catch(() => {});
-            isPlaying = true;
-            updatePlayButton();
-            document.getElementById('vinylDisc').classList.add('spinning');
-        }
+      if (audio) {
+        audio.play().catch(() => {});
+        isPlaying = true;
+        updatePlayButton();
+        document.getElementById('vinylDisc').classList.add('spinning');
+      }
     }, 500);
-    
     setTimeout(() => {
-        envelopeSection.classList.add('hidden');
-        mainContent.classList.add('show');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      envelopeSection.classList.add('hidden');
+      mainContent.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1200);
-});
+  });
 
-// --- MUSIC PLAYER ---
-let audio = null;
-let isPlaying = false;
-let currentSongIndex = 0;
-const songs = [CONFIG.songSrc];
+  // --- MUSIC ---
+  let audio = null;
+  let isPlaying = false;
+  let currentSongIndex = 0;
+  const songs = [CONFIG.songSrc];
 
-function initAudio() {
+  function initAudio() {
     if (!CONFIG.songSrc) {
-        audio = new Audio();
-        audio.duration = 225;
+      audio = new Audio();
+      audio.duration = 225;
     } else {
-        audio = new Audio(CONFIG.songSrc);
+      audio = new Audio(CONFIG.songSrc);
     }
-    
     const playBtn = document.getElementById('vinylPlayBtn');
     const progressFill = document.getElementById('vinylProgressFill');
     const currentTimeEl = document.getElementById('vinylCurrentTime');
     const durationEl = document.getElementById('vinylDuration');
     const progressBar = document.getElementById('vinylProgress');
     const vinylDisc = document.getElementById('vinylDisc');
-    
-    const formatTime = (s) => {
-        if (!s || isNaN(s)) return '0:00';
-        let m = Math.floor(s / 60);
-        let sec = Math.floor(s % 60);
-        return m + ':' + sec.toString().padStart(2, '0');
-    };
-    
-    playBtn.addEventListener('click', () => {
-        if (!CONFIG.songSrc) {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                vinylDisc.classList.add('spinning');
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                vinylDisc.classList.remove('spinning');
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-            return;
-        }
-        
-        if (isPlaying) {
-            audio.pause();
-            isPlaying = false;
-            vinylDisc.classList.remove('spinning');
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        } else {
-            audio.play().catch(() => {});
-            isPlaying = true;
-            vinylDisc.classList.add('spinning');
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        }
-    });
-    
-    if (CONFIG.songSrc) {
-        audio.addEventListener('timeupdate', () => {
-            if (audio.duration) {
-                progressFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
-                currentTimeEl.textContent = formatTime(audio.currentTime);
-            }
-        });
-        
-        audio.addEventListener('loadedmetadata', () => {
-            durationEl.textContent = formatTime(audio.duration);
-        });
-        
-        audio.addEventListener('ended', () => {
-            isPlaying = false;
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            vinylDisc.classList.remove('spinning');
-            progressFill.style.width = '0%';
-            currentTimeEl.textContent = '0:00';
-        });
-        
-        progressBar.addEventListener('click', (e) => {
-            if (audio.duration) {
-                let rect = progressBar.getBoundingClientRect();
-                audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-            }
-        });
-    }
-    
-    durationEl.textContent = CONFIG.songSrc ? '3:45' : '0:00';
-}
 
-function updatePlayButton() {
+    const formatTime = (s) => {
+      if (!s || isNaN(s)) return '0:00';
+      let m = Math.floor(s / 60);
+      let sec = Math.floor(s % 60);
+      return m + ':' + sec.toString().padStart(2, '0');
+    };
+
+    playBtn.addEventListener('click', () => {
+      if (!CONFIG.songSrc) {
+        isPlaying = !isPlaying;
+        if (isPlaying) { vinylDisc.classList.add('spinning'); playBtn.innerHTML = '<i class="fas fa-pause"></i>'; }
+        else { vinylDisc.classList.remove('spinning'); playBtn.innerHTML = '<i class="fas fa-play"></i>'; }
+        return;
+      }
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        vinylDisc.classList.remove('spinning');
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+      } else {
+        audio.play().catch(() => {});
+        isPlaying = true;
+        vinylDisc.classList.add('spinning');
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }
+    });
+
+    if (CONFIG.songSrc) {
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          progressFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
+          currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+      });
+      audio.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audio.duration);
+      });
+      audio.addEventListener('ended', () => {
+        isPlaying = false;
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        vinylDisc.classList.remove('spinning');
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+      });
+      progressBar.addEventListener('click', (e) => {
+        if (audio.duration) {
+          let rect = progressBar.getBoundingClientRect();
+          audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+        }
+      });
+    }
+    durationEl.textContent = CONFIG.songSrc ? '3:45' : '0:00';
+  }
+
+  function updatePlayButton() {
     const btn = document.getElementById('vinylPlayBtn');
     btn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-}
+  }
 
-// --- COUNTDOWN ---
-function updateCountdown() {
+  // --- COUNTDOWN ---
+  function updateCountdown() {
     const target = new Date(CONFIG.weddingDate + 'T00:00:00').getTime();
     const now = new Date().getTime();
     const diff = target - now;
-    
     if (diff <= 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        return;
+      ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
     }
-    
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-}
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+  }
 
-// --- CALENDAR ---
-function buildCalendar() {
+  // --- CALENDAR ---
+  function buildCalendar() {
     const targetDate = new Date(CONFIG.weddingDate);
     const month = targetDate.getMonth();
     const year = targetDate.getFullYear();
     const weddingDay = targetDate.getDate();
-    
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                        'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     document.getElementById('calendarMonth').textContent = monthNames[month];
     document.getElementById('calendarYear').textContent = year;
-    
     const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
+    const daysInMonth = new Date(year, month+1, 0).getDate();
     const grid = document.getElementById('calendarGrid');
     grid.innerHTML = '';
-    
-    const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    dayNames.forEach(name => {
-        const div = document.createElement('div');
-        div.className = 'day-name';
-        div.textContent = name;
-        grid.appendChild(div);
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(name => {
+      const div = document.createElement('div');
+      div.className = 'day-name';
+      div.textContent = name;
+      grid.appendChild(div);
     });
-    
-    for (let i = 0; i < firstDay; i++) {
-        const div = document.createElement('div');
-        div.className = 'day empty';
-        grid.appendChild(div);
+    for (let i=0; i<firstDay; i++) {
+      const div = document.createElement('div');
+      div.className = 'day empty';
+      grid.appendChild(div);
     }
-    
-    for (let d = 1; d <= daysInMonth; d++) {
-        const div = document.createElement('div');
-        div.className = 'day';
-        div.textContent = d;
-        
-        if (d === weddingDay) {
-            div.classList.add('wedding-day');
-            const ring = document.createElement('span');
-            ring.className = 'wedding-ring';
-            div.appendChild(ring);
-        }
-        
-        grid.appendChild(div);
+    for (let d=1; d<=daysInMonth; d++) {
+      const div = document.createElement('div');
+      div.className = 'day';
+      div.textContent = d;
+      if (d === weddingDay) {
+        div.classList.add('wedding-day');
+        const ring = document.createElement('span');
+        ring.className = 'wedding-ring';
+        div.appendChild(ring);
+      }
+      grid.appendChild(div);
     }
-}
+  }
 
-// --- INIT ---
-document.addEventListener('DOMContentLoaded', function() {
+  // --- INIT ---
+  document.addEventListener('DOMContentLoaded', function() {
     setupImages();
     populateData();
     initAudio();
     updateCountdown();
     buildCalendar();
-    
     setInterval(updateCountdown, 1000);
-});
+  });
 </script>
 </body>
 </html>
