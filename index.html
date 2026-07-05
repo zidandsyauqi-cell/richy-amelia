@@ -34,12 +34,12 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       flex-direction: column;
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     #envelopeSection.hidden {
       opacity: 0;
-      transform: scale(1.1);
+      transform: scale(0.95);
       pointer-events: none;
     }
 
@@ -48,119 +48,139 @@
       width: 320px;
       height: 420px;
       cursor: pointer;
-      perspective: 1000px;
-    }
-    .envelope-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      transform-style: preserve-3d;
-    }
-    .envelope-container.opened {
-      transform: rotateY(180deg);
-    }
-
-    .envelope-front, .envelope-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(14, 35, 64, 0.15);
+      box-shadow: 0 20px 60px rgba(14, 35, 64, 0.12);
     }
-    .envelope-front {
-      transform: rotateY(0deg);
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      border: none;
+    .envelope-wrapper:hover {
+      transform: scale(1.02);
     }
-    .envelope-front img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .envelope-wrapper.clicked {
+      transform: scale(1.04);
+    }
+    .envelope-wrapper.opened {
+      transform: scale(0.95);
+    }
+
+    .envelope-image {
       position: absolute;
       top: 0;
       left: 0;
-    }
-    .envelope-back {
-      transform: rotateY(180deg);
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-    }
-    .envelope-back img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 20px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #envelopeClosedImg {
+      opacity: 1;
+      z-index: 2;
+    }
+    #envelopeOpenImg {
+      opacity: 0;
+      z-index: 1;
+    }
+    .envelope-wrapper.opened #envelopeClosedImg {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    .envelope-wrapper.opened #envelopeOpenImg {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .envelope-text {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: #ffffff;
-      padding: 20px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
-    .envelope-text .guest-label {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-    .envelope-text .guest-name-env {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
-    .envelope-text .invited-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      opacity: 0.9;
-      color: #ffffff;
-    }
-    .envelope-text .click-hint {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      margin-top: 30px;
-      opacity: 0.6;
-      animation: pulseHint 2s ease-in-out infinite;
-      color: #ffffff;
-    }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* tadinya center */
+  align-items: center;
+
+  padding: 70px 30px 40px;
+
+  text-align: center;
+  color: #0e2340;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.envelope-wrapper.opened .envelope-text {
+  opacity: 0;
+}
+
+.top-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-68px); /* ubah angkanya sesuai kebutuhan */
+}
+
+.bottom-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-text .guest-label {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  color: #0e2340;
+  margin-bottom: -2px;
+}
+
+.envelope-text .guest-name-env {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #0e2340;
+  margin: 0;
+}
+
+/* .envelope-text .invited-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  color: #0e2340;
+  margin-bottom: 12px;
+} */
+
+.envelope-text .click-hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.6;
+  animation: pulseHint 2s ease-in-out infinite;
+  color: #0e2340;
+  margin-bottom: 70px;
+}
     @keyframes pulseHint {
       0%, 100% { opacity: 0.3; transform: scale(1); }
       50% { opacity: 0.9; transform: scale(1.05); }
     }
 
-    /* ===== MAIN ===== */
+    /* ===== MAIN CONTENT ===== */
     #mainContent {
       opacity: 0;
-      transition: opacity 1.5s ease;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
       padding: 0 20px 50px;
       max-width: 430px;
       margin: 0 auto;
     }
     #mainContent.show {
       opacity: 1;
+      transform: translateY(0);
     }
 
     /* ===== HERO ===== */
@@ -707,21 +727,21 @@
 <!-- ===== ENVELOPE ===== -->
 <div id="envelopeSection">
   <div class="envelope-wrapper" id="envelopeWrapper">
-    <div class="envelope-container" id="envelopeContainer">
-      <!-- DEPAN (tertutup) -->
-      <div class="envelope-front" id="envelopeFront">
-        <img src="/amplop-1.jpeg" alt="amplop" id="envelopeClosedImg">
-        <div class="envelope-text">
-          <div class="guest-label">Untuk</div>
-          <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
-          <div class="invited-text">You're Invited</div>
-          <div class="click-hint">✦ Klik amplop untuk membuka ✦</div>
-        </div>
+    <img src="amplop-1.jpeg" alt="" class="envelope-image" id="envelopeClosedImg">
+    <img src="amplop-2.png" alt="" class="envelope-image" id="envelopeOpenImg">
+
+    <div class="envelope-text">
+
+      <div class="top-text">
+        <div class="guest-label">Untuk</div>
+        <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
       </div>
-      <!-- BELAKANG (terbuka) -->
-      <div class="envelope-back" id="envelopeBack">
-        <img src="/amplop-2.png" alt="amplop terbuka" id="envelopeOpenImg">
+
+      <div class="bottom-text">
+        <!-- <div class="invited-text">You're Invited</div> -->
+        <div class="click-hint">✦ Klik amplop untuk membuka ✦</div>
       </div>
+
     </div>
   </div>
 </div>
@@ -731,7 +751,7 @@
 
   <!-- HERO -->
   <section class="hero-section">
-    <img src="/amplop-3.png" alt="Wedding" id="mainHeroImg">
+    <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
     <div class="hero-overlay">
       <div class="ornament-top">✦ ✦ ✦</div>
       <div class="the-wedding-of">The Wedding of</div>
@@ -750,7 +770,7 @@
       <div class="vinyl-disc" id="vinylDisc">
         <div class="disc-lines"></div>
         <div class="couple-photo">
-          <img src="/amplop-1.jpeg" alt="Couple" id="couplePhoto">
+          <img src="amplop-1.jpeg" alt="Couple" id="couplePhoto">
         </div>
       </div>
       <div class="vinyl-controls">
@@ -794,7 +814,7 @@
 
   <!-- ANNOUNCEMENT -->
   <section class="announce-section">
-    <img src="/announce.png" alt="" id="announceImg">
+    <img src="announce.png" alt="" id="announceImg">
   </section>
 
   <!-- RUNDOWN -->
@@ -811,7 +831,7 @@
   <!-- VENUE -->
   <section class="venue-section">
     <div class="venue-circle">
-      <img src="/venue.png" alt="Venue" id="venueImg">
+      <img src="venue.png" alt="Venue" id="venueImg">
     </div>
     <div class="venue-content">
       <h3>Our Venue</h3>
@@ -836,10 +856,10 @@
   <section class="gallery-section">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="/amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
-      <div class="gallery-item"><img src="/amplop-2.png" alt="Gallery 2" id="gallery2"></div>
-      <div class="gallery-item"><img src="/amplop-3.png" alt="Gallery 3" id="gallery3"></div>
-      <div class="gallery-item"><img src="/venue.png" alt="Gallery 4" id="gallery4"></div>
+      <div class="gallery-item"><img src="amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
+      <div class="gallery-item"><img src="amplop-2.png" alt="Gallery 2" id="gallery2"></div>
+      <div class="gallery-item"><img src="amplop-3.png" alt="Gallery 3" id="gallery3"></div>
+      <div class="gallery-item"><img src="venue.png" alt="Gallery 4" id="gallery4"></div>
     </div>
   </section>
 
@@ -859,21 +879,21 @@
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
-    songSrc: '/bermuara.mp3',
+    songSrc: 'bermuara.mp3',
     songTitle: 'Bermuara',
     songArtist: 'Mahalini & Rizky Febian',
     images: {
-      envelopeClosed: '/amplop-1.jpeg',
-      envelopeOpen: '/amplop-2.png',
-      mainHero: '/amplop-3.png',
-      venue: '/venue.png',
-      couplePhoto: '/amplop-1.jpeg',
-      announce: '/anounce.jpeg',
+      envelopeClosed: 'amplop-1.jpeg',
+      envelopeOpen: 'amplop-2.png',
+      mainHero: 'amplop-3.png',
+      venue: 'venue.png',
+      couplePhoto: 'amplop-1.jpeg',
+      announce: 'announce.png',
       gallery: [
-        '/amplop-1.jpeg',
-        '/amplop-2.png',
-        '/amplop-3.png',
-        '/venue.png'
+        'amplop-1.jpeg',
+        'amplop-2.png',
+        'amplop-3.png',
+        'venue.png'
       ]
     }
   };
@@ -922,34 +942,38 @@
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
   }
 
-  // --- ENVELOPE ---
+  // --- ENVELOPE (tanpa rotateY) ---
   let isEnvelopeOpened = false;
   const envelopeWrapper = document.getElementById('envelopeWrapper');
-  const envelopeContainer = document.getElementById('envelopeContainer');
   const envelopeSection = document.getElementById('envelopeSection');
   const mainContent = document.getElementById('mainContent');
-
-  // Hapus semua efek border/gambar tambahan di amplop
-  envelopeWrapper.style.background = 'transparent';
-  envelopeWrapper.style.boxShadow = 'none';
 
   envelopeWrapper.addEventListener('click', function(e) {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
-    envelopeContainer.classList.add('opened');
+
+    // Step 1: efek klik
+    this.classList.add('clicked');
     setTimeout(() => {
+      this.classList.remove('clicked');
+      // Step 2: buka amplop (crossfade)
+      this.classList.add('opened');
+    }, 300);
+
+    // Step 3: setelah crossfade selesai, tampilkan konten
+    setTimeout(() => {
+      // Play music
       if (audio) {
         audio.play().catch(() => {});
         isPlaying = true;
         updatePlayButton();
         document.getElementById('vinylDisc').classList.add('spinning');
       }
-    }, 500);
-    setTimeout(() => {
+      // Sembunyikan amplop dan tampilkan konten
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1200);
+    }, 1400);
   });
 
   // --- MUSIC ---
