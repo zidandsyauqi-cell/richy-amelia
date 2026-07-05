@@ -108,35 +108,40 @@
       text-align: center;
       color: #ffffff;
       padding: 20px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
     }
     .envelope-text .guest-label {
       font-family: 'Great Vibes', cursive;
       font-size: 1.8rem;
-      margin-bottom: 150px;
       color: #ffffff;
+      margin-bottom: 10px;
     }
     .envelope-text .guest-name-env {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
+      font-size: 2rem;
       font-weight: 700;
       letter-spacing: 2px;
-      margin-bottom: 150px;
       color: #ffffff;
+      margin-bottom: 15px;
     }
     .envelope-text .invited-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       letter-spacing: 4px;
       text-transform: uppercase;
-      margin-top: 20px;
-      opacity: 0.8;
+      opacity: 0.9;
       color: #ffffff;
     }
     .envelope-text .click-hint {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.85rem;
-      margin-top: 20px;
+      margin-top: 30px;
       opacity: 0.6;
       animation: pulseHint 2s ease-in-out infinite;
       color: #ffffff;
@@ -507,7 +512,7 @@
       50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
     }
 
-    /* ===== ANNOUNCEMENT (baru) ===== */
+    /* ===== ANNOUNCEMENT ===== */
     .announce-section {
       margin-bottom: 30px;
       border-radius: 30px;
@@ -787,9 +792,9 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ===== ANNOUNCEMENT (baru) ===== -->
+  <!-- ANNOUNCEMENT -->
   <section class="announce-section">
-    <img src="/anounce.jpeg" alt="Pengumuman" id="announceImg">
+    <img src="/announce.png" alt="" id="announceImg">
   </section>
 
   <!-- RUNDOWN -->
@@ -923,6 +928,10 @@
   const envelopeContainer = document.getElementById('envelopeContainer');
   const envelopeSection = document.getElementById('envelopeSection');
   const mainContent = document.getElementById('mainContent');
+
+  // Hapus semua efek border/gambar tambahan di amplop
+  envelopeWrapper.style.background = 'transparent';
+  envelopeWrapper.style.boxShadow = 'none';
 
   envelopeWrapper.addEventListener('click', function(e) {
     if (isEnvelopeOpened) return;
