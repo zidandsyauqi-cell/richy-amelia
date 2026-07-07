@@ -22,6 +22,37 @@
       color: #0e2340;
     }
 
+    /* ===== BUNGA DECORATION ===== */
+    .bunga-decoration {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 1;
+      animation: bungaBreath 3s ease-in-out infinite;
+    }
+    .bunga-decoration:nth-child(2) { animation-delay: 0.5s; }
+    .bunga-decoration:nth-child(3) { animation-delay: 1s; }
+
+    @keyframes bungaBreath {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(3deg); }
+    }
+
+    .bunga-top-left { top: -10px; left: -10px; }
+    .bunga-top-right { top: -10px; right: -10px; }
+    .bunga-bottom-left { bottom: -10px; left: -10px; }
+    .bunga-bottom-right { bottom: -10px; right: -10px; }
+    .bunga-center-top { top: -20px; left: 50%; transform: translateX(-50%); }
+    .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
+
+    .section-with-bunga {
+      position: relative;
+      overflow: visible;
+    }
+
     /* ===== ENVELOPE ===== */
     #envelopeSection {
       position: fixed;
@@ -91,79 +122,66 @@
     }
 
     .envelope-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 70px 30px 40px;
+      text-align: center;
+      color: #0e2340;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* tadinya center */
-  align-items: center;
+    .envelope-wrapper.opened .envelope-text {
+      opacity: 0;
+    }
 
-  padding: 70px 30px 40px;
+    .top-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(-68px);
+    }
 
-  text-align: center;
-  color: #0e2340;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
+    .bottom-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.envelope-wrapper.opened .envelope-text {
-  opacity: 0;
-}
+    .envelope-text .guest-label {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: #0e2340;
+      margin-bottom: -2px;
+    }
 
-.top-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: translateY(-68px); /* ubah angkanya sesuai kebutuhan */
-}
+    .envelope-text .guest-name-env {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: #0e2340;
+      margin: 0;
+    }
 
-.bottom-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.envelope-text .guest-label {
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.8rem;
-  color: #0e2340;
-  margin-bottom: -2px;
-}
-
-.envelope-text .guest-name-env {
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0;
-  color: #0e2340;
-  margin: 0;
-}
-
-/* .envelope-text .invited-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: 0.9;
-  color: #0e2340;
-  margin-bottom: 12px;
-} */
-
-.envelope-text .click-hint {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.8rem;
-  margin: 0;
-  opacity: 0.6;
-  animation: pulseHint 2s ease-in-out infinite;
-  color: #0e2340;
-  margin-bottom: 70px;
-}
+    .envelope-text .click-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      margin: 0;
+      opacity: 0.6;
+      animation: pulseHint 2s ease-in-out infinite;
+      color: #0e2340;
+      margin-bottom: 70px;
+    }
     @keyframes pulseHint {
       0%, 100% { opacity: 0.3; transform: scale(1); }
       50% { opacity: 0.9; transform: scale(1.05); }
@@ -191,7 +209,6 @@
       overflow: hidden;
       margin-bottom: 30px;
       box-shadow: 0 10px 40px rgba(14, 35, 64, 0.1);
-      background: #0e2340;
       min-height: 500px;
     }
     .hero-section img {
@@ -207,7 +224,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(14,35,64,0.2) 0%, rgba(14,35,64,0.6) 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -220,21 +236,25 @@
       font-size: 0.7rem;
       letter-spacing: 8px;
       opacity: 0.6;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
+      color: #0e2340;
     }
     .hero-overlay .the-wedding-of {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 6px;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
       text-transform: uppercase;
       font-style: italic;
       opacity: 0.8;
+      color: #0e2340;
+      margin-bottom: 2px;
     }
     .hero-overlay .couple-names-hero {
       font-family: 'Great Vibes', cursive;
       font-size: 3.5rem;
       line-height: 1.2;
-      margin: 10px 0;
+      margin: 5px 0;
+      color: #0e2340;
     }
     .hero-overlay .couple-names-hero .and {
       font-family: 'Cormorant Garamond', serif;
@@ -242,13 +262,16 @@
       display: block;
       font-style: italic;
       opacity: 0.7;
+      color: #0e2340;
     }
     .hero-overlay .hero-date {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      letter-spacing: 3px;
-      margin-top: 10px;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-top: 8px;
       opacity: 0.9;
+      color: #0e2340;
+      padding: 0 20px;
     }
 
     /* ===== VINYL ===== */
@@ -712,6 +735,7 @@
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
       .venue-circle { width: 160px; height: 160px; }
+      .bunga-decoration { width: 45px; height: 45px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -719,6 +743,7 @@
       .vinyl-disc { width: 100px; height: 100px; }
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-circle { width: 140px; height: 140px; }
+      .bunga-decoration { width: 38px; height: 38px; }
     }
   </style>
 </head>
@@ -731,17 +756,13 @@
     <img src="amplop-2.png" alt="" class="envelope-image" id="envelopeOpenImg">
 
     <div class="envelope-text">
-
       <div class="top-text">
         <div class="guest-label">Untuk</div>
         <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
       </div>
-
       <div class="bottom-text">
-        <!-- <div class="invited-text">You're Invited</div> -->
         <div class="click-hint">✦ Klik amplop untuk membuka ✦</div>
       </div>
-
     </div>
   </div>
 </div>
@@ -749,7 +770,7 @@
 <!-- ===== MAIN ===== -->
 <div id="mainContent">
 
-  <!-- HERO -->
+  <!-- HERO (tanpa bunga) -->
   <section class="hero-section">
     <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
     <div class="hero-overlay">
@@ -764,8 +785,9 @@
     </div>
   </section>
 
-  <!-- VINYL -->
-  <section class="vinyl-section">
+  <!-- VINYL (1 bunga) -->
+  <section class="vinyl-section section-with-bunga">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="vinyl-player">
       <div class="vinyl-disc" id="vinylDisc">
         <div class="disc-lines"></div>
@@ -774,7 +796,7 @@
         </div>
       </div>
       <div class="vinyl-controls">
-        <div class="song-title" id="songTitle">Bermuara</div>
+        <div class="song-title" id="songTitle">Bermuara (Reff)</div>
         <div class="song-artist" id="songArtist">Mahalini & Rizky Febian</div>
         <div class="vinyl-progress" id="vinylProgress">
           <div class="vinyl-progress-fill" id="vinylProgressFill"></div>
@@ -792,8 +814,10 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN -->
-  <section class="countdown-section">
+  <!-- COUNTDOWN (2 bunga) -->
+  <section class="countdown-section section-with-bunga">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-right">
     <div class="countdown-title">Counting Down to Our Special Day</div>
     <div class="countdown-grid">
       <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
@@ -803,8 +827,9 @@
     </div>
   </section>
 
-  <!-- CALENDAR -->
-  <section class="calendar-section">
+  <!-- CALENDAR (1 bunga) -->
+  <section class="calendar-section section-with-bunga">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="calendar-header">
       <span class="month" id="calendarMonth">October</span>
       <span class="year" id="calendarYear">2026</span>
@@ -812,13 +837,15 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ANNOUNCEMENT -->
+  <!-- ANNOUNCEMENT (tanpa bunga) -->
   <section class="announce-section">
     <img src="announce.png" alt="" id="announceImg">
   </section>
 
-  <!-- RUNDOWN -->
-  <section class="rundown-section">
+  <!-- RUNDOWN (2 bunga) -->
+  <section class="rundown-section section-with-bunga">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
     <h3>Wedding Timeline</h3>
     <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
     <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
@@ -828,8 +855,9 @@
     <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
-  <!-- VENUE -->
-  <section class="venue-section">
+  <!-- VENUE (1 bunga) -->
+  <section class="venue-section section-with-bunga">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="venue-circle">
       <img src="venue.png" alt="Venue" id="venueImg">
     </div>
@@ -842,8 +870,10 @@
     </div>
   </section>
 
-  <!-- GIFT -->
-  <section class="gift-section">
+  <!-- GIFT (2 bunga) -->
+  <section class="gift-section section-with-bunga">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-bottom-right">
     <h3>Wedding Gift</h3>
     <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
     <div class="gift-box">
@@ -852,8 +882,9 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="gallery-section">
+  <!-- GALLERY (1 bunga) -->
+  <section class="gallery-section section-with-bunga">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-center-top">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
       <div class="gallery-item"><img src="amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
@@ -879,8 +910,8 @@
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
-    songSrc: 'bermuara.mp3',
-    songTitle: 'Bermuara',
+    songSrc: 'bermuara_reff.mp3',
+    songTitle: 'Bermuara (Reff)',
     songArtist: 'Mahalini & Rizky Febian',
     images: {
       envelopeClosed: 'amplop-1.jpeg',
@@ -899,20 +930,14 @@
   };
 
   // ============================================================
-  // 🚀 JANGAN UBAH KODE DI BAWAH
+  // 🚀 AMBIL NAMA DARI URL PATH
   // ============================================================
-
-  // --- ambil nama dari URL ---
   (function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const toParam = urlParams.get('to');
-    const path = window.location.pathname.replace('/', '').trim();
-    let name = toParam || path;
-    if (name && name !== 'index.html') {
-      name = decodeURIComponent(name).replace(/\+/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
-      let formatted = name.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-      if (formatted) CONFIG.guestName = formatted;
-    }
+    let path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    if (!path || path === 'index.html') return;
+    let name = decodeURIComponent(path).replace(/\+/g, ' ').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
+    let formatted = name.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    if (formatted) CONFIG.guestName = formatted;
   })();
 
   function setupImages() {
@@ -942,7 +967,7 @@
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
   }
 
-  // --- ENVELOPE (tanpa rotateY) ---
+  // --- ENVELOPE ---
   let isEnvelopeOpened = false;
   const envelopeWrapper = document.getElementById('envelopeWrapper');
   const envelopeSection = document.getElementById('envelopeSection');
@@ -951,25 +976,18 @@
   envelopeWrapper.addEventListener('click', function(e) {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
-
-    // Step 1: efek klik
     this.classList.add('clicked');
     setTimeout(() => {
       this.classList.remove('clicked');
-      // Step 2: buka amplop (crossfade)
       this.classList.add('opened');
     }, 300);
-
-    // Step 3: setelah crossfade selesai, tampilkan konten
     setTimeout(() => {
-      // Play music
       if (audio) {
         audio.play().catch(() => {});
         isPlaying = true;
         updatePlayButton();
         document.getElementById('vinylDisc').classList.add('spinning');
       }
-      // Sembunyikan amplop dan tampilkan konten
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
