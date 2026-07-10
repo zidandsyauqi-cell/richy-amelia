@@ -25,8 +25,8 @@
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       opacity: 1;
       pointer-events: none;
@@ -41,22 +41,34 @@
       50% { transform: scale(1.08) rotate(3deg); }
     }
 
-    .bunga-top-left { top: -45px; left: -45px; }
-    .bunga-top-right { top: -45px; right: -45px; }
-    .bunga-bottom-left { bottom: -45px; left: -45px; }
-    .bunga-bottom-right { bottom: -45px; right: -45px; }
-    .bunga-center-top { top: -55px; left: 50%; transform: translateX(-50%); }
+    .bunga-top-left { top: -50px; left: -50px; }
+    .bunga-top-right { top: -50px; right: -50px; }
+    .bunga-bottom-left { bottom: -50px; left: -50px; }
+    .bunga-bottom-right { bottom: -50px; right: -50px; }
+    .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); }
     .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
+    .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
+
+    /* Full width untuk bunga7 di kalender */
     .bunga-full-width { 
-      top: -55px; 
+      top: -60px; 
       left: 0; 
       width: 100%; 
-      height: 180px; 
+      height: 200px; 
       object-fit: cover;
       animation: bungaBreath 3.5s ease-in-out infinite;
+      border-radius: 0;
     }
-    .bunga-side-right { top: 50%; right: -55px; transform: translateY(-50%); }
-    .bunga-side-left { top: 50%; left: -55px; transform: translateY(-50%); }
+
+    /* Ukuran khusus untuk bunga di wedding timeline (di ujung kanan) */
+    .bunga-timeline {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      right: -60px;
+      transform: translateY(-50%);
+    }
 
     .section-with-bunga {
       position: relative;
@@ -742,15 +754,16 @@
       .countdown-item .number { font-size: 1.8rem; }
       .venue-section { min-height: 300px; }
       .venue-section img { min-height: 300px; }
-      .bunga-decoration { width: 110px; height: 110px; }
-      .bunga-full-width { height: 110px; }
-      .bunga-top-left { top: -30px; left: -30px; }
-      .bunga-top-right { top: -30px; right: -30px; }
-      .bunga-bottom-left { bottom: -30px; left: -30px; }
-      .bunga-bottom-right { bottom: -30px; right: -30px; }
-      .bunga-center-top { top: -40px; }
-      .bunga-side-right { right: -40px; }
-      .bunga-side-left { left: -40px; }
+      .bunga-decoration { width: 120px; height: 120px; }
+      .bunga-full-width { height: 120px; top: -40px; }
+      .bunga-timeline { width: 120px; height: 120px; right: -40px; }
+      .bunga-top-left { top: -35px; left: -35px; }
+      .bunga-top-right { top: -35px; right: -35px; }
+      .bunga-bottom-left { bottom: -35px; left: -35px; }
+      .bunga-bottom-right { bottom: -35px; right: -35px; }
+      .bunga-center-top { top: -45px; }
+      .bunga-side-right { right: -45px; }
+      .bunga-side-left { left: -45px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -759,15 +772,16 @@
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-section { min-height: 250px; }
       .venue-section img { min-height: 250px; }
-      .bunga-decoration { width: 90px; height: 90px; }
-      .bunga-full-width { height: 90px; }
-      .bunga-top-left { top: -25px; left: -25px; }
-      .bunga-top-right { top: -25px; right: -25px; }
-      .bunga-bottom-left { bottom: -25px; left: -25px; }
-      .bunga-bottom-right { bottom: -25px; right: -25px; }
-      .bunga-center-top { top: -35px; }
-      .bunga-side-right { right: -35px; }
-      .bunga-side-left { left: -35px; }
+      .bunga-decoration { width: 100px; height: 100px; }
+      .bunga-full-width { height: 100px; top: -35px; }
+      .bunga-timeline { width: 100px; height: 100px; right: -35px; }
+      .bunga-top-left { top: -30px; left: -30px; }
+      .bunga-top-right { top: -30px; right: -30px; }
+      .bunga-bottom-left { bottom: -30px; left: -30px; }
+      .bunga-bottom-right { bottom: -30px; right: -30px; }
+      .bunga-center-top { top: -40px; }
+      .bunga-side-right { right: -40px; }
+      .bunga-side-left { left: -40px; }
     }
   </style>
 </head>
@@ -865,9 +879,9 @@
     <img src="announce.png" alt="" id="announceImg">
   </section>
 
-  <!-- RUNDOWN (1 bunga) -->
+  <!-- RUNDOWN (bunga di ujung kanan) -->
   <section class="rundown-section section-with-bunga">
-    <img src="bunga2.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
     <h3>Wedding Timeline</h3>
     <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
     <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
@@ -904,7 +918,7 @@
   <!-- GALLERY (2 bunga) -->
   <section class="gallery-section section-with-bunga">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga2.png" alt="" class="bunga-decoration bunga-top-right">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
       <div class="gallery-item"><img src="amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
