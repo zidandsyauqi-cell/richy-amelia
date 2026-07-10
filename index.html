@@ -25,8 +25,8 @@
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       object-fit: contain;
       opacity: 1;
       pointer-events: none;
@@ -41,14 +41,14 @@
       50% { transform: scale(1.08) rotate(3deg); }
     }
 
-    .bunga-top-left { top: -30px; left: -30px; }
-    .bunga-top-right { top: -30px; right: -30px; }
-    .bunga-bottom-left { bottom: -30px; left: -30px; }
-    .bunga-bottom-right { bottom: -30px; right: -30px; }
-    .bunga-center-top { top: -40px; left: 50%; transform: translateX(-50%); }
+    .bunga-top-left { top: -35px; left: -35px; }
+    .bunga-top-right { top: -35px; right: -35px; }
+    .bunga-bottom-left { bottom: -35px; left: -35px; }
+    .bunga-bottom-right { bottom: -35px; right: -35px; }
+    .bunga-center-top { top: -45px; left: 50%; transform: translateX(-50%); }
     .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
-    .bunga-side-right { top: 50%; right: -40px; transform: translateY(-50%); }
-    .bunga-side-left { top: 50%; left: -40px; transform: translateY(-50%); }
+    .bunga-side-right { top: 50%; right: -45px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -45px; transform: translateY(-50%); }
 
     .section-with-bunga {
       position: relative;
@@ -737,14 +737,14 @@
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
       .venue-circle { width: 160px; height: 160px; }
-      .bunga-decoration { width: 80px; height: 80px; }
-      .bunga-top-left { top: -20px; left: -20px; }
-      .bunga-top-right { top: -20px; right: -20px; }
-      .bunga-bottom-left { bottom: -20px; left: -20px; }
-      .bunga-bottom-right { bottom: -20px; right: -20px; }
-      .bunga-center-top { top: -30px; }
-      .bunga-side-right { right: -30px; }
-      .bunga-side-left { left: -30px; }
+      .bunga-decoration { width: 90px; height: 90px; }
+      .bunga-top-left { top: -25px; left: -25px; }
+      .bunga-top-right { top: -25px; right: -25px; }
+      .bunga-bottom-left { bottom: -25px; left: -25px; }
+      .bunga-bottom-right { bottom: -25px; right: -25px; }
+      .bunga-center-top { top: -35px; }
+      .bunga-side-right { right: -35px; }
+      .bunga-side-left { left: -35px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -752,14 +752,14 @@
       .vinyl-disc { width: 100px; height: 100px; }
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-circle { width: 140px; height: 140px; }
-      .bunga-decoration { width: 65px; height: 65px; }
-      .bunga-top-left { top: -15px; left: -15px; }
-      .bunga-top-right { top: -15px; right: -15px; }
-      .bunga-bottom-left { bottom: -15px; left: -15px; }
-      .bunga-bottom-right { bottom: -15px; right: -15px; }
-      .bunga-center-top { top: -25px; }
-      .bunga-side-right { right: -25px; }
-      .bunga-side-left { left: -25px; }
+      .bunga-decoration { width: 75px; height: 75px; }
+      .bunga-top-left { top: -20px; left: -20px; }
+      .bunga-top-right { top: -20px; right: -20px; }
+      .bunga-bottom-left { bottom: -20px; left: -20px; }
+      .bunga-bottom-right { bottom: -20px; right: -20px; }
+      .bunga-center-top { top: -30px; }
+      .bunga-side-right { right: -30px; }
+      .bunga-side-left { left: -30px; }
     }
   </style>
 </head>
@@ -801,9 +801,9 @@
     </div>
   </section>
 
-  <!-- VINYL (1 bunga di sisi kanan) -->
+  <!-- VINYL (1 bunga di atas kanan) -->
   <section class="vinyl-section section-with-bunga">
-    <img src="bunga1.png" alt="" class="bunga-decoration bunga-side-right">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right">
     <div class="vinyl-player">
       <div class="vinyl-disc" id="vinylDisc">
         <div class="disc-lines"></div>
@@ -830,10 +830,9 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (2 bunga) -->
+  <!-- COUNTDOWN (1 bunga, pindah dari calendar) -->
   <section class="countdown-section section-with-bunga">
-    <img src="bunga2.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-right">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="countdown-title">Counting Down to Our Special Day</div>
     <div class="countdown-grid">
       <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
@@ -843,9 +842,10 @@
     </div>
   </section>
 
-  <!-- CALENDAR (1 bunga) -->
+  <!-- CALENDAR (2 bunga, pindah dari countdown) -->
   <section class="calendar-section section-with-bunga">
-    <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-right">
     <div class="calendar-header">
       <span class="month" id="calendarMonth">October</span>
       <span class="year" id="calendarYear">2026</span>
@@ -858,10 +858,9 @@
     <img src="announce.png" alt="" id="announceImg">
   </section>
 
-  <!-- RUNDOWN (2 bunga) -->
+  <!-- RUNDOWN (1 bunga, pindah dari venue) -->
   <section class="rundown-section section-with-bunga">
-    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-center-top">
     <h3>Wedding Timeline</h3>
     <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
     <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
@@ -871,9 +870,10 @@
     <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
-  <!-- VENUE (1 bunga) -->
+  <!-- VENUE (2 bunga, pindah dari rundown) -->
   <section class="venue-section section-with-bunga">
-    <img src="bunga2.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
     <div class="venue-circle">
       <img src="venue.png" alt="Venue" id="venueImg">
     </div>
