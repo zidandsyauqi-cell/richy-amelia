@@ -25,8 +25,8 @@
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 180px;
+      height: 180px;
       object-fit: contain;
       opacity: 1;
       pointer-events: none;
@@ -41,22 +41,22 @@
       50% { transform: scale(1.08) rotate(3deg); }
     }
 
-    .bunga-top-left { top: -40px; left: -40px; }
-    .bunga-top-right { top: -40px; right: -40px; }
-    .bunga-bottom-left { bottom: -40px; left: -40px; }
-    .bunga-bottom-right { bottom: -40px; right: -40px; }
-    .bunga-center-top { top: -50px; left: 50%; transform: translateX(-50%); }
+    .bunga-top-left { top: -45px; left: -45px; }
+    .bunga-top-right { top: -45px; right: -45px; }
+    .bunga-bottom-left { bottom: -45px; left: -45px; }
+    .bunga-bottom-right { bottom: -45px; right: -45px; }
+    .bunga-center-top { top: -55px; left: 50%; transform: translateX(-50%); }
     .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
     .bunga-full-width { 
-      top: -50px; 
+      top: -55px; 
       left: 0; 
       width: 100%; 
-      height: 160px; 
+      height: 180px; 
       object-fit: cover;
       animation: bungaBreath 3.5s ease-in-out infinite;
     }
-    .bunga-side-right { top: 50%; right: -50px; transform: translateY(-50%); }
-    .bunga-side-left { top: 50%; left: -50px; transform: translateY(-50%); }
+    .bunga-side-right { top: 50%; right: -55px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -55px; transform: translateY(-50%); }
 
     .section-with-bunga {
       position: relative;
@@ -530,23 +530,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      border: 3px solid #0e2340;
+      border: 2px solid #0e2340;
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;
-      background: rgba(14, 35, 64, 0.08);
-    }
-    .calendar-grid .day .wedding-ring::after {
-      content: '✦';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 0.7rem;
-      color: #0e2340;
+      background: rgba(14, 35, 64, 0.1);
     }
     .calendar-grid .day.wedding-day {
       background: transparent;
@@ -559,7 +550,7 @@
     }
     @keyframes ringBreath {
       0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
     }
 
     /* ===== ANNOUNCEMENT ===== */
@@ -604,29 +595,28 @@
       justify-content: center;
       padding: 30px;
       text-align: center;
-      background: rgba(0,0,0,0.3);
     }
     .venue-overlay h3 {
       font-family: 'Great Vibes', cursive;
       font-size: 2.5rem;
-      color: #ffffff;
+      color: #0e2340;
       margin-bottom: 10px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 20px rgba(255,255,255,0.5);
     }
     .venue-overlay .venue-address {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
-      color: #ffffff;
+      color: #0e2340;
       margin-bottom: 20px;
       line-height: 1.6;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 10px rgba(255,255,255,0.5);
     }
     .venue-overlay .btn-route {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #ffffff;
-      color: #0e2340;
+      background: #0e2340;
+      color: #ffffff;
       padding: 12px 30px;
       border-radius: 50px;
       text-decoration: none;
@@ -752,15 +742,15 @@
       .countdown-item .number { font-size: 1.8rem; }
       .venue-section { min-height: 300px; }
       .venue-section img { min-height: 300px; }
-      .bunga-decoration { width: 100px; height: 100px; }
-      .bunga-full-width { height: 100px; }
-      .bunga-top-left { top: -25px; left: -25px; }
-      .bunga-top-right { top: -25px; right: -25px; }
-      .bunga-bottom-left { bottom: -25px; left: -25px; }
-      .bunga-bottom-right { bottom: -25px; right: -25px; }
-      .bunga-center-top { top: -35px; }
-      .bunga-side-right { right: -35px; }
-      .bunga-side-left { left: -35px; }
+      .bunga-decoration { width: 110px; height: 110px; }
+      .bunga-full-width { height: 110px; }
+      .bunga-top-left { top: -30px; left: -30px; }
+      .bunga-top-right { top: -30px; right: -30px; }
+      .bunga-bottom-left { bottom: -30px; left: -30px; }
+      .bunga-bottom-right { bottom: -30px; right: -30px; }
+      .bunga-center-top { top: -40px; }
+      .bunga-side-right { right: -40px; }
+      .bunga-side-left { left: -40px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -769,15 +759,15 @@
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-section { min-height: 250px; }
       .venue-section img { min-height: 250px; }
-      .bunga-decoration { width: 80px; height: 80px; }
-      .bunga-full-width { height: 80px; }
-      .bunga-top-left { top: -20px; left: -20px; }
-      .bunga-top-right { top: -20px; right: -20px; }
-      .bunga-bottom-left { bottom: -20px; left: -20px; }
-      .bunga-bottom-right { bottom: -20px; right: -20px; }
-      .bunga-center-top { top: -30px; }
-      .bunga-side-right { right: -30px; }
-      .bunga-side-left { left: -30px; }
+      .bunga-decoration { width: 90px; height: 90px; }
+      .bunga-full-width { height: 90px; }
+      .bunga-top-left { top: -25px; left: -25px; }
+      .bunga-top-right { top: -25px; right: -25px; }
+      .bunga-bottom-left { bottom: -25px; left: -25px; }
+      .bunga-bottom-right { bottom: -25px; right: -25px; }
+      .bunga-center-top { top: -35px; }
+      .bunga-side-right { right: -35px; }
+      .bunga-side-left { left: -35px; }
     }
   </style>
 </head>
@@ -860,7 +850,7 @@
     </div>
   </section>
 
-  <!-- CALENDAR (bunga7.png full width di atas) -->
+  <!-- CALENDAR (bunga7.png full width dari kiri ke kanan) -->
   <section class="calendar-section section-with-bunga">
     <img src="bunga7.png" alt="" class="bunga-decoration bunga-full-width">
     <div class="calendar-header">
@@ -887,7 +877,7 @@
     <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
-  <!-- VENUE (full gambar, bukan buletan) -->
+  <!-- VENUE (full gambar, tanpa background overlay biru) -->
   <section class="venue-section">
     <img src="venue.png" alt="Venue" id="venueImg">
     <div class="venue-overlay">
@@ -902,7 +892,7 @@
   <!-- GIFT (2 bunga) -->
   <section class="gift-section section-with-bunga">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga6.png" alt="" class="bunga-decoration bunga-bottom-right">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
     <h3>Wedding Gift</h3>
     <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
     <div class="gift-box">
@@ -911,10 +901,10 @@
     </div>
   </section>
 
-  <!-- GALLERY (2 bunga + bunga6) -->
+  <!-- GALLERY (2 bunga) -->
   <section class="gallery-section section-with-bunga">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga6.png" alt="" class="bunga-decoration bunga-top-right">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-top-right">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
       <div class="gallery-item"><img src="amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
