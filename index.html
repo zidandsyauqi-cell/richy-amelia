@@ -50,12 +50,14 @@
     .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
     .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
 
-    /* Full width untuk bunga7 di kalender */
+    /* Full width untuk tirai di kalender */
     .bunga-full-width { 
       top: -60px; 
-      left: 0; 
-      width: 100%; 
-      height: 200px; 
+      left: -20px; 
+      width: calc(100% + 40px); 
+      height: auto;
+      min-height: 200px;
+      max-height: 300px;
       object-fit: cover;
       animation: bungaBreath 3.5s ease-in-out infinite;
       border-radius: 0;
@@ -258,29 +260,30 @@
       font-size: 0.7rem;
       letter-spacing: 8px;
       opacity: 0.6;
-      margin-bottom: 5px;
+      margin-bottom: 2px;
       color: #0e2340;
     }
     .hero-overlay .the-wedding-of {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
       font-style: italic;
       opacity: 0.8;
       color: #0e2340;
-      margin-bottom: 2px;
+      margin-bottom: 0px;
     }
     .hero-overlay .couple-names-hero {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      line-height: 1.2;
-      margin: 5px 0;
+      font-size: 3.2rem;
+      line-height: 1.1;
+      margin: 2px 0;
       color: #0e2340;
+      letter-spacing: 0px;
     }
     .hero-overlay .couple-names-hero .and {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       display: block;
       font-style: italic;
       opacity: 0.7;
@@ -288,12 +291,12 @@
     }
     .hero-overlay .hero-date {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      margin-top: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-top: 4px;
       opacity: 0.9;
       color: #0e2340;
-      padding: 0 20px;
+      padding: 0 10px;
     }
 
     /* ===== VINYL ===== */
@@ -701,9 +704,7 @@
       padding: 12px 0;
       border-bottom: 1px solid #e8ddd0;
       font-family: 'Cormorant Garamond', serif;
-    }
-    .rundown-item:last-child {
-      border-bottom: none;
+      font-weight: 400;
     }
     .rundown-item .time {
       font-weight: 600;
@@ -711,6 +712,7 @@
     }
     .rundown-item .event {
       color: #666;
+      font-weight: 400;
     }
 
     /* ===== GALLERY ===== */
@@ -755,7 +757,7 @@
       .venue-section { min-height: 300px; }
       .venue-section img { min-height: 300px; }
       .bunga-decoration { width: 120px; height: 120px; }
-      .bunga-full-width { height: 120px; top: -40px; }
+      .bunga-full-width { min-height: 120px; max-height: 180px; top: -40px; left: -15px; width: calc(100% + 30px); }
       .bunga-timeline { width: 120px; height: 120px; right: -40px; }
       .bunga-top-left { top: -35px; left: -35px; }
       .bunga-top-right { top: -35px; right: -35px; }
@@ -773,7 +775,7 @@
       .venue-section { min-height: 250px; }
       .venue-section img { min-height: 250px; }
       .bunga-decoration { width: 100px; height: 100px; }
-      .bunga-full-width { height: 100px; top: -35px; }
+      .bunga-full-width { min-height: 100px; max-height: 150px; top: -35px; left: -12px; width: calc(100% + 24px); }
       .bunga-timeline { width: 100px; height: 100px; right: -35px; }
       .bunga-top-left { top: -30px; left: -30px; }
       .bunga-top-right { top: -30px; right: -30px; }
@@ -864,9 +866,9 @@
     </div>
   </section>
 
-  <!-- CALENDAR (bunga7.png full width dari kiri ke kanan) -->
+  <!-- CALENDAR (tirai full width) -->
   <section class="calendar-section section-with-bunga">
-    <img src="bunga7.png" alt="" class="bunga-decoration bunga-full-width">
+    <img src="bunga6.png" alt="" class="bunga-decoration bunga-full-width">
     <div class="calendar-header">
       <span class="month" id="calendarMonth">October</span>
       <span class="year" id="calendarYear">2026</span>
@@ -915,7 +917,7 @@
     </div>
   </section>
 
-  <!-- GALLERY (2 bunga) -->
+  <!-- GALLERY (1 bunga) -->
   <section class="gallery-section section-with-bunga">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
     <h3>Our Gallery</h3>
@@ -944,7 +946,7 @@
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
     songSrc: 'bermuara_reff.mp3',
-    songTitle: 'Bermuara (Reff)',
+    songTitle: 'Bermuara',
     songArtist: 'Mahalini & Rizky Febian',
     images: {
       envelopeClosed: 'amplop-1.jpeg',
