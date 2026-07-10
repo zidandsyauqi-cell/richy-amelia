@@ -265,7 +265,7 @@
       font-size: 0.7rem;
       letter-spacing: 8px;
       opacity: 0.6;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       color: #0e2340;
     }
     .hero-overlay .the-wedding-of {
@@ -276,7 +276,7 @@
       font-style: italic;
       opacity: 0.8;
       color: #0e2340;
-      margin-bottom: 2px;
+      margin-bottom: 20px;
       padding: 0 30px;
     }
     .hero-overlay .couple-names-hero {
@@ -522,14 +522,14 @@
       margin-bottom: 30px;
       position: relative;
       overflow: hidden;
-      padding-top: 80px;
+      padding-top: 100px;
     }
     .calendar-section .gorden-full-width {
       position: absolute;
       top: -5px;
       left: 0;
       width: 100%;
-      height: 220px;
+      height: 260px;
       object-fit: cover;
       border-radius: 30px 30px 0 0;
       z-index: 0;
@@ -643,9 +643,9 @@
       align-items: center;
       justify-content: center;
       padding: 30px 25px;
+      padding-top: 60px;
       text-align: center;
       color: #ffffff;
-      background: rgba(0,0,0,0.25);
       border-radius: 30px;
     }
     .announce-overlay .announce-title {
@@ -855,8 +855,9 @@
       .bunga-center-top { top: -45px; }
       .bunga-side-right { right: -45px; }
       .bunga-side-left { left: -45px; }
-      .calendar-section .gorden-full-width { height: 160px; top: -5px; }
-      .calendar-section { padding-top: 60px; }
+      .calendar-section .gorden-full-width { height: 180px; top: -5px; }
+      .calendar-section { padding-top: 70px; }
+      .announce-overlay { padding-top: 40px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -879,8 +880,9 @@
       .bunga-center-top { top: -40px; }
       .bunga-side-right { right: -40px; }
       .bunga-side-left { left: -40px; }
-      .calendar-section .gorden-full-width { height: 140px; top: -5px; }
-      .calendar-section { padding-top: 50px; }
+      .calendar-section .gorden-full-width { height: 150px; top: -5px; }
+      .calendar-section { padding-top: 60px; }
+      .announce-overlay { padding-top: 30px; }
     }
   </style>
 </head>
@@ -918,12 +920,12 @@
         <span class="and">&</span>
         <span id="heroBride">Amelia</span>
       </div>
-      <div class="hero-date">
-        <span>6</span>
+      <div class="hero-date" id="heroDate">
+        <span id="dateDay">6</span>
         <span class="date-sep">|</span>
-        <span>OKT</span>
+        <span id="dateMonth">OKT</span>
         <span class="date-sep">|</span>
-        <span>2026</span>
+        <span id="dateYear">2026</span>
       </div>
     </div>
   </section>
@@ -980,7 +982,7 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ANNOUNCEMENT (dengan teks putih di atas gambar) -->
+  <!-- ANNOUNCEMENT (tanpa background, teks turun) -->
   <section class="announce-section">
     <img src="announce.png" alt="" id="announceImg">
     <div class="announce-overlay">
@@ -1065,7 +1067,6 @@
     bride: 'Amelia',
     groom: 'Richy',
     weddingDate: '2026-10-06',
-    weddingDateDisplay: '6 | OKT | 2026',
     venueAddress: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
     giftBank: 'Bank BCA - 1234567890',
@@ -1100,6 +1101,18 @@
     if (formatted) CONFIG.guestName = formatted;
   })();
 
+  // ============================================================
+  // 🔧 FORMAT TANGGAL OTOMATIS DARI weddingDate
+  // ============================================================
+  function formatDateDisplay(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const day = d.getDate();
+    const monthNames = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGT','SEP','OKT','NOV','DES'];
+    const month = monthNames[d.getMonth()];
+    const year = d.getFullYear();
+    return { day, month, year };
+  }
+
   function setupImages() {
     const img = CONFIG.images;
     document.getElementById('envelopeClosedImg').src = img.envelopeClosed;
@@ -1124,6 +1137,12 @@
     document.getElementById('giftName').textContent = CONFIG.giftName;
     document.getElementById('songTitle').textContent = CONFIG.songTitle;
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
+
+    // Set tanggal otomatis dari weddingDate
+    const dateInfo = formatDateDisplay(CONFIG.weddingDate);
+    document.getElementById('dateDay').textContent = dateInfo.day;
+    document.getElementById('dateMonth').textContent = dateInfo.month;
+    document.getElementById('dateYear').textContent = dateInfo.year;
   }
 
   // --- ENVELOPE ---
