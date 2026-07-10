@@ -25,8 +25,8 @@
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
       opacity: 1;
       pointer-events: none;
@@ -41,12 +41,14 @@
       50% { transform: scale(1.08) rotate(3deg); }
     }
 
-    .bunga-top-left { top: -25px; left: -25px; }
-    .bunga-top-right { top: -25px; right: -25px; }
-    .bunga-bottom-left { bottom: -25px; left: -25px; }
-    .bunga-bottom-right { bottom: -25px; right: -25px; }
-    .bunga-center-top { top: -35px; left: 50%; transform: translateX(-50%); }
+    .bunga-top-left { top: -30px; left: -30px; }
+    .bunga-top-right { top: -30px; right: -30px; }
+    .bunga-bottom-left { bottom: -30px; left: -30px; }
+    .bunga-bottom-right { bottom: -30px; right: -30px; }
+    .bunga-center-top { top: -40px; left: 50%; transform: translateX(-50%); }
     .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
+    .bunga-side-right { top: 50%; right: -40px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -40px; transform: translateY(-50%); }
 
     .section-with-bunga {
       position: relative;
@@ -735,12 +737,14 @@
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
       .venue-circle { width: 160px; height: 160px; }
-      .bunga-decoration { width: 65px; height: 65px; }
-      .bunga-top-left { top: -15px; left: -15px; }
-      .bunga-top-right { top: -15px; right: -15px; }
-      .bunga-bottom-left { bottom: -15px; left: -15px; }
-      .bunga-bottom-right { bottom: -15px; right: -15px; }
-      .bunga-center-top { top: -22px; }
+      .bunga-decoration { width: 80px; height: 80px; }
+      .bunga-top-left { top: -20px; left: -20px; }
+      .bunga-top-right { top: -20px; right: -20px; }
+      .bunga-bottom-left { bottom: -20px; left: -20px; }
+      .bunga-bottom-right { bottom: -20px; right: -20px; }
+      .bunga-center-top { top: -30px; }
+      .bunga-side-right { right: -30px; }
+      .bunga-side-left { left: -30px; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -748,12 +752,14 @@
       .vinyl-disc { width: 100px; height: 100px; }
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-circle { width: 140px; height: 140px; }
-      .bunga-decoration { width: 55px; height: 55px; }
-      .bunga-top-left { top: -12px; left: -12px; }
-      .bunga-top-right { top: -12px; right: -12px; }
-      .bunga-bottom-left { bottom: -12px; left: -12px; }
-      .bunga-bottom-right { bottom: -12px; right: -12px; }
-      .bunga-center-top { top: -18px; }
+      .bunga-decoration { width: 65px; height: 65px; }
+      .bunga-top-left { top: -15px; left: -15px; }
+      .bunga-top-right { top: -15px; right: -15px; }
+      .bunga-bottom-left { bottom: -15px; left: -15px; }
+      .bunga-bottom-right { bottom: -15px; right: -15px; }
+      .bunga-center-top { top: -25px; }
+      .bunga-side-right { right: -25px; }
+      .bunga-side-left { left: -25px; }
     }
   </style>
 </head>
@@ -795,9 +801,9 @@
     </div>
   </section>
 
-  <!-- VINYL (1 bunga) -->
+  <!-- VINYL (1 bunga di sisi kanan) -->
   <section class="vinyl-section section-with-bunga">
-    <img src="bunga1.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-side-right">
     <div class="vinyl-player">
       <div class="vinyl-disc" id="vinylDisc">
         <div class="disc-lines"></div>
@@ -892,9 +898,9 @@
     </div>
   </section>
 
-  <!-- GALLERY (1 bunga) -->
+  <!-- GALLERY (1 bunga di sisi kiri) -->
   <section class="gallery-section section-with-bunga">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-side-left">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
       <div class="gallery-item"><img src="amplop-1.jpeg" alt="Gallery 1" id="gallery1"></div>
