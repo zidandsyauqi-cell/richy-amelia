@@ -1327,26 +1327,21 @@
   }
 
   function populateData() {
-    document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
-    document.getElementById('heroGroom').textContent = CONFIG.groom;
-    document.getElementById('heroBride').textContent = CONFIG.bride;
-    document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
-    document.getElementById('btnRoute').href = CONFIG.gmapsLink;
-    document.getElementById('giftBank').textContent = CONFIG.giftBank;
-    document.getElementById('giftName').textContent = CONFIG.giftName;
-    document.getElementById('songTitle').textContent = CONFIG.songTitle;
-    document.getElementById('songArtist').textContent = CONFIG.songArtist;
+  document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
+  document.getElementById('heroGroom').textContent = CONFIG.groom;
+  document.getElementById('heroBride').textContent = CONFIG.bride;
+  document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
+  document.getElementById('btnRoute').href = CONFIG.gmapsLink;
+  document.getElementById('giftBank').textContent = CONFIG.giftBank;
+  document.getElementById('giftName').textContent = CONFIG.giftName;
+  document.getElementById('songTitle').textContent = CONFIG.songTitle;
+  document.getElementById('songArtist').textContent = CONFIG.songArtist;
 
-    // Set tanggal otomatis dari weddingDate
-    const dateInfo = formatDateDisplay(CONFIG.weddingDate);
-    document.getElementById('dateDay').textContent = dateInfo.day;
-    document.getElementById('dateMonth').textContent = dateInfo.month;
-    document.getElementById('dateYear').textContent = dateInfo.year;
-
-    // Set tanggal di announcement
-    document.getElementById('announceDate').textContent = formatFullDate(CONFIG.weddingDate);
-  }
-
+  const dateInfo = formatDateDisplay(CONFIG.weddingDate);
+  document.getElementById('dateDay').textContent = dateInfo.day;
+  document.getElementById('dateMonth').textContent = dateInfo.month;
+  document.getElementById('dateYear').textContent = dateInfo.year;
+}
   // --- ENVELOPE ---
   let isEnvelopeOpened = false;
   const envelopeWrapper = document.getElementById('envelopeWrapper');
