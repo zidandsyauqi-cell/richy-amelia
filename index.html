@@ -300,6 +300,7 @@
       align-items: center;
       justify-content: center;
       padding: 30px;
+      padding-top: 80px;
       text-align: center;
       color: white;
     }
@@ -319,6 +320,7 @@
       opacity: 0.8;
       color: #0e2340;
       margin-bottom: 0px;
+      margin-top: 20px;
       padding: 0 30px;
     }
     .hero-overlay .couple-names-hero {
@@ -340,21 +342,24 @@
     .hero-overlay .hero-date {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: 1px;
-      margin-top: 14px;
-      opacity: 0.95;
-      color: #0e2340;
-      padding: 8px 24px;
-      background: rgba(14, 35, 64, 0.08);
+      margin-top: 18px;
+      padding: 12px 32px;
+      background-image: url('bunga2.png');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      border: none;
       border-radius: 50px;
-      border: 1.5px solid rgba(14, 35, 64, 0.15);
+      box-shadow: 0 4px 25px rgba(14, 35, 64, 0.25);
+      text-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
     .hero-overlay .hero-date .date-sep {
-      opacity: 0.3;
+      opacity: 0.5;
     }
 
     /* ===== VINYL ===== */
@@ -584,8 +589,9 @@
     }
     .calendar-header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      gap: 12px;
       margin-bottom: 20px;
       padding: 0 5px;
       position: relative;
@@ -683,9 +689,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 30px 25px;
-      padding-top: 150px;
+      padding-top: 180px;
       text-align: center;
       color: #ffffff;
       border-radius: 30px;
@@ -693,7 +698,7 @@
     .announce-overlay .announce-title {
       font-family: 'Great Vibes', cursive;
       font-size: 2.2rem;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       text-shadow: 0 2px 20px rgba(0,0,0,0.6);
     }
     .announce-overlay p {
@@ -702,6 +707,8 @@
       line-height: 2;
       text-shadow: 0 2px 15px rgba(0,0,0,0.6);
       max-width: 100%;
+      margin-top: 0;
+      padding-top: 0;
     }
     .announce-overlay p strong {
       font-weight: 700;
@@ -877,8 +884,9 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 430px) {
       .envelope-wrapper { width: 280px; height: 370px; }
+      .hero-overlay { padding-top: 60px; }
       .hero-overlay .couple-names-hero { font-size: 2.8rem; }
-      .hero-overlay .hero-date { font-size: 0.85rem; padding: 6px 18px; }
+      .hero-overlay .hero-date { font-size: 0.95rem; padding: 10px 24px; gap: 8px; }
       .vinyl-disc { width: 120px; height: 120px; }
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
@@ -886,9 +894,9 @@
       .venue-section img { min-height: 300px; }
       .announce-section { min-height: 400px; }
       .announce-section img { min-height: 400px; }
+      .announce-overlay { padding-top: 150px; }
       .announce-overlay p { font-size: 0.8rem; }
       .announce-overlay .announce-title { font-size: 1.8rem; }
-      .announce-overlay { padding-top: 120px; }
       .bunga-decoration { width: 120px; height: 120px; }
       .bunga-timeline { width: 120px; height: 120px; right: -40px; }
       .bunga-top-left { top: -35px; left: -35px; }
@@ -900,20 +908,24 @@
       .bunga-side-left { left: -45px; }
       .calendar-section .gorden-full-width { height: 150px; top: 20px; }
       .calendar-section { padding-top: 50px; }
+      .calendar-header { gap: 8px; }
+      .calendar-header .month { font-size: 1.6rem; }
+      .calendar-header .year { font-size: 1rem; }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
+      .hero-overlay { padding-top: 50px; }
       .hero-overlay .couple-names-hero { font-size: 2.2rem; }
-      .hero-overlay .hero-date { font-size: 0.75rem; padding: 5px 14px; }
+      .hero-overlay .hero-date { font-size: 0.8rem; padding: 8px 18px; gap: 6px; }
       .vinyl-disc { width: 100px; height: 100px; }
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-section { min-height: 250px; }
       .venue-section img { min-height: 250px; }
       .announce-section { min-height: 350px; }
       .announce-section img { min-height: 350px; }
+      .announce-overlay { padding-top: 130px; }
       .announce-overlay p { font-size: 0.7rem; }
       .announce-overlay .announce-title { font-size: 1.5rem; }
-      .announce-overlay { padding-top: 100px; }
       .bunga-decoration { width: 100px; height: 100px; }
       .bunga-timeline { width: 100px; height: 100px; right: -35px; }
       .bunga-top-left { top: -30px; left: -30px; }
@@ -925,6 +937,9 @@
       .bunga-side-left { left: -40px; }
       .calendar-section .gorden-full-width { height: 130px; top: 15px; }
       .calendar-section { padding-top: 40px; }
+      .calendar-header { gap: 6px; }
+      .calendar-header .month { font-size: 1.3rem; }
+      .calendar-header .year { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -951,7 +966,7 @@
 <!-- ===== MAIN ===== -->
 <div id="mainContent">
 
-  <!-- HERO (tanpa bunga) -->
+  <!-- HERO -->
   <section class="hero-section">
     <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
     <div class="hero-overlay">
