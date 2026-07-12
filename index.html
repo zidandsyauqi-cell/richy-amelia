@@ -295,6 +295,7 @@
     .fade-section:nth-child(6) { transition-delay: 0.6s; }
     .fade-section:nth-child(7) { transition-delay: 0.7s; }
     .fade-section:nth-child(8) { transition-delay: 0.8s; }
+    .fade-section:nth-child(9) { transition-delay: 0.9s; }
 
     /* ===== HERO ===== */
     .hero-section {
@@ -369,20 +370,19 @@
     .hero-overlay .hero-date {
     display: inline-flex;
     align-items: center;
-    gap: 6px; /* kurangi gap */
+    gap: 6px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 1px;
     margin-top: 0px;
-    padding: 0; /* HAPUS padding */
+    padding: 0;
     background: transparent;
     color: #0e2340;
-    border: none; /* HAPUS border */
-    border-radius: 0; /* HAPUS border-radius */
-    box-shadow: none; /* HAPUS shadow */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     animation: fadeInUp 1.5s ease 0.6s forwards;
-    }
     }
     @keyframes fadeInDown {
       from {
@@ -966,6 +966,143 @@
       transform: scale(1.08);
     }
 
+    /* ===== RSVP & UCAPAN ===== */
+    .rsvp-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .rsvp-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      margin-bottom: 20px;
+    }
+    .rsvp-container {
+      max-width: 100%;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e8ddd0;
+      border-radius: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      background: white;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #0e2340;
+      box-shadow: 0 0 0 3px rgba(14, 35, 64, 0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn-rsvp {
+      width: 100%;
+      padding: 14px;
+      background: #0e2340;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+    .btn-rsvp:hover {
+      background: #1a3a5c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(14, 35, 64, 0.2);
+    }
+    .btn-rsvp:active {
+      transform: scale(0.97);
+    }
+    #rsvpMessageList {
+      margin-top: 25px;
+      text-align: left;
+      border-top: 2px solid #e8ddd0;
+      padding-top: 20px;
+    }
+    .message-item {
+      background: white;
+      padding: 15px 18px;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
+      animation: slideIn 0.5s ease forwards;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .message-item strong {
+      color: #0e2340;
+      font-size: 0.95rem;
+    }
+    .message-item .status-badge {
+      display: inline-block;
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .status-badge.hadir { background: #d4edda; color: #155724; }
+    .status-badge.tidak_hadir { background: #f8d7da; color: #721c24; }
+    .status-badge.ragu { background: #fff3cd; color: #856404; }
+    .message-item p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #333;
+      margin: 5px 0 5px;
+      line-height: 1.6;
+    }
+    .message-item small {
+      font-size: 0.7rem;
+      color: #999;
+      display: block;
+    }
+    .toast-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0e2340;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      z-index: 999;
+      animation: toastSlide 3s ease forwards;
+    }
+    @keyframes toastSlide {
+      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 430px) {
       .envelope-wrapper { width: 280px; height: 370px; }
@@ -1182,8 +1319,8 @@
         Dengan memohon rahmat dan ridho Allah SWT,<br>
         kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
         pada acara pernikahan dan resepsi putra-putri kami:
-      </p><br>
-      <p style="margin:10 px,line-height: 1.6;">
+      </p>
+      <p style="line-height: 1.6;">
         <strong>Richy</strong><br>
         Putra dari Bapak Ahmad &amp; Ibu Siti
       </p>
@@ -1194,12 +1331,18 @@
         <strong>Amelia</strong><br>
         Putri dari Bapak Budi &amp; Ibu Dewi
       </p>
-      <p><br>
+      <p style="line-height: 1.8;">
+        yang akan dilaksanakan pada:<br><br>
+        <strong>Selasa, 6 Oktober 2026</strong><br>
+        Pukul 09.00 - 15.00 WIB<br>
+        Bertempat di <strong>Aula Bahagia</strong><br>
+        Jl. Mawar No. 123, Jakarta<br><br>
         Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
         merupakan kebahagiaan bagi kami.
       </p>
     </div>
   </section>
+
   <!-- RUNDOWN (bunga di ujung kanan) -->
   <section class="rundown-section section-with-bunga fade-section">
     <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
@@ -1245,6 +1388,37 @@
       <div class="gallery-item"><img src="amplop-2.png" alt="Gallery 2" id="gallery2"></div>
       <div class="gallery-item"><img src="amplop-3.png" alt="Gallery 3" id="gallery3"></div>
       <div class="gallery-item"><img src="venue.png" alt="Gallery 4" id="gallery4"></div>
+    </div>
+  </section>
+
+  <!-- RSVP & UCAPAN -->
+  <section class="rsvp-section section-with-bunga fade-section">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right">
+    <h3>RSVP &amp; Ucapan</h3>
+    <div class="rsvp-container">
+      <form id="rsvpForm">
+        <div class="form-group">
+          <input type="text" id="rsvpName" placeholder="Nama Anda" required>
+        </div>
+        <div class="form-group">
+          <select id="rsvpStatus" required>
+            <option value="">Kehadiran Anda</option>
+            <option value="hadir">Hadir</option>
+            <option value="tidak_hadir">Tidak Hadir</option>
+            <option value="ragu">Masih Ragu</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="number" id="rsvpTotal" placeholder="Jumlah Tamu" min="1">
+        </div>
+        <div class="form-group">
+          <textarea id="rsvpMessage" rows="3" placeholder="Ucapan &amp; Doa untuk Pengantin..."></textarea>
+        </div>
+        <button type="submit" class="btn-rsvp">Kirim RSVP</button>
+      </form>
+      <div id="rsvpMessageList">
+        <!-- Akan diisi oleh JavaScript -->
+      </div>
     </div>
   </section>
 
@@ -1305,13 +1479,6 @@
     return { day, month, year };
   }
 
-  function formatFullDate(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-    const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-    return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-  }
-
   function setupImages() {
     const img = CONFIG.images;
     document.getElementById('envelopeClosedImg').src = img.envelopeClosed;
@@ -1327,21 +1494,22 @@
   }
 
   function populateData() {
-  document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
-  document.getElementById('heroGroom').textContent = CONFIG.groom;
-  document.getElementById('heroBride').textContent = CONFIG.bride;
-  document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
-  document.getElementById('btnRoute').href = CONFIG.gmapsLink;
-  document.getElementById('giftBank').textContent = CONFIG.giftBank;
-  document.getElementById('giftName').textContent = CONFIG.giftName;
-  document.getElementById('songTitle').textContent = CONFIG.songTitle;
-  document.getElementById('songArtist').textContent = CONFIG.songArtist;
+    document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
+    document.getElementById('heroGroom').textContent = CONFIG.groom;
+    document.getElementById('heroBride').textContent = CONFIG.bride;
+    document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
+    document.getElementById('btnRoute').href = CONFIG.gmapsLink;
+    document.getElementById('giftBank').textContent = CONFIG.giftBank;
+    document.getElementById('giftName').textContent = CONFIG.giftName;
+    document.getElementById('songTitle').textContent = CONFIG.songTitle;
+    document.getElementById('songArtist').textContent = CONFIG.songArtist;
 
-  const dateInfo = formatDateDisplay(CONFIG.weddingDate);
-  document.getElementById('dateDay').textContent = dateInfo.day;
-  document.getElementById('dateMonth').textContent = dateInfo.month;
-  document.getElementById('dateYear').textContent = dateInfo.year;
-}
+    const dateInfo = formatDateDisplay(CONFIG.weddingDate);
+    document.getElementById('dateDay').textContent = dateInfo.day;
+    document.getElementById('dateMonth').textContent = dateInfo.month;
+    document.getElementById('dateYear').textContent = dateInfo.year;
+  }
+
   // --- ENVELOPE ---
   let isEnvelopeOpened = false;
   const envelopeWrapper = document.getElementById('envelopeWrapper');
@@ -1367,7 +1535,6 @@
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       
-      // Trigger fade animations for sections
       setTimeout(() => {
         document.querySelectorAll('.fade-section').forEach((el, index) => {
           setTimeout(() => {
@@ -1514,6 +1681,66 @@
     }
   }
 
+  // ============================================================
+  // 📝 RSVP & UCAPAN
+  // ============================================================
+  let messages = JSON.parse(localStorage.getItem('weddingMessages')) || [];
+
+  function renderMessages() {
+    const container = document.getElementById('rsvpMessageList');
+    if (messages.length === 0) {
+      container.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">Belum ada ucapan. Jadilah yang pertama! 💕</p>';
+      return;
+    }
+    container.innerHTML = messages.map(msg => `
+      <div class="message-item">
+        <strong>${msg.name}</strong>
+        <span class="status-badge ${msg.status}">${msg.status === 'hadir' ? '✅ Hadir' : msg.status === 'tidak_hadir' ? '❌ Tidak Hadir' : '❓ Ragu'}</span>
+        ${msg.total ? `<small style="display:inline-block;margin-left:8px;">👥 ${msg.total} tamu</small>` : ''}
+        <p>${msg.message || '🙏'}</p>
+        <small>${new Date(msg.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</small>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('rsvpName').value.trim();
+    const status = document.getElementById('rsvpStatus').value;
+    const total = document.getElementById('rsvpTotal').value;
+    const message = document.getElementById('rsvpMessage').value.trim();
+
+    if (!name || !status) {
+      showToast('Mohon isi nama dan status kehadiran!');
+      return;
+    }
+
+    const newMessage = {
+      name: name,
+      status: status,
+      total: total || '',
+      message: message || '',
+      date: new Date().toISOString()
+    };
+
+    messages.unshift(newMessage);
+    localStorage.setItem('weddingMessages', JSON.stringify(messages));
+    renderMessages();
+    this.reset();
+    showToast('Terima kasih! RSVP dan ucapan Anda telah terkirim. 💕');
+  });
+
+  function showToast(text) {
+    const existing = document.querySelector('.toast-notification');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = text;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
   // --- INIT ---
   document.addEventListener('DOMContentLoaded', function() {
     setupImages();
@@ -1521,6 +1748,7 @@
     initAudio();
     updateCountdown();
     buildCalendar();
+    renderMessages();
     setInterval(updateCountdown, 1000);
   });
 </script>
