@@ -42,55 +42,50 @@
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       object-fit: contain;
-      opacity: 0.9;
+      opacity: 1;
       pointer-events: none;
       z-index: 1;
-      animation: bungaBreath 2.5s ease-in-out infinite;
+      animation: bungaBreath 3s ease-in-out infinite;
     }
-    .bunga-decoration:nth-child(2) { animation-delay: 0.3s; }
-    .bunga-decoration:nth-child(3) { animation-delay: 0.6s; }
+    .bunga-decoration:nth-child(2) { animation-delay: 0.5s; }
+    .bunga-decoration:nth-child(3) { animation-delay: 1s; }
 
     @keyframes bungaBreath {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-      50% { transform: scale(1.12) rotate(5deg); opacity: 1; }
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(3deg); }
     }
 
-    .bunga-top-left { top: -40px; left: -40px; }
-    .bunga-top-right { top: -40px; right: -40px; }
-    .bunga-bottom-left { bottom: -40px; left: -40px; }
-    .bunga-bottom-right { bottom: -40px; right: -40px; }
-    .bunga-center-top { top: -50px; left: 50%; transform: translateX(-50%); }
-    .bunga-center-top { animation: bungaBreath 2.5s ease-in-out infinite; }
-    .bunga-side-right { top: 50%; right: -50px; transform: translateY(-50%); }
-    .bunga-side-left { top: 50%; left: -50px; transform: translateY(-50%); }
+    .bunga-top-left { top: -50px; left: -50px; }
+    .bunga-top-right { top: -50px; right: -50px; }
+    .bunga-bottom-left { bottom: -50px; left: -50px; }
+    .bunga-bottom-right { bottom: -50px; right: -50px; }
+    .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); }
+    .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
+    .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
 
-    /* Gorden di atas kalender */
-    .gorden-full-width { 
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 100%;
-      height: 200px;
+    /* Full width untuk tirai di kalender */
+    .bunga-full-width { 
+      top: -60px; 
+      left: -20px; 
+      width: calc(100% + 40px); 
+      height: auto;
+      min-height: 200px;
+      max-height: 300px;
       object-fit: cover;
-      border-radius: 30px 30px 0 0;
-      z-index: 0;
-      opacity: 0.85;
-      animation: gordenSmooth 6s ease-in-out infinite;
-    }
-    @keyframes gordenSmooth {
-      0%, 100% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.005) translateY(2px); }
+      animation: bungaBreath 3.5s ease-in-out infinite;
+      border-radius: 0;
     }
 
     /* Ukuran khusus untuk bunga di wedding timeline (di ujung kanan) */
     .bunga-timeline {
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       top: 0%;
-      right: -50px;
+      right: -60px;
       transform: translateY(-50%);
     }
 
@@ -154,11 +149,6 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(14, 35, 64, 0.12);
-      animation: envelopeFloat 3s ease-in-out infinite;
-    }
-    @keyframes envelopeFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
     }
     .envelope-wrapper:hover {
       transform: scale(1.02);
@@ -277,25 +267,6 @@
       transform: translateY(0);
     }
 
-    /* ===== FADE IN ANIMATION FOR SECTIONS ===== */
-    .fade-section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-section:nth-child(1) { transition-delay: 0.1s; }
-    .fade-section:nth-child(2) { transition-delay: 0.2s; }
-    .fade-section:nth-child(3) { transition-delay: 0.3s; }
-    .fade-section:nth-child(4) { transition-delay: 0.4s; }
-    .fade-section:nth-child(5) { transition-delay: 0.5s; }
-    .fade-section:nth-child(6) { transition-delay: 0.6s; }
-    .fade-section:nth-child(7) { transition-delay: 0.7s; }
-    .fade-section:nth-child(8) { transition-delay: 0.8s; }
-
     /* ===== HERO ===== */
     .hero-section {
       position: relative;
@@ -324,7 +295,6 @@
       align-items: center;
       justify-content: center;
       padding: 30px;
-      padding-top: 130px;
       text-align: center;
       color: white;
     }
@@ -332,31 +302,26 @@
       font-size: 0.7rem;
       letter-spacing: 8px;
       opacity: 0.6;
-      margin-bottom: 5px;
+      margin-bottom: 2px;
       color: #0e2340;
-      animation: fadeInDown 1.5s ease forwards;
     }
     .hero-overlay .the-wedding-of {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.7rem;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       font-style: italic;
       opacity: 0.8;
       color: #0e2340;
       margin-bottom: 0px;
-      margin-top: 50px;
-      padding: 0 50px;
-      animation: fadeInDown 1.5s ease 0.2s forwards;
     }
     .hero-overlay .couple-names-hero {
       font-family: 'Great Vibes', cursive;
       font-size: 3.2rem;
       line-height: 1.1;
-      margin: 15px 0 0 0;
+      margin: 2px 0;
       color: #0e2340;
       letter-spacing: 0px;
-      animation: fadeInUp 1.5s ease 0.4s forwards;
     }
     .hero-overlay .couple-names-hero .and {
       font-family: 'Cormorant Garamond', serif;
@@ -367,45 +332,13 @@
       color: #0e2340;
     }
     .hero-overlay .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 0.85rem;
       letter-spacing: 1px;
-      margin-top: 8px;
-      padding: 10px 28px;
-      background: transparent;
+      margin-top: 2px;
+      opacity: 0.9;
       color: #0e2340;
-      border: 2px solid rgba(14, 35, 64, 0.2);
-      border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(14, 35, 64, 0.08);
-      animation: fadeInUp 1.5s ease 0.6s forwards;
-    }
-    .hero-overlay .hero-date .date-sep {
-      opacity: 0.3;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      padding: 0 10px;
     }
 
     /* ===== VINYL ===== */
@@ -550,14 +483,10 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 5px 15px rgba(14, 35, 64, 0.2);
-      transition: all 0.3s ease;
     }
     .vinyl-buttons .btn-play-vinyl:hover {
       transform: scale(1.05);
       background: #1a3a5c;
-    }
-    .vinyl-buttons .btn-play-vinyl:active {
-      transform: scale(0.95);
     }
 
     /* ===== COUNTDOWN ===== */
@@ -570,16 +499,7 @@
     }
     .countdown-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0e2340;
-      margin-bottom: 5px;
-      letter-spacing: 1px;
-    }
-    .countdown-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 2rem;
       color: #0e2340;
       margin-bottom: 18px;
       letter-spacing: 1px;
@@ -594,11 +514,6 @@
       border-radius: 20px;
       padding: 15px 5px;
       box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
-      transition: all 0.3s ease;
-    }
-    .countdown-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.1);
     }
     .countdown-item .number {
       font-family: 'Playfair Display', serif;
@@ -622,35 +537,13 @@
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
-      position: relative;
-      overflow: hidden;
-      padding-top: 60px;
-    }
-    .calendar-section .gorden-full-width {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 30px 30px 0 0;
-      z-index: 0;
-      opacity: 0.85;
-      animation: gordenSmooth 6s ease-in-out infinite;
-    }
-    @keyframes gordenSmooth {
-      0%, 100% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.005) translateY(2px); }
     }
     .calendar-header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
       margin-bottom: 20px;
       padding: 0 5px;
-      position: relative;
-      z-index: 1;
     }
     .calendar-header .month {
       font-family: 'Great Vibes', cursive;
@@ -666,8 +559,6 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 5px;
-      position: relative;
-      z-index: 1;
     }
     .calendar-grid .day-name {
       text-align: center;
@@ -687,9 +578,6 @@
       color: #0e2340;
       position: relative;
       transition: all 0.3s ease;
-    }
-    .calendar-grid .day:hover {
-      background: rgba(14, 35, 64, 0.05);
     }
     .calendar-grid .day.empty {
       color: #ddd;
@@ -715,11 +603,11 @@
     }
     .calendar-grid .day.wedding-day .wedding-ring {
       opacity: 1;
-      animation: ringBreath 1.8s ease-in-out infinite;
+      animation: ringBreath 2s ease-in-out infinite;
     }
     @keyframes ringBreath {
       0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
     }
 
     /* ===== ANNOUNCEMENT ===== */
@@ -728,57 +616,11 @@
       border-radius: 30px;
       overflow: hidden;
       box-shadow: 0 5px 25px rgba(14, 35, 64, 0.08);
-      position: relative;
-      min-height: 450px;
     }
     .announce-section img {
       width: 100%;
       display: block;
       border-radius: 30px;
-      min-height: 450px;
-      object-fit: cover;
-    }
-    .announce-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 25px;
-      padding-top: 120px;
-      text-align: center;
-      color: #ffffff;
-      border-radius: 30px;
-    }
-    .announce-overlay .announce-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
-    }
-    .announce-overlay p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      line-height: 1.8;
-      text-shadow: 0 2px 15px rgba(0,0,0,0.6);
-      max-width: 100%;
-      margin-top: 0;
-      padding-top: 0;
-    }
-    .announce-overlay p .couple-section {
-      display: block;
-      margin: 4px 0;
-    }
-    .announce-overlay p .couple-section .ampersand {
-      display: block;
-      margin: 2px 0;
-    }
-    .announce-overlay p strong {
-      font-weight: 700;
-      font-size: 1.05rem;
     }
 
     /* ===== VENUE ===== */
@@ -810,19 +652,13 @@
       justify-content: center;
       padding: 30px;
       text-align: center;
-      background: transparent;
     }
     .venue-overlay h3 {
       font-family: 'Great Vibes', cursive;
       font-size: 2.5rem;
       color: #0e2340;
       margin-bottom: 10px;
-      background: rgba(255, 255, 255, 0.6);
-      padding: 5px 25px;
-      border-radius: 15px;
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      display: inline-block;
+      text-shadow: 0 2px 20px rgba(255,255,255,0.5);
     }
     .venue-overlay .venue-address {
       font-family: 'Cormorant Garamond', serif;
@@ -830,12 +666,7 @@
       color: #0e2340;
       margin-bottom: 20px;
       line-height: 1.6;
-      background: rgba(255, 255, 255, 0.5);
-      padding: 8px 20px;
-      border-radius: 12px;
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      display: inline-block;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.5);
     }
     .venue-overlay .btn-route {
       display: inline-flex;
@@ -854,9 +685,6 @@
     .venue-overlay .btn-route:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
-    .venue-overlay .btn-route:active {
-      transform: scale(0.97);
     }
 
     /* ===== GIFT ===== */
@@ -885,11 +713,6 @@
       border-radius: 20px;
       padding: 20px;
       border: 2px dashed #e8ddd0;
-      transition: all 0.3s ease;
-    }
-    .gift-box:hover {
-      border-color: #0e2340;
-      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.08);
     }
     .gift-box .bank-info {
       font-family: 'Cormorant Garamond', serif;
@@ -924,12 +747,6 @@
       border-bottom: 1px solid #e8ddd0;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      transition: all 0.3s ease;
-    }
-    .rundown-item:hover {
-      padding-left: 10px;
-      background: rgba(14, 35, 64, 0.02);
-      border-radius: 10px;
     }
     .rundown-item .time {
       font-weight: 600;
@@ -961,130 +778,54 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 5px 20px rgba(14, 35, 64, 0.08);
-      transition: all 0.3s ease;
-    }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 30px rgba(14, 35, 64, 0.15);
     }
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
     }
     .gallery-item img:hover {
-      transform: scale(1.08);
+      transform: scale(1.05);
     }
 
     /* ===== RESPONSIVE ===== */
-    /* Default untuk mobile (max-width 430px) */
     @media (max-width: 430px) {
       .envelope-wrapper { width: 280px; height: 370px; }
-      .hero-overlay { padding-top: 80px; }
       .hero-overlay .couple-names-hero { font-size: 2.8rem; }
-      .hero-overlay .hero-date { font-size: 0.95rem; padding: 8px 20px; gap: 8px; margin-top: 6px; }
       .vinyl-disc { width: 120px; height: 120px; }
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
       .venue-section { min-height: 300px; }
       .venue-section img { min-height: 300px; }
-      .announce-section { min-height: 400px; }
-      .announce-section img { min-height: 400px; }
-      .announce-overlay { padding-top: 100px; }
-      .announce-overlay p { font-size: 0.8rem; }
-      .announce-overlay .announce-title { font-size: 1.8rem; }
+      .bunga-decoration { width: 120px; height: 120px; }
+      .bunga-full-width { min-height: 120px; max-height: 180px; top: -40px; left: -15px; width: calc(100% + 30px); }
+      .bunga-timeline { width: 120px; height: 120px; right: -40px; }
+      .bunga-top-left { top: -35px; left: -35px; }
+      .bunga-top-right { top: -35px; right: -35px; }
+      .bunga-bottom-left { bottom: -35px; left: -35px; }
+      .bunga-bottom-right { bottom: -35px; right: -35px; }
+      .bunga-center-top { top: -45px; }
+      .bunga-side-right { right: -45px; }
+      .bunga-side-left { left: -45px; }
+    }
+    @media (max-width: 380px) {
+      .envelope-wrapper { width: 240px; height: 320px; }
+      .hero-overlay .couple-names-hero { font-size: 2.2rem; }
+      .vinyl-disc { width: 100px; height: 100px; }
+      .vinyl-disc .couple-photo { width: 34px; height: 34px; }
+      .venue-section { min-height: 250px; }
+      .venue-section img { min-height: 250px; }
       .bunga-decoration { width: 100px; height: 100px; }
+      .bunga-full-width { min-height: 100px; max-height: 150px; top: -35px; left: -12px; width: calc(100% + 24px); }
       .bunga-timeline { width: 100px; height: 100px; right: -35px; }
       .bunga-top-left { top: -30px; left: -30px; }
       .bunga-top-right { top: -30px; right: -30px; }
       .bunga-bottom-left { bottom: -30px; left: -30px; }
       .bunga-bottom-right { bottom: -30px; right: -30px; }
-      .bunga-center-top { top: -35px; }
-      .bunga-side-right { right: -35px; }
-      .bunga-side-left { left: -35px; }
-      .calendar-section .gorden-full-width { height: 150px; top: 20px; }
-      .calendar-section { padding-top: 50px; }
-      .calendar-header { gap: 8px; }
-      .calendar-header .month { font-size: 1.6rem; }
-      .calendar-header .year { font-size: 1rem; }
-      .venue-overlay h3 { font-size: 2rem; padding: 4px 18px; }
-      .venue-overlay .venue-address { font-size: 0.85rem; padding: 6px 14px; }
-    }
-
-    /* Untuk layar sangat kecil (max-width 380px) */
-    @media (max-width: 380px) {
-      .envelope-wrapper { width: 240px; height: 320px; }
-      .hero-overlay { padding-top: 70px; }
-      .hero-overlay .couple-names-hero { font-size: 2.2rem; }
-      .hero-overlay .hero-date { font-size: 0.8rem; padding: 6px 16px; gap: 6px; margin-top: 5px; }
-      .vinyl-disc { width: 100px; height: 100px; }
-      .vinyl-disc .couple-photo { width: 34px; height: 34px; }
-      .venue-section { min-height: 250px; }
-      .venue-section img { min-height: 250px; }
-      .announce-section { min-height: 350px; }
-      .announce-section img { min-height: 350px; }
-      .announce-overlay { padding-top: 80px; }
-      .announce-overlay p { font-size: 0.7rem; }
-      .announce-overlay .announce-title { font-size: 1.5rem; }
-      .bunga-decoration { width: 80px; height: 80px; }
-      .bunga-timeline { width: 80px; height: 80px; right: -30px; }
-      .bunga-top-left { top: -25px; left: -25px; }
-      .bunga-top-right { top: -25px; right: -25px; }
-      .bunga-bottom-left { bottom: -25px; left: -25px; }
-      .bunga-bottom-right { bottom: -25px; right: -25px; }
-      .bunga-center-top { top: -30px; }
-      .bunga-side-right { right: -30px; }
-      .bunga-side-left { left: -30px; }
-      .calendar-section .gorden-full-width { height: 130px; top: 15px; }
-      .calendar-section { padding-top: 40px; }
-      .calendar-header { gap: 6px; }
-      .calendar-header .month { font-size: 1.3rem; }
-      .calendar-header .year { font-size: 0.9rem; }
-      .venue-overlay h3 { font-size: 1.8rem; padding: 3px 14px; }
-      .venue-overlay .venue-address { font-size: 0.75rem; padding: 5px 12px; }
-      .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
-    }
-
-    /* Untuk layar sedang (tablet) */
-    @media (min-width: 431px) and (max-width: 768px) {
-      #mainContent { max-width: 600px; padding: 0 30px 50px; }
-      .hero-overlay .couple-names-hero { font-size: 3.6rem; }
-      .hero-overlay .hero-date { font-size: 1.2rem; padding: 12px 32px; }
-      .bunga-decoration { width: 130px; height: 130px; }
-      .vinyl-disc { width: 150px; height: 150px; }
-      .vinyl-disc .couple-photo { width: 55px; height: 55px; }
-      .countdown-item .number { font-size: 2.4rem; }
-      .venue-section { min-height: 350px; }
-      .venue-section img { min-height: 350px; }
-      .announce-section { min-height: 400px; }
-      .announce-section img { min-height: 400px; }
-      .announce-overlay p { font-size: 1rem; }
-      .announce-overlay { padding-top: 110px; }
-      .venue-overlay h3 { padding: 6px 22px; }
-      .venue-overlay .venue-address { padding: 8px 18px; }
-    }
-
-    /* Untuk laptop dan desktop */
-    @media (min-width: 769px) {
-      #mainContent { max-width: 500px; padding: 0 40px 60px; }
-      .hero-overlay .couple-names-hero { font-size: 3.8rem; }
-      .hero-overlay .hero-date { font-size: 1.3rem; padding: 14px 36px; }
-      .bunga-decoration { width: 160px; height: 160px; }
-      .bunga-top-left { top: -45px; left: -45px; }
-      .bunga-top-right { top: -45px; right: -45px; }
-      .bunga-timeline { width: 160px; height: 160px; right: -55px; }
-      .vinyl-disc { width: 160px; height: 160px; }
-      .vinyl-disc .couple-photo { width: 60px; height: 60px; }
-      .countdown-item .number { font-size: 2.6rem; }
-      .venue-section { min-height: 380px; }
-      .venue-section img { min-height: 380px; }
-      .announce-section { min-height: 480px; }
-      .announce-section img { min-height: 480px; }
-      .announce-overlay p { font-size: 1rem; }
-      .announce-overlay { padding-top: 120px; }
-      .venue-overlay h3 { padding: 8px 28px; }
-      .venue-overlay .venue-address { padding: 10px 24px; }
+      .bunga-center-top { top: -40px; }
+      .bunga-side-right { right: -40px; }
+      .bunga-side-left { left: -40px; }
     }
   </style>
 </head>
@@ -1111,8 +852,8 @@
 <!-- ===== MAIN ===== -->
 <div id="mainContent">
 
-  <!-- HERO -->
-  <section class="hero-section fade-section visible">
+  <!-- HERO (tanpa bunga) -->
+  <section class="hero-section">
     <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
     <div class="hero-overlay">
       <div class="ornament-top">✦ ✦ ✦</div>
@@ -1122,25 +863,13 @@
         <span class="and">&</span>
         <span id="heroBride">Amelia</span>
       </div>
-      <div class="hero-date" id="heroDate">
-        <span id="dateDay">6</span>
-        <span class="date-sep">|</span>
-        <span id="dateMonth">OKT</span>
-        <span class="date-sep">|</span>
-        <span id="dateYear">2026</span>
-      </div>
-      <!-- SCROLL INDICATOR -->
-      <div class="scroll-indicator">
-        <span>SCROLL</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
+      <div class="hero-date" id="heroDate">Selasa, 6 Oktober 2026</div>
     </div>
   </section>
 
-  <!-- VINYL (bunga di atas kanan dan kiri atas) -->
-  <section class="vinyl-section section-with-bunga fade-section">
+  <!-- VINYL (1 bunga di atas kanan) -->
+  <section class="vinyl-section section-with-bunga">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right">
-    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
     <div class="vinyl-player">
       <div class="vinyl-disc" id="vinylDisc">
         <div class="disc-lines"></div>
@@ -1167,11 +896,10 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (dengan tanggal wedding) -->
-  <section class="countdown-section section-with-bunga fade-section">
+  <!-- COUNTDOWN (1 bunga) -->
+  <section class="countdown-section section-with-bunga">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
-    <div class="countdown-title">Countdown to</div>
-    <div class="countdown-subtitle">6 Oktober 2026</div>
+    <div class="countdown-title">Counting Down to Our Special Day</div>
     <div class="countdown-grid">
       <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
       <div class="countdown-item"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
@@ -1180,9 +908,9 @@
     </div>
   </section>
 
-  <!-- CALENDAR (gorden di atas) -->
-  <section class="calendar-section fade-section">
-    <img src="bunga6.png" alt="" class="gorden-full-width">
+  <!-- CALENDAR (tirai full width) -->
+  <section class="calendar-section section-with-bunga">
+    <img src="bunga6.png" alt="" class="bunga-decoration bunga-full-width">
     <div class="calendar-header">
       <span class="month" id="calendarMonth">October</span>
       <span class="year" id="calendarYear">2026</span>
@@ -1190,36 +918,13 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ANNOUNCEMENT -->
-  <section class="announce-section fade-section">
+  <!-- ANNOUNCEMENT (tanpa bunga) -->
+  <section class="announce-section">
     <img src="announce.png" alt="" id="announceImg">
-    <div class="announce-overlay">
-      <div class="announce-title">~ Undangan Pernikahan ~</div>
-      <p>
-        <strong>Bismillahirrahmanirrahim</strong><br><br>
-        Dengan memohon rahmat dan ridho Allah SWT,<br>
-        kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
-        pada acara pernikahan dan resepsi putra-putri kami:
-      </p>
-      <p style="margin: 6px 0; line-height: 1.6;">
-        <strong>Richy</strong><br>
-        Putra dari Bapak Ahmad &amp; Ibu Siti
-      </p>
-      <p style="margin: 4px 0; line-height: 1.6;">
-        <strong>&amp;</strong>
-      </p>
-      <p style="margin: 6px 0; line-height: 1.6;">
-        <strong>Amelia</strong><br>
-        Putri dari Bapak Budi &amp; Ibu Dewi
-      </p>
-      <p style="margin-top: 8px; line-height: 1.8;">
-        yang akan dilaksanakan pada:
-      </p>
-    </div>
   </section>
 
   <!-- RUNDOWN (bunga di ujung kanan) -->
-  <section class="rundown-section section-with-bunga fade-section">
+  <section class="rundown-section section-with-bunga">
     <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
     <h3>Wedding Timeline</h3>
     <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
@@ -1230,8 +935,8 @@
     <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
-  <!-- VENUE -->
-  <section class="venue-section section-with-bunga fade-section">
+  <!-- VENUE (full gambar, tanpa background overlay biru) -->
+  <section class="venue-section">
     <img src="venue.png" alt="Venue" id="venueImg">
     <div class="venue-overlay">
       <h3>Our Venue</h3>
@@ -1243,7 +948,7 @@
   </section>
 
   <!-- GIFT (2 bunga) -->
-  <section class="gift-section section-with-bunga fade-section">
+  <section class="gift-section section-with-bunga">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
     <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
     <h3>Wedding Gift</h3>
@@ -1255,7 +960,7 @@
   </section>
 
   <!-- GALLERY (1 bunga) -->
-  <section class="gallery-section section-with-bunga fade-section">
+  <section class="gallery-section section-with-bunga">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
     <h3>Our Gallery</h3>
     <div class="gallery-grid">
@@ -1277,6 +982,7 @@
     bride: 'Amelia',
     groom: 'Richy',
     weddingDate: '2026-10-06',
+    weddingDateDisplay: 'Selasa, 6 Oktober 2026',
     venueAddress: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
     gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
     giftBank: 'Bank BCA - 1234567890',
@@ -1311,25 +1017,6 @@
     if (formatted) CONFIG.guestName = formatted;
   })();
 
-  // ============================================================
-  // 🔧 FORMAT TANGGAL OTOMATIS DARI weddingDate
-  // ============================================================
-  function formatDateDisplay(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    const day = d.getDate();
-    const monthNames = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGT','SEP','OKT','NOV','DES'];
-    const month = monthNames[d.getMonth()];
-    const year = d.getFullYear();
-    return { day, month, year };
-  }
-
-  function formatFullDate(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-    const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-    return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-  }
-
   function setupImages() {
     const img = CONFIG.images;
     document.getElementById('envelopeClosedImg').src = img.envelopeClosed;
@@ -1348,21 +1035,13 @@
     document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
     document.getElementById('heroGroom').textContent = CONFIG.groom;
     document.getElementById('heroBride').textContent = CONFIG.bride;
+    document.getElementById('heroDate').textContent = CONFIG.weddingDateDisplay;
     document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
     document.getElementById('btnRoute').href = CONFIG.gmapsLink;
     document.getElementById('giftBank').textContent = CONFIG.giftBank;
     document.getElementById('giftName').textContent = CONFIG.giftName;
     document.getElementById('songTitle').textContent = CONFIG.songTitle;
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
-
-    // Set tanggal otomatis dari weddingDate
-    const dateInfo = formatDateDisplay(CONFIG.weddingDate);
-    document.getElementById('dateDay').textContent = dateInfo.day;
-    document.getElementById('dateMonth').textContent = dateInfo.month;
-    document.getElementById('dateYear').textContent = dateInfo.year;
-
-    // Set tanggal di announcement
-    document.getElementById('announceDate').textContent = formatFullDate(CONFIG.weddingDate);
   }
 
   // --- ENVELOPE ---
@@ -1389,15 +1068,6 @@
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      // Trigger fade animations for sections
-      setTimeout(() => {
-        document.querySelectorAll('.fade-section').forEach((el, index) => {
-          setTimeout(() => {
-            el.classList.add('visible');
-          }, index * 150);
-        });
-      }, 500);
     }, 1400);
   });
 
@@ -1477,7 +1147,7 @@
 
   function updatePlayButton() {
     const btn = document.getElementById('vinylPlayBtn');
-    btn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    btn.innerHTML = isPlaying ? '<i class="fas fa-pause</i>' : '<i class="fas fa-play"></i>';
   }
 
   // --- COUNTDOWN ---
