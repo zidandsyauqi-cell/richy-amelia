@@ -6,13 +6,1048 @@
   <title>Richy & Amelia's Wedding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
-  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* ===== SEMUA CSS SAMA KAYA SEBELUMNYA ===== */
-    /* ... (copy semua CSS dari kode sebelumnya) ... */
-    
-    /* Tambahan untuk loading */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      color: #0e2340;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0ede8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #0e2340;
+      border-radius: 10px;
+      border: 2px solid #f0ede8;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1a3a5c;
+    }
+
+    .bunga-decoration {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 1;
+      animation: bungaBreath 3s ease-in-out infinite;
+    }
+    .bunga-decoration:nth-child(2) { animation-delay: 0.5s; }
+    .bunga-decoration:nth-child(3) { animation-delay: 1s; }
+
+    @keyframes bungaBreath {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(3deg); }
+    }
+
+    .bunga-top-left { top: -50px; left: -50px; }
+    .bunga-top-right { top: -50px; right: -50px; }
+    .bunga-bottom-left { bottom: -50px; left: -50px; }
+    .bunga-bottom-right { bottom: -50px; right: -50px; }
+    .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); }
+    .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
+    .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
+    .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
+
+    .bunga-timeline {
+      width: 200px;
+      height: 200px;
+      top: 0%;
+      right: -60px;
+      transform: translateY(-50%);
+    }
+
+    .section-with-bunga {
+      position: relative;
+      overflow: visible;
+    }
+
+    .gorden-full-width { 
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 30px 30px 0 0;
+      z-index: 0;
+      opacity: 0.85;
+      animation: gordenSmooth 8s ease-in-out infinite;
+    }
+    @keyframes gordenSmooth {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.005) translateY(2px); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #0e2340;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      opacity: 0.6;
+      animation: scrollBounce 2s ease-in-out infinite;
+      z-index: 2;
+    }
+    .scroll-indicator i {
+      font-size: 1.2rem;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
+    }
+
+    #envelopeSection {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #envelopeSection.hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 420px;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(14, 35, 64, 0.12);
+      animation: envelopeFloat 3s ease-in-out infinite;
+    }
+    @keyframes envelopeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .envelope-wrapper:hover {
+      transform: scale(1.02);
+    }
+    .envelope-wrapper.clicked {
+      transform: scale(1.04);
+    }
+    .envelope-wrapper.opened {
+      transform: scale(0.95);
+    }
+
+    .envelope-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #envelopeClosedImg {
+      opacity: 1;
+      z-index: 2;
+    }
+    #envelopeOpenImg {
+      opacity: 0;
+      z-index: 1;
+    }
+    .envelope-wrapper.opened #envelopeClosedImg {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+    .envelope-wrapper.opened #envelopeOpenImg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .envelope-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 70px 30px 40px;
+      text-align: center;
+      color: #0e2340;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    .envelope-wrapper.opened .envelope-text {
+      opacity: 0;
+    }
+    .top-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(-68px);
+    }
+    .bottom-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .envelope-text .guest-label {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: #0e2340;
+      margin-bottom: -2px;
+    }
+    .envelope-text .guest-name-env {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: #0e2340;
+      margin: 0;
+    }
+    .envelope-text .click-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      margin: 0;
+      opacity: 0.6;
+      animation: pulseHint 2s ease-in-out infinite;
+      color: #0e2340;
+      margin-bottom: 70px;
+    }
+    @keyframes pulseHint {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    #mainContent {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+      padding: 0 20px 50px;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+    #mainContent.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-section {
+      position: relative;
+      width: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 40px rgba(14, 35, 64, 0.1);
+      min-height: 500px;
+    }
+    .hero-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 500px;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      padding-top: 130px;
+      text-align: center;
+      color: white;
+    }
+    .hero-overlay .ornament-top {
+      font-size: 0.7rem;
+      letter-spacing: 8px;
+      opacity: 0.6;
+      margin-bottom: 5px;
+      color: #0e2340;
+      animation: fadeInDown 1.5s ease forwards;
+    }
+    .hero-overlay .the-wedding-of {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-style: italic;
+      opacity: 0.8;
+      color: #0e2340;
+      margin-bottom: 0px;
+      margin-top: 50px;
+      padding: 0 50px;
+      animation: fadeInDown 1.5s ease 0.2s forwards;
+    }
+    .hero-overlay .couple-names-hero {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      line-height: 1.1;
+      margin: 15px 0 0 0;
+      color: #0e2340;
+      letter-spacing: 0px;
+      animation: fadeInUp 1.5s ease 0.4s forwards;
+    }
+    .hero-overlay .couple-names-hero .and {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      display: block;
+      font-style: italic;
+      opacity: 0.7;
+      color: #0e2340;
+    }
+    .hero-overlay .hero-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 0px;
+      padding: 0;
+      background: transparent;
+      color: #0e2340;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      animation: fadeInUp 1.5s ease 0.6s forwards;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .vinyl-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.06);
+    }
+    .vinyl-player {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    .vinyl-disc {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #2a2a2a, #0a0a0a);
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .vinyl-disc .disc-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: 
+        repeating-radial-gradient(circle at 50% 50%, 
+          transparent 0px, 
+          transparent 10px, 
+          rgba(255,255,255,0.05) 10px, 
+          rgba(255,255,255,0.05) 11px),
+        repeating-radial-gradient(circle at 50% 50%, 
+          transparent 0px, 
+          transparent 22px, 
+          rgba(255,255,255,0.02) 22px, 
+          rgba(255,255,255,0.02) 23px);
+    }
+    .vinyl-disc .couple-photo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+    .vinyl-disc .couple-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .vinyl-disc.spinning {
+      animation: spinVinyl 3s linear infinite;
+    }
+    @keyframes spinVinyl {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .vinyl-controls {
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+    }
+    .vinyl-controls .song-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0e2340;
+      margin-bottom: 5px;
+    }
+    .vinyl-controls .song-artist {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .vinyl-progress {
+      width: 100%;
+      height: 4px;
+      background: #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .vinyl-progress-fill {
+      height: 100%;
+      background: #0e2340;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    .vinyl-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      color: #999;
+      margin-top: 4px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .vinyl-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .vinyl-buttons button {
+      background: none;
+      border: none;
+      color: #0e2340;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 5px;
+      transition: all 0.3s ease;
+    }
+    .vinyl-buttons button:hover {
+      transform: scale(1.1);
+    }
+    .vinyl-buttons .btn-play-vinyl {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #0e2340;
+      color: white;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(14, 35, 64, 0.2);
+      transition: all 0.3s ease;
+    }
+    .vinyl-buttons .btn-play-vinyl:hover {
+      transform: scale(1.05);
+      background: #1a3a5c;
+    }
+    .vinyl-buttons .btn-play-vinyl:active {
+      transform: scale(0.95);
+    }
+
+    .countdown-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .countdown-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0e2340;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+    .countdown-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0e2340;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .countdown-item {
+      background: white;
+      border-radius: 20px;
+      padding: 15px 5px;
+      box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
+      transition: all 0.3s ease;
+    }
+    .countdown-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.1);
+    }
+    .countdown-item .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0e2340;
+      line-height: 1;
+    }
+    .countdown-item .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+
+    .calendar-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      padding-top: 60px;
+    }
+    .calendar-section .gorden-full-width {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 30px 30px 0 0;
+      z-index: 0;
+      opacity: 0.85;
+      animation: gordenSmooth 8s ease-in-out infinite;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding: 0 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .calendar-header .month {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #0e2340;
+    }
+    .calendar-header .year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: #999;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .calendar-grid .day-name {
+      text-align: center;
+      font-size: 0.6rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 0;
+      font-weight: 600;
+    }
+    .calendar-grid .day {
+      text-align: center;
+      padding: 8px 0;
+      border-radius: 15px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #0e2340;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .calendar-grid .day:hover {
+      background: rgba(14, 35, 64, 0.05);
+    }
+    .calendar-grid .day.empty {
+      color: #ddd;
+    }
+    .calendar-grid .day .wedding-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #0e2340;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      background: rgba(14, 35, 64, 0.1);
+    }
+    .calendar-grid .day.wedding-day {
+      background: transparent;
+      color: #0e2340 !important;
+      font-weight: 700;
+    }
+    .calendar-grid .day.wedding-day .wedding-ring {
+      opacity: 1;
+      animation: ringBreath 2s ease-in-out infinite;
+    }
+    @keyframes ringBreath {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+    }
+
+    .announce-section {
+      margin-bottom: 30px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.08);
+      position: relative;
+      min-height: 450px;
+    }
+    .announce-section img {
+      width: 100%;
+      display: block;
+      border-radius: 30px;
+      min-height: 450px;
+      object-fit: cover;
+    }
+    .announce-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 25px;
+      padding-top: 180px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 30px;
+    }
+    .announce-overlay .announce-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+    }
+    .announce-overlay p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.6);
+      max-width: 100%;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .announce-overlay p strong {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .venue-section {
+      position: relative;
+      width: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 40px rgba(14, 35, 64, 0.1);
+      min-height: 400px;
+    }
+    .venue-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 400px;
+    }
+    .venue-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    .venue-overlay h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #0e2340;
+      margin-bottom: 10px;
+      text-shadow: none;
+    }
+    .venue-overlay .venue-address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #0e2340;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      text-shadow: none;
+    }
+    .venue-overlay .btn-route {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0e2340;
+      color: #ffffff;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .venue-overlay .btn-route:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .venue-overlay .btn-route:active {
+      transform: scale(0.97);
+    }
+
+    .gift-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .gift-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      margin-bottom: 10px;
+    }
+    .gift-section .gift-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+    .gift-box {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      border: 2px dashed #e8ddd0;
+      transition: all 0.3s ease;
+    }
+    .gift-box:hover {
+      border-color: #0e2340;
+      box-shadow: 0 5px 25px rgba(14, 35, 64, 0.08);
+    }
+    .gift-box .bank-info {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #0e2340;
+      font-weight: 600;
+    }
+    .gift-box .bank-detail {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .rundown-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+    }
+    .rundown-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .rundown-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8ddd0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+    .rundown-item:hover {
+      padding-left: 10px;
+      background: rgba(14, 35, 64, 0.02);
+      border-radius: 10px;
+    }
+    .rundown-item .time {
+      font-weight: 600;
+      color: #0e2340;
+    }
+    .rundown-item .event {
+      color: #666;
+      font-weight: 400;
+    }
+
+    .gallery-section {
+      margin-bottom: 30px;
+    }
+    .gallery-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(14, 35, 64, 0.08);
+      transition: all 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(14, 35, 64, 0.15);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.08);
+    }
+
+    .rsvp-section {
+      background: #f8f6f3;
+      border-radius: 30px;
+      padding: 25px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .rsvp-section h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #0e2340;
+      margin-bottom: 20px;
+    }
+    .rsvp-container {
+      max-width: 100%;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e8ddd0;
+      border-radius: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      background: white;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #0e2340;
+      box-shadow: 0 0 0 3px rgba(14, 35, 64, 0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn-rsvp {
+      width: 100%;
+      padding: 14px;
+      background: #0e2340;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+    .btn-rsvp:hover {
+      background: #1a3a5c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(14, 35, 64, 0.2);
+    }
+    .btn-rsvp:active {
+      transform: scale(0.97);
+    }
+    .btn-rsvp:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    #rsvpMessageList {
+      margin-top: 25px;
+      text-align: left;
+      border-top: 2px solid #e8ddd0;
+      padding-top: 20px;
+    }
+    .message-item {
+      background: white;
+      padding: 15px 18px;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
+      animation: slideIn 0.5s ease forwards;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .message-item strong {
+      color: #0e2340;
+      font-size: 0.95rem;
+    }
+    .message-item .status-badge {
+      display: inline-block;
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .status-badge.hadir { background: #d4edda; color: #155724; }
+    .status-badge.tidak_hadir { background: #f8d7da; color: #721c24; }
+    .status-badge.ragu { background: #fff3cd; color: #856404; }
+    .message-item p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: #333;
+      margin: 5px 0 5px;
+      line-height: 1.6;
+    }
+    .message-item small {
+      font-size: 0.7rem;
+      color: #999;
+      display: block;
+    }
+
+    .toast-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0e2340;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      z-index: 999;
+      animation: toastSlide 3s ease forwards;
+    }
+    @keyframes toastSlide {
+      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+
     .loading-spinner {
       display: inline-block;
       width: 20px;
@@ -25,9 +1060,36 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-    .btn-rsvp:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+
+    @media (max-width: 430px) {
+      .envelope-wrapper { width: 280px; height: 370px; }
+      .hero-overlay { padding-top: 80px; }
+      .hero-overlay .couple-names-hero { font-size: 2.8rem; }
+      .hero-overlay .hero-date { font-size: 0.95rem; }
+      .vinyl-disc { width: 120px; height: 120px; }
+      .vinyl-disc .couple-photo { width: 40px; height: 40px; }
+      .countdown-item .number { font-size: 1.8rem; }
+      .venue-section { min-height: 300px; }
+      .venue-section img { min-height: 300px; }
+      .announce-section { min-height: 400px; }
+      .announce-section img { min-height: 400px; }
+      .announce-overlay { padding-top: 150px; }
+      .announce-overlay p { font-size: 0.8rem; }
+      .announce-overlay .announce-title { font-size: 1.8rem; }
+      .bunga-decoration { width: 120px; height: 120px; }
+      .bunga-timeline { width: 120px; height: 120px; right: -40px; }
+      .bunga-top-left { top: -35px; left: -35px; }
+      .bunga-top-right { top: -35px; right: -35px; }
+      .bunga-bottom-left { bottom: -35px; left: -35px; }
+      .bunga-bottom-right { bottom: -35px; right: -35px; }
+      .bunga-center-top { top: -45px; }
+      .calendar-section .gorden-full-width { height: 150px; top: 20px; }
+      .calendar-section { padding-top: 50px; }
+      .calendar-header .month { font-size: 1.6rem; }
+      .calendar-header .year { font-size: 1rem; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.25); }
+      .venue-overlay h3 { font-size: 2rem; }
+      .venue-overlay .venue-address { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -268,10 +1330,10 @@
   };
 
   // ============================================================
-// 🔥 SUPABASE CONFIG - GANTI DENGAN PUNYA ANDA
-// ============================================================
-const SUPABASE_URL = 'https://rcpuvubsrlwimyorboii.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcHV2dWJzcmx3aW15b3Jib2lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NTEzMDcsImV4cCI6MjA5OTQyNzMwN30.Kkpc2rsjUjBSGLvARe85zaJpfkkcfqI6YIEk9ZNXcZQ';
+  // 🔥 SUPABASE CONFIG
+  // ============================================================
+  const SUPABASE_URL = 'https://rcpuvubsrlwimyorboii.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcHV2dWJzcmx3aW15b3Jib2lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NTEzMDcsImV4cCI6MjA5OTQyNzMwN30.Kkpc2rsjUjBSGLvARe85zaJpfkkcfqI6YIEk9ZNXcZQ';
 
   const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   const TABLE_NAME = 'rsvp';
@@ -280,7 +1342,6 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
   // 🚀 FUNGSI UTAMA
   // ============================================================
   
-  // Ambil data dari URL path
   (function() {
     let path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
     if (!path || path === 'index.html') return;
@@ -553,7 +1614,6 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
       return;
     }
 
-    // Disable button & show loading
     btn.disabled = true;
     btn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
 
@@ -569,18 +1629,14 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
       if (error) throw error;
 
-      // Reset form
       this.reset();
       showToast('Terima kasih! RSVP dan ucapan Anda telah terkirim. 💕');
-      
-      // Reload messages
       await loadMessages();
       
     } catch (error) {
       console.error('Error submitting RSVP:', error);
       showToast('Gagal mengirim RSVP. Silakan coba lagi.');
     } finally {
-      // Enable button
       btn.disabled = false;
       btn.innerHTML = 'Kirim RSVP';
     }
