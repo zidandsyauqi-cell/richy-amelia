@@ -367,24 +367,21 @@
       color: #0e2340;
     }
     .hero-overlay .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-top: 0px;
-      padding: 10px 28px;
-      background: transparent;
-      color: #0e2340;
-      border: 2px solid rgba(14, 35, 64, 0.2);
-      border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(14, 35, 64, 0.08);
-      animation: fadeInUp 1.5s ease 0.6s forwards;
-    }
-    .hero-overlay .hero-date .date-sep {
-      opacity: 0.3;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* kurangi gap */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    padding: 0; /* HAPUS padding */
+    background: transparent;
+    color: #0e2340;
+    border: none; /* HAPUS border */
+    border-radius: 0; /* HAPUS border-radius */
+    box-shadow: none; /* HAPUS shadow */
+    animation: fadeInUp 1.5s ease 0.6s forwards;
     }
 
     @keyframes fadeInDown {
@@ -1112,9 +1109,7 @@
       </div>
       <div class="hero-date" id="heroDate">
         <span id="dateDay">6</span>
-        <span class="date-sep">|</span>
         <span id="dateMonth">OKT</span>
-        <span class="date-sep">|</span>
         <span id="dateYear">2026</span>
       </div>
       <!-- SCROLL INDICATOR -->
