@@ -1480,7 +1480,8 @@
   const SUPABASE_URL = 'https://rcpuvubsrlwimyorboii.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcHV2dWJzcmx3aW15b3Jib2lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NTEzMDcsImV4cCI6MjA5OTQyNzMwN30.Kkpc2rsjUjBSGLvARe85zaJpfkkcfqI6YIEk9ZNXcZQ';
 
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // PERBAIKAN: Ganti nama variabel menjadi supabaseClient
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   const TABLE_NAME = 'rsvp';
 
   // ============================================================
@@ -1715,7 +1716,8 @@
   async function loadMessages() {
     const container = document.getElementById('rsvpMessageList');
     try {
-      const { data, error } = await supabase
+      // PERBAIKAN: supabase -> supabaseClient
+      const { data, error } = await supabaseClient
         .from(TABLE_NAME)
         .select('*')
         .order('created_at', { ascending: false });
@@ -1768,7 +1770,8 @@
     btn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
 
     try {
-      const { error } = await supabase
+      // PERBAIKAN: supabase -> supabaseClient
+      const { error } = await supabaseClient
         .from(TABLE_NAME)
         .insert([{
           name: name,
