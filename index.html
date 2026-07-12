@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Richy & Amelia's Wedding</title>
+  <title>Richy & Amelia</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * {
@@ -23,6 +24,7 @@
       color: #0e2340;
     }
 
+    /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -39,6 +41,7 @@
       background: #1a3a5c;
     }
 
+    /* ===== BUNGA DECORATION - UKURAN 200px ===== */
     .bunga-decoration {
       position: absolute;
       width: 200px;
@@ -66,6 +69,7 @@
     .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
     .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
 
+    /* Ukuran khusus untuk bunga di wedding timeline (di ujung kanan) */
     .bunga-timeline {
       width: 200px;
       height: 200px;
@@ -79,6 +83,7 @@
       overflow: visible;
     }
 
+    /* Gorden di atas kalender */
     .gorden-full-width { 
       position: absolute;
       top: 20px;
@@ -96,6 +101,7 @@
       50% { transform: scale(1.005) translateY(2px); }
     }
 
+    /* ===== SCROLL INDICATOR ===== */
     .scroll-indicator {
       position: absolute;
       bottom: 20px;
@@ -120,6 +126,7 @@
       50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
     }
 
+    /* ===== ENVELOPE ===== */
     #envelopeSection {
       position: fixed;
       top: 0;
@@ -210,26 +217,31 @@
       pointer-events: none;
       transition: opacity 0.6s ease;
     }
+
     .envelope-wrapper.opened .envelope-text {
       opacity: 0;
     }
+
     .top-text {
       display: flex;
       flex-direction: column;
       align-items: center;
       transform: translateY(-68px);
     }
+
     .bottom-text {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .envelope-text .guest-label {
       font-family: 'Great Vibes', cursive;
       font-size: 1.8rem;
       color: #0e2340;
       margin-bottom: -2px;
     }
+
     .envelope-text .guest-name-env {
       font-family: 'Great Vibes', cursive;
       font-size: 1.8rem;
@@ -238,6 +250,7 @@
       color: #0e2340;
       margin: 0;
     }
+
     .envelope-text .click-hint {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.8rem;
@@ -252,6 +265,7 @@
       50% { opacity: 0.9; transform: scale(1.05); }
     }
 
+    /* ===== MAIN CONTENT ===== */
     #mainContent {
       opacity: 0;
       transform: translateY(40px);
@@ -265,6 +279,7 @@
       transform: translateY(0);
     }
 
+    /* ===== FADE IN ANIMATION FOR SECTIONS ===== */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
@@ -274,7 +289,17 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .fade-section:nth-child(1) { transition-delay: 0.1s; }
+    .fade-section:nth-child(2) { transition-delay: 0.2s; }
+    .fade-section:nth-child(3) { transition-delay: 0.3s; }
+    .fade-section:nth-child(4) { transition-delay: 0.4s; }
+    .fade-section:nth-child(5) { transition-delay: 0.5s; }
+    .fade-section:nth-child(6) { transition-delay: 0.6s; }
+    .fade-section:nth-child(7) { transition-delay: 0.7s; }
+    .fade-section:nth-child(8) { transition-delay: 0.8s; }
+    .fade-section:nth-child(9) { transition-delay: 0.9s; }
 
+    /* ===== HERO ===== */
     .hero-section {
       position: relative;
       width: 100%;
@@ -345,32 +370,44 @@
       color: #0e2340;
     }
     .hero-overlay .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-top: 0px;
-      padding: 0;
-      background: transparent;
-      color: #0e2340;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      animation: fadeInUp 1.5s ease 0.6s forwards;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    padding: 0;
+    background: transparent;
+    color: #0e2340;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    animation: fadeInUp 1.5s ease 0.6s forwards;
     }
-
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
+    /* ===== VINYL ===== */
     .vinyl-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -522,6 +559,7 @@
       transform: scale(0.95);
     }
 
+    /* ===== COUNTDOWN ===== */
     .countdown-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -577,6 +615,7 @@
       margin-top: 5px;
     }
 
+    /* ===== CALENDAR ===== */
     .calendar-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -597,6 +636,10 @@
       z-index: 0;
       opacity: 0.85;
       animation: gordenSmooth 8s ease-in-out infinite;
+    }
+    @keyframes gordenSmooth {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.005) translateY(2px); }
     }
     .calendar-header {
       display: flex;
@@ -678,6 +721,7 @@
       50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
     }
 
+    /* ===== ANNOUNCEMENT ===== */
     .announce-section {
       margin-bottom: 30px;
       border-radius: 30px;
@@ -723,11 +767,20 @@
       margin-top: 0;
       padding-top: 0;
     }
+    .announce-overlay p .couple-section {
+      display: block;
+      margin: 4px 0;
+    }
+    .announce-overlay p .couple-section .ampersand {
+      display: block;
+      margin: 2px 0;
+    }
     .announce-overlay p strong {
       font-weight: 700;
       font-size: 1.05rem;
     }
 
+    /* ===== VENUE ===== */
     .venue-section {
       position: relative;
       width: 100%;
@@ -797,6 +850,7 @@
       transform: scale(0.97);
     }
 
+    /* ===== GIFT ===== */
     .gift-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -840,6 +894,7 @@
       margin-top: 5px;
     }
 
+    /* ===== RUNDOWN ===== */
     .rundown-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -876,6 +931,7 @@
       font-weight: 400;
     }
 
+    /* ===== GALLERY ===== */
     .gallery-section {
       margin-bottom: 30px;
     }
@@ -912,6 +968,7 @@
       transform: scale(1.08);
     }
 
+    /* ===== RSVP & UCAPAN ===== */
     .rsvp-section {
       background: #f8f6f3;
       border-radius: 30px;
@@ -979,7 +1036,6 @@
       opacity: 0.7;
       cursor: not-allowed;
     }
-
     #rsvpMessageList {
       margin-top: 25px;
       text-align: left;
@@ -995,8 +1051,14 @@
       animation: slideIn 0.5s ease forwards;
     }
     @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .message-item strong {
       color: #0e2340;
@@ -1025,7 +1087,6 @@
       color: #999;
       display: block;
     }
-
     .toast-notification {
       position: fixed;
       bottom: 20px;
@@ -1047,7 +1108,6 @@
       80% { opacity: 1; transform: translateX(-50%) translateY(0); }
       100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
     }
-
     .loading-spinner {
       display: inline-block;
       width: 20px;
@@ -1061,11 +1121,12 @@
       to { transform: rotate(360deg); }
     }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 430px) {
       .envelope-wrapper { width: 280px; height: 370px; }
       .hero-overlay { padding-top: 80px; }
       .hero-overlay .couple-names-hero { font-size: 2.8rem; }
-      .hero-overlay .hero-date { font-size: 0.95rem; }
+      .hero-overlay .hero-date { font-size: 0.95rem; padding: 8px 20px; gap: 8px; margin-top: 0px; }
       .vinyl-disc { width: 120px; height: 120px; }
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
@@ -1083,13 +1144,87 @@
       .bunga-bottom-left { bottom: -35px; left: -35px; }
       .bunga-bottom-right { bottom: -35px; right: -35px; }
       .bunga-center-top { top: -45px; }
+      .bunga-side-right { right: -45px; }
+      .bunga-side-left { left: -45px; }
       .calendar-section .gorden-full-width { height: 150px; top: 20px; }
       .calendar-section { padding-top: 50px; }
+      .calendar-header { gap: 8px; }
       .calendar-header .month { font-size: 1.6rem; }
       .calendar-header .year { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.25); }
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
+    }
+    @media (max-width: 380px) {
+      .envelope-wrapper { width: 240px; height: 320px; }
+      .hero-overlay { padding-top: 70px; }
+      .hero-overlay .couple-names-hero { font-size: 2.2rem; }
+      .hero-overlay .hero-date { font-size: 0.8rem; padding: 6px 16px; gap: 6px; margin-top: 0px; }
+      .vinyl-disc { width: 100px; height: 100px; }
+      .vinyl-disc .couple-photo { width: 34px; height: 34px; }
+      .venue-section { min-height: 250px; }
+      .venue-section img { min-height: 250px; }
+      .announce-section { min-height: 350px; }
+      .announce-section img { min-height: 350px; }
+      .announce-overlay { padding-top: 130px; }
+      .announce-overlay p { font-size: 0.7rem; }
+      .announce-overlay .announce-title { font-size: 1.5rem; }
+      .bunga-decoration { width: 100px; height: 100px; }
+      .bunga-timeline { width: 100px; height: 100px; right: -35px; }
+      .bunga-top-left { top: -30px; left: -30px; }
+      .bunga-top-right { top: -30px; right: -30px; }
+      .bunga-bottom-left { bottom: -30px; left: -30px; }
+      .bunga-bottom-right { bottom: -30px; right: -30px; }
+      .bunga-center-top { top: -40px; }
+      .bunga-side-right { right: -40px; }
+      .bunga-side-left { left: -40px; }
+      .calendar-section .gorden-full-width { height: 130px; top: 15px; }
+      .calendar-section { padding-top: 40px; }
+      .calendar-header { gap: 6px; }
+      .calendar-header .month { font-size: 1.3rem; }
+      .calendar-header .year { font-size: 0.9rem; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.3); }
+      .venue-overlay h3 { font-size: 1.8rem; }
+      .venue-overlay .venue-address { font-size: 0.8rem; }
+      .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
+    }
+    @media (min-width: 431px) and (max-width: 768px) {
+      #mainContent { max-width: 600px; padding: 0 30px 50px; }
+      .hero-overlay .couple-names-hero { font-size: 3.6rem; }
+      .hero-overlay .hero-date { font-size: 1.2rem; padding: 12px 32px; margin-top: 0px; }
+      .bunga-decoration { width: 150px; height: 150px; }
+      .bunga-timeline { width: 150px; height: 150px; right: -50px; }
+      .vinyl-disc { width: 150px; height: 150px; }
+      .vinyl-disc .couple-photo { width: 55px; height: 55px; }
+      .countdown-item .number { font-size: 2.4rem; }
+      .venue-section { min-height: 350px; }
+      .venue-section img { min-height: 350px; }
+      .announce-section { min-height: 400px; }
+      .announce-section img { min-height: 400px; }
+      .announce-overlay p { font-size: 1rem; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.2); }
+    }
+    @media (min-width: 769px) {
+      #mainContent { max-width: 500px; padding: 0 40px 60px; }
+      .hero-overlay .couple-names-hero { font-size: 3.8rem; }
+      .hero-overlay .hero-date { font-size: 1.3rem; padding: 14px 36px; margin-top: 0px; }
+      .bunga-decoration { width: 200px; height: 200px; }
+      .bunga-timeline { width: 200px; height: 200px; right: -60px; }
+      .bunga-top-left { top: -50px; left: -50px; }
+      .bunga-top-right { top: -50px; right: -50px; }
+      .bunga-center-top { top: -60px; }
+      .bunga-side-right { right: -60px; }
+      .bunga-side-left { left: -60px; }
+      .vinyl-disc { width: 160px; height: 160px; }
+      .vinyl-disc .couple-photo { width: 60px; height: 60px; }
+      .countdown-item .number { font-size: 2.6rem; }
+      .venue-section { min-height: 380px; }
+      .venue-section img { min-height: 380px; }
+      .announce-section { min-height: 480px; }
+      .announce-section img { min-height: 480px; }
+      .announce-overlay p { font-size: 1rem; }
+      .announce-overlay { padding-top: 190px; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.15); }
     }
   </style>
 </head>
@@ -1100,6 +1235,7 @@
   <div class="envelope-wrapper" id="envelopeWrapper">
     <img src="amplop-1.jpeg" alt="" class="envelope-image" id="envelopeClosedImg">
     <img src="amplop-2.png" alt="" class="envelope-image" id="envelopeOpenImg">
+
     <div class="envelope-text">
       <div class="top-text">
         <div class="guest-label">Untuk</div>
@@ -1131,6 +1267,7 @@
         <span id="dateMonth">OKT</span>
         <span id="dateYear">2026</span>
       </div>
+      <!-- SCROLL INDICATOR -->
       <div class="scroll-indicator">
         <span>SCROLL</span>
         <i class="fas fa-chevron-down"></i>
@@ -1138,7 +1275,7 @@
     </div>
   </section>
 
-  <!-- VINYL -->
+  <!-- VINYL (bunga di atas kanan dan kiri atas) -->
   <section class="vinyl-section section-with-bunga fade-section">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
@@ -1168,7 +1305,7 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN -->
+  <!-- COUNTDOWN (dengan tanggal wedding) -->
   <section class="countdown-section section-with-bunga fade-section">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="countdown-title">Countdown to</div>
@@ -1181,7 +1318,7 @@
     </div>
   </section>
 
-  <!-- CALENDAR -->
+  <!-- CALENDAR (gorden di atas) -->
   <section class="calendar-section fade-section">
     <img src="bunga6.png" alt="" class="gorden-full-width">
     <div class="calendar-header">
@@ -1199,27 +1336,32 @@
       <p>
         Dengan memohon rahmat dan ridho Allah SWT,<br>
         kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
-        pada acara pernikahan dan resepsi putra-putri kami:<br><br>
+        pada acara pernikahan dan resepsi putra-putri kami:
       </p>
-      <p style="margin: 5px 0; line-height: 1.6;">
+      <p style="line-height: 1.6;">
         <strong>Richy</strong><br>
         Putra dari Bapak Ahmad &amp; Ibu Siti
       </p>
       <p style="line-height: 1.6;">
         <strong>&amp;</strong>
       </p>
-      <p style="margin: 5px 0; line-height: 1.6;">
+      <p style="line-height: 1.6;">
         <strong>Amelia</strong><br>
-        Putri dari Bapak Budi &amp; Ibu Dewi<br><br>
+        Putri dari Bapak Budi &amp; Ibu Dewi
       </p>
-      <p>
+      <p style="line-height: 1.8;">
+        yang akan dilaksanakan pada:<br><br>
+        <strong>Selasa, 6 Oktober 2026</strong><br>
+        Pukul 09.00 - 15.00 WIB<br>
+        Bertempat di <strong>Aula Bahagia</strong><br>
+        Jl. Mawar No. 123, Jakarta<br><br>
         Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
         merupakan kebahagiaan bagi kami.
       </p>
     </div>
   </section>
 
-  <!-- RUNDOWN -->
+  <!-- RUNDOWN (bunga di ujung kanan) -->
   <section class="rundown-section section-with-bunga fade-section">
     <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
     <h3>Wedding Timeline</h3>
@@ -1243,7 +1385,7 @@
     </div>
   </section>
 
-  <!-- GIFT -->
+  <!-- GIFT (2 bunga) -->
   <section class="gift-section section-with-bunga fade-section">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
     <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
@@ -1255,7 +1397,7 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- GALLERY (1 bunga) -->
   <section class="gallery-section section-with-bunga fade-section">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
     <h3>Our Gallery</h3>
@@ -1270,7 +1412,7 @@
   <!-- RSVP & UCAPAN - SUPABASE -->
   <section class="rsvp-section section-with-bunga fade-section">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right">
-    <h3>Berikan Ucapan</h3>
+    <h3>RSVP &amp; Ucapan</h3>
     <div class="rsvp-container">
       <form id="rsvpForm">
         <div class="form-group">
@@ -1290,9 +1432,7 @@
         <div class="form-group">
           <textarea id="rsvpMessage" rows="3" placeholder="Ucapan &amp; Doa untuk Pengantin..."></textarea>
         </div>
-        <button type="submit" class="btn-rsvp" id="btnSubmit">
-          Kirim RSVP
-        </button>
+        <button type="submit" class="btn-rsvp" id="btnSubmit">Kirim RSVP</button>
       </form>
       <div id="rsvpMessageList">
         <p style="text-align:center;color:#999;padding:20px;">Memuat ucapan...</p>
@@ -1325,7 +1465,12 @@
       venue: 'venue.png',
       couplePhoto: 'amplop-1.jpeg',
       announce: 'announce.png',
-      gallery: ['amplop-1.jpeg', 'amplop-2.png', 'amplop-3.png', 'venue.png']
+      gallery: [
+        'amplop-1.jpeg',
+        'amplop-2.png',
+        'amplop-3.png',
+        'venue.png'
+      ]
     }
   };
 
@@ -1339,9 +1484,8 @@
   const TABLE_NAME = 'rsvp';
 
   // ============================================================
-  // 🚀 FUNGSI UTAMA
+  // 🚀 AMBIL NAMA DARI URL PATH
   // ============================================================
-  
   (function() {
     let path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
     if (!path || path === 'index.html') return;
@@ -1350,6 +1494,9 @@
     if (formatted) CONFIG.guestName = formatted;
   })();
 
+  // ============================================================
+  // 🔧 FORMAT TANGGAL OTOMATIS DARI weddingDate
+  // ============================================================
   function formatDateDisplay(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
     const day = d.getDate();
@@ -1367,8 +1514,9 @@
     document.getElementById('venueImg').src = img.venue;
     document.getElementById('couplePhoto').src = img.couplePhoto;
     document.getElementById('announceImg').src = img.announce;
+    const g = img.gallery;
     ['gallery1','gallery2','gallery3','gallery4'].forEach((id, i) => {
-      document.getElementById(id).src = img.gallery[i] || '';
+      document.getElementById(id).src = g[i] || '';
     });
   }
 
@@ -1427,6 +1575,8 @@
   // --- MUSIC ---
   let audio = null;
   let isPlaying = false;
+  let currentSongIndex = 0;
+  const songs = [CONFIG.songSrc];
 
   function initAudio() {
     if (!CONFIG.songSrc) {
@@ -1599,7 +1749,7 @@
     return div.innerHTML;
   }
 
-  // Submit RSVP
+  // Submit RSVP ke Supabase
   document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -1652,9 +1802,7 @@
     setTimeout(() => toast.remove(), 3000);
   }
 
-  // ============================================================
-  // 🚀 INIT
-  // ============================================================
+  // --- INIT ---
   document.addEventListener('DOMContentLoaded', function() {
     setupImages();
     populateData();
