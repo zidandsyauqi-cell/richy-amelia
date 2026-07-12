@@ -48,14 +48,14 @@
       opacity: 0.9;
       pointer-events: none;
       z-index: 1;
-      animation: bungaBreath 4s ease-in-out infinite;
+      animation: bungaBreath 2.5s ease-in-out infinite;
     }
-    .bunga-decoration:nth-child(2) { animation-delay: 0.5s; }
-    .bunga-decoration:nth-child(3) { animation-delay: 1s; }
+    .bunga-decoration:nth-child(2) { animation-delay: 0.3s; }
+    .bunga-decoration:nth-child(3) { animation-delay: 0.6s; }
 
     @keyframes bungaBreath {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-      50% { transform: scale(1.08) rotate(3deg); opacity: 1; }
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      50% { transform: scale(1.12) rotate(5deg); opacity: 1; }
     }
 
     .bunga-top-left { top: -40px; left: -40px; }
@@ -63,7 +63,7 @@
     .bunga-bottom-left { bottom: -40px; left: -40px; }
     .bunga-bottom-right { bottom: -40px; right: -40px; }
     .bunga-center-top { top: -50px; left: 50%; transform: translateX(-50%); }
-    .bunga-center-top { animation: bungaBreath 4s ease-in-out infinite; }
+    .bunga-center-top { animation: bungaBreath 2.5s ease-in-out infinite; }
     .bunga-side-right { top: 50%; right: -50px; transform: translateY(-50%); }
     .bunga-side-left { top: 50%; left: -50px; transform: translateY(-50%); }
 
@@ -78,7 +78,7 @@
       border-radius: 30px 30px 0 0;
       z-index: 0;
       opacity: 0.85;
-      animation: gordenSmooth 8s ease-in-out infinite;
+      animation: gordenSmooth 6s ease-in-out infinite;
     }
     @keyframes gordenSmooth {
       0%, 100% { transform: scale(1) translateY(0); }
@@ -636,7 +636,7 @@
       border-radius: 30px 30px 0 0;
       z-index: 0;
       opacity: 0.85;
-      animation: gordenSmooth 8s ease-in-out infinite;
+      animation: gordenSmooth 6s ease-in-out infinite;
     }
     @keyframes gordenSmooth {
       0%, 100% { transform: scale(1) translateY(0); }
@@ -715,7 +715,7 @@
     }
     .calendar-grid .day.wedding-day .wedding-ring {
       opacity: 1;
-      animation: ringBreath 2s ease-in-out infinite;
+      animation: ringBreath 1.8s ease-in-out infinite;
     }
     @keyframes ringBreath {
       0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
@@ -748,7 +748,7 @@
       flex-direction: column;
       align-items: center;
       padding: 30px 25px;
-      padding-top: 180px;
+      padding-top: 120px;
       text-align: center;
       color: #ffffff;
       border-radius: 30px;
@@ -756,7 +756,7 @@
     .announce-overlay .announce-title {
       font-family: 'Great Vibes', cursive;
       font-size: 2.2rem;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       text-shadow: 0 2px 20px rgba(0,0,0,0.6);
     }
     .announce-overlay p {
@@ -810,7 +810,7 @@
       justify-content: center;
       padding: 30px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
     }
@@ -819,7 +819,7 @@
       font-size: 2.5rem;
       color: #0e2340;
       margin-bottom: 10px;
-      text-shadow: none;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.3);
     }
     .venue-overlay .venue-address {
       font-family: 'Cormorant Garamond', serif;
@@ -827,7 +827,7 @@
       color: #0e2340;
       margin-bottom: 20px;
       line-height: 1.6;
-      text-shadow: none;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.3);
     }
     .venue-overlay .btn-route {
       display: inline-flex;
@@ -983,7 +983,7 @@
       .venue-section img { min-height: 300px; }
       .announce-section { min-height: 400px; }
       .announce-section img { min-height: 400px; }
-      .announce-overlay { padding-top: 150px; }
+      .announce-overlay { padding-top: 100px; }
       .announce-overlay p { font-size: 0.8rem; }
       .announce-overlay .announce-title { font-size: 1.8rem; }
       .bunga-decoration { width: 100px; height: 100px; }
@@ -1000,7 +1000,7 @@
       .calendar-header { gap: 8px; }
       .calendar-header .month { font-size: 1.6rem; }
       .calendar-header .year { font-size: 1rem; }
-      .venue-overlay { background: rgba(255, 255, 255, 0.25); }
+      .venue-overlay { background: rgba(255, 255, 255, 0.5); }
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
     }
@@ -1017,7 +1017,7 @@
       .venue-section img { min-height: 250px; }
       .announce-section { min-height: 350px; }
       .announce-section img { min-height: 350px; }
-      .announce-overlay { padding-top: 130px; }
+      .announce-overlay { padding-top: 80px; }
       .announce-overlay p { font-size: 0.7rem; }
       .announce-overlay .announce-title { font-size: 1.5rem; }
       .bunga-decoration { width: 80px; height: 80px; }
@@ -1034,7 +1034,7 @@
       .calendar-header { gap: 6px; }
       .calendar-header .month { font-size: 1.3rem; }
       .calendar-header .year { font-size: 0.9rem; }
-      .venue-overlay { background: rgba(255, 255, 255, 0.3); }
+      .venue-overlay { background: rgba(255, 255, 255, 0.55); }
       .venue-overlay h3 { font-size: 1.8rem; }
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
@@ -1054,7 +1054,8 @@
       .announce-section { min-height: 400px; }
       .announce-section img { min-height: 400px; }
       .announce-overlay p { font-size: 1rem; }
-      .venue-overlay { background: rgba(255, 255, 255, 0.2); }
+      .announce-overlay { padding-top: 110px; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.35); }
     }
 
     /* Untuk laptop dan desktop */
@@ -1074,8 +1075,8 @@
       .announce-section { min-height: 480px; }
       .announce-section img { min-height: 480px; }
       .announce-overlay p { font-size: 1rem; }
-      .announce-overlay { padding-top: 190px; }
-      .venue-overlay { background: rgba(255, 255, 255, 0.15); }
+      .announce-overlay { padding-top: 120px; }
+      .venue-overlay { background: rgba(255, 255, 255, 0.3); }
     }
   </style>
 </head>
@@ -1203,14 +1204,8 @@
         <strong>Amelia</strong><br>
         Putri dari Bapak Budi &amp; Ibu Dewi
       </p>
-      <p style="margin-top: 10px; line-height: 1.8;">
-        yang akan dilaksanakan pada:<br><br>
-        <strong id="announceDate">Selasa, 6 Oktober 2026</strong><br>
-        Pukul 09.00 - 15.00 WIB<br>
-        Bertempat di <strong>Aula Bahagia</strong><br>
-        Jl. Mawar No. 123, Jakarta<br><br>
-        Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
-        merupakan kebahagiaan bagi kami.
+      <p style="margin-top: 8px; line-height: 1.8;">
+        yang akan dilaksanakan pada:
       </p>
     </div>
   </section>
