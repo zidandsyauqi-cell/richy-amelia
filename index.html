@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Richy & Amelia</title>
+  <title>Richy & Amelia's Wedding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
   <!-- Supabase JS -->
@@ -22,6 +22,25 @@
       background: #ffffff;
       overflow-x: hidden;
       color: #0e2340;
+    }
+
+    /* ===== BACKGROUND UTAMA (bg.jpeg) ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+    }
+    body.bg-show::before {
+      opacity: 1;
     }
 
     /* ===== SCROLLBAR ===== */
@@ -273,6 +292,8 @@
       padding: 0 20px 50px;
       max-width: 430px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     #mainContent.show {
       opacity: 1;
@@ -409,7 +430,9 @@
 
     /* ===== VINYL ===== */
     .vinyl-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 30px 20px;
       margin-bottom: 30px;
@@ -561,7 +584,9 @@
 
     /* ===== COUNTDOWN ===== */
     .countdown-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
@@ -617,7 +642,9 @@
 
     /* ===== CALENDAR ===== */
     .calendar-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
@@ -852,7 +879,9 @@
 
     /* ===== GIFT ===== */
     .gift-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
@@ -896,7 +925,9 @@
 
     /* ===== RUNDOWN ===== */
     .rundown-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
@@ -970,7 +1001,9 @@
 
     /* ===== RSVP & UCAPAN ===== */
     .rsvp-section {
-      background: #f8f6f3;
+      background: rgba(248, 246, 243, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 30px;
       padding: 25px 20px;
       margin-bottom: 30px;
@@ -1309,7 +1342,7 @@
   <section class="countdown-section section-with-bunga fade-section">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
     <div class="countdown-title">Countdown to</div>
-    <div class="countdown-subtitle">6 Oktober 2026</div>
+    <div class="countdown-subtitle">18 Oktober 2026</div>
     <div class="countdown-grid">
       <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
       <div class="countdown-item"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
@@ -1339,15 +1372,15 @@
         pada acara pernikahan dan resepsi putra-putri kami:
       </p>
       <p style="line-height: 1.6;margin-bottom: 10px;">
-        <strong>Richy</strong><br>
-        Putra dari Bapak Ahmad &amp; Ibu Siti
+        <strong>Amelia Nur Fadhillah</strong><br>
+        Putr1 dari Ibu Iin Siti Hajar &amp; Bapak Wawan Efendi
       </p>
       <p style="line-height: 1.6;">
         <strong>&amp;</strong>
       </p>
       <p style="line-height: 1.6; margin-bottom: 10px;">
-        <strong>Amelia</strong><br>
-        Putri dari Bapak Budi &amp; Ibu Dewi
+        <strong>Richy Mulyanto</strong><br>
+        Putra dari Ibu Mutiah &amp; Bapak Suwardi
       </p>
       <p style="line-height: 1.8;">
         Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
@@ -1362,9 +1395,9 @@
     <h3>Wedding Timeline</h3>
     <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
     <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
-    <div class="rundown-item"><span class="time">10:30</span><span class="event">Foto Bersama</span></div>
+    <!-- <div class="rundown-item"><span class="time">10:30</span><span class="event">Foto Bersama</span></div> -->
     <div class="rundown-item"><span class="time">11:00</span><span class="event">Resepsi Makan Siang</span></div>
-    <div class="rundown-item"><span class="time">13:00</span><span class="event">Hiburan &amp; Acara Keluarga</span></div>
+    <div class="rundown-item"><span class="time">13:00</span><span class="event">Acara Keluarga</span></div>
     <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
@@ -1373,8 +1406,8 @@
     <img src="venue.png" alt="Venue" id="venueImg">
     <div class="venue-overlay">
       <h3>Our Venue</h3>
-      <div class="venue-address" id="venueAddress">Aula Bahagia, Jl. Mawar No. 123, Jakarta</div>
-      <a href="https://maps.google.com/?q=-6.2088,106.8456" target="_blank" class="btn-route" id="btnRoute">
+      <div class="venue-address" id="venueAddress">Sekolah SMA / SMK Puragabaya Bandung</div>
+      <a href="https://maps.google.com/?q=-6.8959057,107.5921207" target="_blank" class="btn-route" id="btnRoute">
         <i class="fas fa-directions"></i> Buka Rute
       </a>
     </div>
@@ -1445,9 +1478,9 @@
     guestName: 'Tamu Undangan',
     bride: 'Amelia',
     groom: 'Richy',
-    weddingDate: '2026-10-06',
-    venueAddress: 'Aula Bahagia, Jl. Mawar No. 123, Jakarta',
-    gmapsLink: 'https://maps.google.com/?q=-6.2088,106.8456',
+    weddingDate: '2026-10-18',
+    venueAddress: 'Sekolah SMA / SMK Puragabaya Bandung',
+    gmapsLink: 'https://maps.google.com/?q=-6.8959057,107.5921207',
     giftBank: 'Bank BCA - 1234567890',
     giftName: 'a.n Richy & Amelia',
     songSrc: 'bermuara_reff.mp3',
@@ -1475,7 +1508,6 @@
   const SUPABASE_URL = 'https://rcpuvubsrlwimyorboii.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcHV2dWJzcmx3aW15b3Jib2lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NTEzMDcsImV4cCI6MjA5OTQyNzMwN30.Kkpc2rsjUjBSGLvARe85zaJpfkkcfqI6YIEk9ZNXcZQ';
 
-  // PERBAIKAN: Ganti nama variabel menjadi supabaseClient
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   const TABLE_NAME = 'rsvp';
 
@@ -1548,6 +1580,9 @@
       this.classList.add('opened');
     }, 300);
     setTimeout(() => {
+      // 🔥 TAMPILKAN BACKGROUND
+      document.body.classList.add('bg-show');
+
       if (audio) {
         audio.play().catch(() => {});
         isPlaying = true;
@@ -1711,7 +1746,6 @@
   async function loadMessages() {
     const container = document.getElementById('rsvpMessageList');
     try {
-      // PERBAIKAN: supabase -> supabaseClient
       const { data, error } = await supabaseClient
         .from(TABLE_NAME)
         .select('*')
@@ -1765,7 +1799,6 @@
     btn.innerHTML = '<span class="loading-spinner"></span> Mengirim...';
 
     try {
-      // PERBAIKAN: supabase -> supabaseClient
       const { error } = await supabaseClient
         .from(TABLE_NAME)
         .insert([{
