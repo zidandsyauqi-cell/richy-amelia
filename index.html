@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- ===== META TAG OPEN GRAPH ===== -->
+  <meta property="og:image" content="https://link-foto-anda.jpg" />
+  <meta property="og:title" content="Richy & Amelia's Wedding" />
+  <meta property="og:description" content="Undangan Pernikahan Richy & Amelia - 18 Oktober 2026" />
+  
   <title>Richy & Amelia's Wedding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
@@ -242,9 +248,10 @@
       padding: 70px 30px 40px;
       text-align: center;
       color: #0e2340;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      text-shadow: none;
       pointer-events: none;
       transition: opacity 0.6s ease;
+      background: transparent;
     }
 
     .envelope-wrapper.opened .envelope-text {
@@ -255,6 +262,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 20px;
       transform: translateY(-68px);
       width: 100%;
     }
@@ -270,6 +278,7 @@
       font-size: 1.8rem;
       color: #0e2340;
       margin-bottom: -2px;
+      text-shadow: none;
     }
 
     .envelope-text .guest-name-env {
@@ -282,7 +291,7 @@
       max-width: 100%;
       word-break: break-all;
       line-height: 1.2;
-      /* ukuran dinamis via JS */
+      text-shadow: none;
     }
 
     .envelope-text .click-hint {
@@ -293,6 +302,7 @@
       animation: pulseHint 2s ease-in-out infinite;
       color: #0e2340;
       margin-bottom: 70px;
+      text-shadow: none;
     }
     @keyframes pulseHint {
       0%, 100% { opacity: 0.3; transform: scale(1); }
@@ -1204,7 +1214,9 @@
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
       
-      /* Perbaikan nama tamu di amplop */
+      .top-text {
+        margin-top: 10px !important;
+      }
       .envelope-text .guest-name-env {
         font-size: 1.4rem !important;
       }
@@ -1251,6 +1263,9 @@
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
       
+      .top-text {
+        margin-top: 10px !important;
+      }
       .envelope-text .guest-name-env {
         font-size: 1.1rem !important;
       }
@@ -1280,6 +1295,9 @@
       .announce-overlay p { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.2); }
       
+      .top-text {
+        margin-top: 10px !important;
+      }
       .envelope-text .guest-name-env {
         font-size: 1.6rem !important;
       }
@@ -1305,6 +1323,10 @@
       .announce-overlay p { font-size: 1rem; }
       .announce-overlay { padding-top: 190px; }
       .venue-overlay { background: rgba(255, 255, 255, 0.15); }
+      
+      .top-text {
+        margin-top: 10px !important;
+      }
     }
 
     /* Perbaikan untuk Safari - background fixed issue */
@@ -1324,7 +1346,7 @@
     <img src="amplop-2.png" alt="" class="envelope-image" id="envelopeOpenImg">
 
     <div class="envelope-text">
-      <div class="top-text">
+      <div class="top-text" style="margin-top: 10px;">
         <div class="guest-label">Untuk</div>
         <div class="guest-name-env" id="guestNameEnv">Tamu Undangan</div>
       </div>
