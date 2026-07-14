@@ -22,9 +22,10 @@
       background: #ffffff;
       overflow-x: hidden;
       color: #0e2340;
+      min-height: 100vh;
     }
 
-    /* ===== BACKGROUND UTAMA (bg.jpeg) ===== */
+    /* ===== BACKGROUND UTAMA (bg.jpeg) - PERBAIKAN UNTUK SAFARI ===== */
     body::before {
       content: "";
       position: fixed;
@@ -32,15 +33,24 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('bg.jpeg') no-repeat center center fixed;
+      background: url('bg.jpeg') no-repeat center center;
       background-size: cover;
+      background-attachment: fixed;
       opacity: 0;
       z-index: -1;
       transition: opacity 1.2s ease;
       pointer-events: none;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      will-change: opacity;
     }
     body.bg-show::before {
       opacity: 1;
+    }
+
+    /* Fallback jika bg.jpeg tidak muncul */
+    body.bg-show {
+      background: #f0ede8;
     }
 
     /* ===== SCROLLBAR ===== */
@@ -246,6 +256,7 @@
       flex-direction: column;
       align-items: center;
       transform: translateY(-68px);
+      width: 100%;
     }
 
     .bottom-text {
@@ -268,6 +279,10 @@
       letter-spacing: 0;
       color: #0e2340;
       margin: 0;
+      max-width: 100%;
+      word-break: break-all;
+      line-height: 1.2;
+      /* ukuran dinamis via JS */
     }
 
     .envelope-text .click-hint {
@@ -1188,6 +1203,20 @@
       .venue-overlay { background: rgba(255, 255, 255, 0.25); }
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
+      
+      /* Perbaikan nama tamu di amplop */
+      .envelope-text .guest-name-env {
+        font-size: 1.4rem !important;
+      }
+      .envelope-text .guest-label {
+        font-size: 1.5rem;
+      }
+      .envelope-text {
+        padding: 50px 20px 30px;
+      }
+      .top-text {
+        transform: translateY(-50px);
+      }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
@@ -1221,6 +1250,19 @@
       .venue-overlay h3 { font-size: 1.8rem; }
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
+      
+      .envelope-text .guest-name-env {
+        font-size: 1.1rem !important;
+      }
+      .envelope-text .guest-label {
+        font-size: 1.2rem;
+      }
+      .envelope-text {
+        padding: 40px 15px 25px;
+      }
+      .top-text {
+        transform: translateY(-40px);
+      }
     }
     @media (min-width: 431px) and (max-width: 768px) {
       #mainContent { max-width: 600px; padding: 0 30px 50px; }
@@ -1237,6 +1279,10 @@
       .announce-section img { min-height: 400px; }
       .announce-overlay p { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.2); }
+      
+      .envelope-text .guest-name-env {
+        font-size: 1.6rem !important;
+      }
     }
     @media (min-width: 769px) {
       #mainContent { max-width: 500px; padding: 0 40px 60px; }
@@ -1259,6 +1305,13 @@
       .announce-overlay p { font-size: 1rem; }
       .announce-overlay { padding-top: 190px; }
       .venue-overlay { background: rgba(255, 255, 255, 0.15); }
+    }
+
+    /* Perbaikan untuk Safari - background fixed issue */
+    @supports (-webkit-touch-callout: none) {
+      body::before {
+        background-attachment: scroll;
+      }
     }
   </style>
 </head>
@@ -1549,7 +1602,21 @@
   }
 
   function populateData() {
-    document.getElementById('guestNameEnv').textContent = CONFIG.guestName;
+    const guestNameEl = document.getElementById('guestNameEnv');
+    guestNameEl.textContent = CONFIG.guestName;
+    
+    // Auto-adjust font size untuk nama tamu yang panjang
+    const nameLength = CONFIG.guestName.length;
+    if (nameLength > 20) {
+      guestNameEl.style.fontSize = '1.2rem';
+    } else if (nameLength > 15) {
+      guestNameEl.style.fontSize = '1.4rem';
+    } else if (nameLength > 10) {
+      guestNameEl.style.fontSize = '1.6rem';
+    } else {
+      guestNameEl.style.fontSize = '1.8rem';
+    }
+    
     document.getElementById('heroGroom').textContent = CONFIG.groom;
     document.getElementById('heroBride').textContent = CONFIG.bride;
     document.getElementById('venueAddress').textContent = CONFIG.venueAddress;
