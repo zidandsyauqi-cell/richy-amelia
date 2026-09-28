@@ -831,6 +831,23 @@
       font-weight: 700;
       font-size: 1.05rem;
     }
+
+    /* ===== BUNGA ANNOUNCEMENT (ukuran kecil, rasio posisi sama seperti default) ===== */
+    /* Rasio default: offset -50px untuk bunga 200px = 25% dari ukuran bunga.
+       Maka untuk bunga 110px, offset = 25% x 110px ≈ -28px. */
+    .announce-section .bunga-decoration {
+      width: 110px;
+      height: 110px;
+    }
+    .announce-section .bunga-top-left {
+      top: -28px;
+      left: -28px;
+    }
+    .announce-section .bunga-bottom-right {
+      bottom: -28px;
+      right: -28px;
+    }
+
     /* ===== VENUE ===== */
     .venue-section {
       position: relative;
@@ -1213,6 +1230,11 @@
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
       
+      /* Bunga Announcement di mobile - proporsional dengan ukuran default 120px */
+      .announce-section .bunga-decoration { width: 90px; height: 90px; }
+      .announce-section .bunga-top-left { top: -22px; left: -22px; }
+      .announce-section .bunga-bottom-right { bottom: -22px; right: -22px; }
+      
       .top-text {
         margin-top: 10px !important;
       }
@@ -1262,6 +1284,11 @@
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
       
+      /* Bunga Announcement di mobile kecil - proporsional dengan ukuran default 100px */
+      .announce-section .bunga-decoration { width: 75px; height: 75px; }
+      .announce-section .bunga-top-left { top: -18px; left: -18px; }
+      .announce-section .bunga-bottom-right { bottom: -18px; right: -18px; }
+      
       .top-text {
         margin-top: 10px !important;
       }
@@ -1293,6 +1320,11 @@
       .announce-section img { min-height: 400px; }
       .announce-overlay p { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.2); }
+      
+      /* Bunga Announcement di tablet - proporsional dengan ukuran default 150px */
+      .announce-section .bunga-decoration { width: 100px; height: 100px; }
+      .announce-section .bunga-top-left { top: -25px; left: -25px; }
+      .announce-section .bunga-bottom-right { bottom: -25px; right: -25px; }
       
       .top-text {
         margin-top: 10px !important;
@@ -1437,7 +1469,7 @@
   </section>
 
   <!-- ANNOUNCEMENT -->
-  <!-- ANNOUNCEMENT (2 bunga, sama persis seperti Wedding Gift) -->
+  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah, rasio posisi sama seperti Gift) -->
 <section class="announce-section section-with-bunga fade-section">
   <img src="announce.png" alt="" id="announceImg">
 
