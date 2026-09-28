@@ -832,20 +832,23 @@
       font-size: 1.05rem;
     }
 
-    /* ===== BUNGA ANNOUNCEMENT (ukuran kecil, rasio posisi sama seperti default) ===== */
-    /* Rasio default: offset -50px untuk bunga 200px = 25% dari ukuran bunga.
-       Maka untuk bunga 110px, offset = 25% x 110px ≈ -28px. */
+    /* ===== BUNGA ANNOUNCEMENT (ukuran lebih kecil + object-fit contain agar tidak kepotong) ===== */
+    /* object-fit: contain dipaksa agar tidak ditimpa oleh .announce-section img { object-fit: cover } */
+    .announce-section img.bunga-decoration {
+      object-fit: contain;
+    }
+    /* Rasio default: offset -50px untuk bunga 200px = 25% dari ukuran bunga. */
     .announce-section .bunga-decoration {
-      width: 110px;
-      height: 110px;
+      width: 90px;
+      height: 90px;
     }
     .announce-section .bunga-top-left {
-      top: -28px;
-      left: -28px;
+      top: -22px;
+      left: -22px;
     }
     .announce-section .bunga-bottom-right {
-      bottom: -28px;
-      right: -28px;
+      bottom: -22px;
+      right: -22px;
     }
 
     /* ===== VENUE ===== */
@@ -1230,10 +1233,10 @@
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
       
-      /* Bunga Announcement di mobile - proporsional dengan ukuran default 120px */
-      .announce-section .bunga-decoration { width: 90px; height: 90px; }
-      .announce-section .bunga-top-left { top: -22px; left: -22px; }
-      .announce-section .bunga-bottom-right { bottom: -22px; right: -22px; }
+      /* Bunga Announcement di mobile - lebih kecil lagi */
+      .announce-section .bunga-decoration { width: 70px; height: 70px; }
+      .announce-section .bunga-top-left { top: -17px; left: -17px; }
+      .announce-section .bunga-bottom-right { bottom: -17px; right: -17px; }
       
       .top-text {
         margin-top: 10px !important;
@@ -1284,10 +1287,10 @@
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
       
-      /* Bunga Announcement di mobile kecil - proporsional dengan ukuran default 100px */
-      .announce-section .bunga-decoration { width: 75px; height: 75px; }
-      .announce-section .bunga-top-left { top: -18px; left: -18px; }
-      .announce-section .bunga-bottom-right { bottom: -18px; right: -18px; }
+      /* Bunga Announcement di mobile kecil - lebih kecil lagi */
+      .announce-section .bunga-decoration { width: 60px; height: 60px; }
+      .announce-section .bunga-top-left { top: -15px; left: -15px; }
+      .announce-section .bunga-bottom-right { bottom: -15px; right: -15px; }
       
       .top-text {
         margin-top: 10px !important;
@@ -1321,10 +1324,10 @@
       .announce-overlay p { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.2); }
       
-      /* Bunga Announcement di tablet - proporsional dengan ukuran default 150px */
-      .announce-section .bunga-decoration { width: 100px; height: 100px; }
-      .announce-section .bunga-top-left { top: -25px; left: -25px; }
-      .announce-section .bunga-bottom-right { bottom: -25px; right: -25px; }
+      /* Bunga Announcement di tablet - lebih kecil lagi */
+      .announce-section .bunga-decoration { width: 80px; height: 80px; }
+      .announce-section .bunga-top-left { top: -20px; left: -20px; }
+      .announce-section .bunga-bottom-right { bottom: -20px; right: -20px; }
       
       .top-text {
         margin-top: 10px !important;
@@ -1469,7 +1472,7 @@
   </section>
 
   <!-- ANNOUNCEMENT -->
-  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah, rasio posisi sama seperti Gift) -->
+  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah, gambar tidak terpotong) -->
 <section class="announce-section section-with-bunga fade-section">
   <img src="announce.png" alt="" id="announceImg">
 
