@@ -3,33 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  <!-- Open Graph / WhatsApp / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://richy-amelia.vercel.app/" />
-<meta property="og:title" content="Richy & Amelia's Wedding" />
-<meta property="og:description" content="Undangan Pernikahan Richy & Amelia" />
-<meta property="og:image" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
-<meta property="og:image:secure_url" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
-<meta property="og:image:type" content="image/jpeg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Richy & Amelia Wedding" />
-<meta property="og:locale" content="id_ID" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Richy & Amelia's Wedding" />
-<meta name="twitter:description" content="Undangan Pernikahan Richy & Amelia" />
-<meta name="twitter:image" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
-  
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://richy-amelia.vercel.app/" />
+  <meta property="og:title" content="Richy & Amelia's Wedding" />
+  <meta property="og:description" content="Undangan Pernikahan Richy & Amelia" />
+  <meta property="og:image" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
+  <meta property="og:image:secure_url" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Richy & Amelia Wedding" />
+  <meta property="og:locale" content="id_ID" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Richy & Amelia's Wedding" />
+  <meta name="twitter:description" content="Undangan Pernikahan Richy & Amelia" />
+  <meta name="twitter:image" content="https://imglink.cc/cdn/TiJapGvKCP.jpg" />
+
   <title>Richy & Amelia's Wedding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { overflow-x: hidden; }
     body {
       font-family: 'Montserrat', sans-serif;
       background: #ffffff;
@@ -75,21 +75,14 @@
                   transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
-    .reveal.reveal-left {
-      transform: translateX(-40px);
-    }
-    .reveal.reveal-right {
-      transform: translateX(40px);
-    }
-    .reveal.reveal-zoom {
-      transform: scale(0.85);
-    }
+    .reveal.reveal-left { transform: translateX(-40px); }
+    .reveal.reveal-right { transform: translateX(40px); }
+    .reveal.reveal-zoom { transform: scale(0.85); }
     .reveal.visible {
       opacity: 1;
       transform: translateY(0) translateX(0) scale(1);
     }
 
-    /* Delay utilities */
     .d-1 { transition-delay: 0.1s; }
     .d-2 { transition-delay: 0.2s; }
     .d-3 { transition-delay: 0.3s; }
@@ -124,7 +117,6 @@
     .bunga-bottom-right { bottom: -50px; right: -50px; }
     .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); animation: bungaBreath 3.5s ease-in-out infinite; }
 
-    /* ===== BUNGA TIMELINE (dipakai juga untuk countdown) ===== */
     .bunga-timeline {
       width: 200px;
       height: 200px;
@@ -133,7 +125,6 @@
       transform: translateY(-50%);
     }
 
-    /* Bunga kiri untuk countdown */
     .bunga-countdown-left {
       width: 200px;
       height: 200px;
@@ -147,8 +138,7 @@
       overflow: visible;
     }
 
-    /* Gorden */
-    .gorden-full-width { 
+    .gorden-full-width {
       position: absolute;
       left: 0;
       width: 100%;
@@ -599,7 +589,6 @@
       overflow: hidden;
       padding-top: 40px;
     }
-    /* Bunga di calendar dinaikkan ±2cm */
     .calendar-section .gorden-full-width {
       position: absolute;
       top: -45px;
@@ -734,18 +723,9 @@
       font-size: 1.05rem;
     }
     .announce-section img.bunga-decoration { object-fit: contain; }
-    .announce-section .bunga-decoration {
-      width: 90px;
-      height: 90px;
-    }
-    .announce-section .bunga-top-left {
-      top: -80px;
-      left: -25px;
-    }
-    .announce-section .bunga-bottom-right {
-      bottom: -80px;
-      right: -25px;
-    }
+    .announce-section .bunga-decoration { width: 90px; height: 90px; }
+    .announce-section .bunga-top-left { top: -80px; left: -25px; }
+    .announce-section .bunga-bottom-right { bottom: -80px; right: -25px; }
 
     /* ===== VENUE ===== */
     .venue-section {
@@ -1021,6 +1001,7 @@
     .status-badge.hadir { background: #d4edda; color: #155724; }
     .status-badge.tidak_hadir { background: #f8d7da; color: #721c24; }
     .status-badge.ragu { background: #fff3cd; color: #856404; }
+    .status-badge i { margin-right: 4px; font-size: 0.7rem; }
     .message-item p {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
@@ -1033,6 +1014,8 @@
       color: #999;
       display: block;
     }
+    .message-item small i { margin-right: 3px; color: #666; }
+    .message-item p i { font-size: 1.1rem; }
     .toast-notification {
       position: fixed;
       bottom: 20px;
@@ -1418,6 +1401,24 @@
 
 <script>
   // ============================================================
+  // 🔒 ANTI-CACHE SCROLL POSITION
+  // ============================================================
+  // Matikan auto-restore scroll position dari browser
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // Paksa scroll ke atas saat halaman dimuat (sebelum apapun)
+  window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+  });
+  window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+  });
+  // Paksa juga langsung saat script jalan
+  window.scrollTo(0, 0);
+
+  // ============================================================
   // 🔧 KONFIGURASI
   // ============================================================
   const CONFIG = {
@@ -1520,7 +1521,6 @@
     const elements = document.querySelectorAll('.reveal');
     if (!elements.length) return;
 
-    // Disconnect observer lama jika ada
     if (revealObserver) {
       revealObserver.disconnect();
     }
@@ -1528,11 +1528,8 @@
     revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Masuk viewport -> muncul
           entry.target.classList.add('visible');
         } else {
-          // Keluar viewport -> sembunyi lagi
-          // (kecuali saat awal, biar tidak flash)
           if (revealEnabled) {
             entry.target.classList.remove('visible');
           }
@@ -1575,11 +1572,12 @@
       }
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Aktifkan scroll reveal setelah konten utama terbuka
+      // Paksa scroll instan ke atas (bukan smooth) supaya tidak ada animasi scroll
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
       setTimeout(() => {
-        // Tampilkan dulu elemen yang ada di viewport pertama
+        // Tampilkan elemen yang ada di viewport pertama
         const allReveal = document.querySelectorAll('.reveal');
         allReveal.forEach((el, i) => {
           const rect = el.getBoundingClientRect();
@@ -1587,7 +1585,6 @@
             setTimeout(() => el.classList.add('visible'), i * 80);
           }
         });
-        // Aktifkan observer untuk muncul & sembunyi
         setTimeout(() => initScrollReveal(), 600);
       }, 300);
     }, 1400);
@@ -1735,15 +1732,30 @@
         return;
       }
 
-      container.innerHTML = data.map(msg => `
-        <div class="message-item">
-          <strong>${escapeHtml(msg.name)}</strong>
-          <span class="status-badge ${msg.status}">${msg.status === 'hadir' ? '✅ Hadir' : msg.status === 'tidak_hadir' ? '❌ Tidak Hadir' : '❓ Ragu'}</span>
-          ${msg.total ? `<small style="display:inline-block;margin-left:8px;">👥 ${escapeHtml(msg.total)} tamu</small>` : ''}
-          <p>${escapeHtml(msg.message) || '🙏'}</p>
-          <small>${new Date(msg.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</small>
-        </div>
-      `).join('');
+      container.innerHTML = data.map(msg => {
+        let statusIcon = '';
+        let statusText = '';
+        if (msg.status === 'hadir') {
+          statusIcon = '<i class="fas fa-check-circle"></i>';
+          statusText = 'Hadir';
+        } else if (msg.status === 'tidak_hadir') {
+          statusIcon = '<i class="fas fa-times-circle"></i>';
+          statusText = 'Tidak Hadir';
+        } else {
+          statusIcon = '<i class="fas fa-question-circle"></i>';
+          statusText = 'Ragu';
+        }
+
+        return `
+          <div class="message-item">
+            <strong>${escapeHtml(msg.name)}</strong>
+            <span class="status-badge ${msg.status}">${statusIcon} ${statusText}</span>
+            ${msg.total ? `<small style="display:inline-block;margin-left:8px;"><i class="fas fa-user-friends"></i> ${escapeHtml(msg.total)} tamu</small>` : ''}
+            <p>${escapeHtml(msg.message) || '<i class="fas fa-hands-praying" style="color:#999;"></i>'}</p>
+            <small>${new Date(msg.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</small>
+          </div>
+        `;
+      }).join('');
     } catch (error) {
       console.error('Error loading messages:', error);
       container.innerHTML = '<p style="text-align:center;color:#999;padding:20px;">Gagal memuat ucapan. Silakan refresh halaman.</p>';
@@ -1803,6 +1815,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    // Paksa scroll ke atas sekali lagi setelah DOM siap
+    window.scrollTo(0, 0);
     setupImages();
     populateData();
     initAudio();
