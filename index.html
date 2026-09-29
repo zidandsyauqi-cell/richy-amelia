@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
-  <!-- ===== META TAG OPEN GRAPH ===== -->
   <meta property="og:image" content="https://link-foto-anda.jpg" />
   <meta property="og:title" content="Richy & Amelia's Wedding" />
   <meta property="og:description" content="Undangan Pernikahan Richy & Amelia - 18 Oktober 2026" />
@@ -12,33 +11,25 @@
   <title>Richy & Amelia's Wedding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
-  <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Montserrat', sans-serif;
       background: #ffffff;
       overflow-x: hidden;
       color: #0e2340;
       min-height: 100vh;
+      width: 100%;
     }
 
-    /* ===== BACKGROUND UTAMA (bg.jpeg) - PERBAIKAN UNTUK SAFARI ===== */
+    /* ===== BACKGROUND UTAMA ===== */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: url('bg.jpeg') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
@@ -50,33 +41,16 @@
       backface-visibility: hidden;
       will-change: opacity;
     }
-    body.bg-show::before {
-      opacity: 1;
-    }
-
-    /* Fallback jika bg.jpeg tidak muncul */
-    body.bg-show {
-      background: #f0ede8;
-    }
+    body.bg-show::before { opacity: 1; }
+    body.bg-show { background: #f0ede8; }
 
     /* ===== SCROLLBAR ===== */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f0ede8;
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #0e2340;
-      border-radius: 10px;
-      border: 2px solid #f0ede8;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #1a3a5c;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f0ede8; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #0e2340; border-radius: 10px; border: 2px solid #f0ede8; }
+    ::-webkit-scrollbar-thumb:hover { background: #1a3a5c; }
 
-    /* ===== BUNGA DECORATION - UKURAN 200px ===== */
+    /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
       width: 200px;
@@ -99,19 +73,9 @@
     .bunga-top-right { top: -50px; right: -50px; }
     .bunga-bottom-left { bottom: -50px; left: -50px; }
     .bunga-bottom-right { bottom: -50px; right: -50px; }
-    .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); }
-    .bunga-center-top { animation: bungaBreath 3.5s ease-in-out infinite; }
-    .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
-    .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
+    .bunga-center-top { top: -60px; left: 50%; transform: translateX(-50%); animation: bungaBreath 3.5s ease-in-out infinite; }
 
-    /* Bunga di ujung kanan untuk section countdown */
-    .bunga-countdown-right {
-      top: 50%;
-      right: -60px;
-      transform: translateY(-50%);
-    }
-
-    /* Ukuran khusus untuk bunga di wedding timeline (di ujung kanan) */
+    /* ===== BUNGA TIMELINE (dipakai juga untuk countdown) ===== */
     .bunga-timeline {
       width: 200px;
       height: 200px;
@@ -125,7 +89,7 @@
       overflow: visible;
     }
 
-    /* Gorden di atas kalender */
+    /* Gorden */
     .gorden-full-width { 
       position: absolute;
       top: 20px;
@@ -160,9 +124,7 @@
       animation: scrollBounce 2s ease-in-out infinite;
       z-index: 2;
     }
-    .scroll-indicator i {
-      font-size: 1.2rem;
-    }
+    .scroll-indicator i { font-size: 1.2rem; }
     @keyframes scrollBounce {
       0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
       50% { transform: translateX(-50%) translateY(8px); opacity: 0.9; }
@@ -171,10 +133,8 @@
     /* ===== ENVELOPE ===== */
     #envelopeSection {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
       background: #ffffff;
       display: flex;
       align-items: center;
@@ -204,49 +164,27 @@
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-8px); }
     }
-    .envelope-wrapper:hover {
-      transform: scale(1.02);
-    }
-    .envelope-wrapper.clicked {
-      transform: scale(1.04);
-    }
-    .envelope-wrapper.opened {
-      transform: scale(0.95);
-    }
+    .envelope-wrapper:hover { transform: scale(1.02); }
+    .envelope-wrapper.clicked { transform: scale(1.04); }
+    .envelope-wrapper.opened { transform: scale(0.95); }
 
     .envelope-image {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
       border-radius: 20px;
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    #envelopeClosedImg {
-      opacity: 1;
-      z-index: 2;
-    }
-    #envelopeOpenImg {
-      opacity: 0;
-      z-index: 1;
-    }
-    .envelope-wrapper.opened #envelopeClosedImg {
-      opacity: 0;
-      transform: scale(1.05);
-    }
-    .envelope-wrapper.opened #envelopeOpenImg {
-      opacity: 1;
-      transform: scale(1);
-    }
+    #envelopeClosedImg { opacity: 1; z-index: 2; }
+    #envelopeOpenImg { opacity: 0; z-index: 1; }
+    .envelope-wrapper.opened #envelopeClosedImg { opacity: 0; transform: scale(1.05); }
+    .envelope-wrapper.opened #envelopeOpenImg { opacity: 1; transform: scale(1); }
 
     .envelope-text {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 3;
       display: flex;
       flex-direction: column;
@@ -255,15 +193,11 @@
       padding: 70px 30px 40px;
       text-align: center;
       color: #0e2340;
-      text-shadow: none;
       pointer-events: none;
       transition: opacity 0.6s ease;
       background: transparent;
     }
-
-    .envelope-wrapper.opened .envelope-text {
-      opacity: 0;
-    }
+    .envelope-wrapper.opened .envelope-text { opacity: 0; }
 
     .top-text {
       display: flex;
@@ -273,34 +207,27 @@
       transform: translateY(-68px);
       width: 100%;
     }
-
     .bottom-text {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .envelope-text .guest-label {
       font-family: 'Great Vibes', cursive;
       font-size: 1.8rem;
       color: #0e2340;
       margin-bottom: -2px;
-      text-shadow: none;
     }
-
     .envelope-text .guest-name-env {
       font-family: 'Great Vibes', cursive;
       font-size: 1.8rem;
       font-weight: 700;
-      letter-spacing: 0;
       color: #0e2340;
       margin: 0;
       max-width: 100%;
-      word-break: break-all;
+      word-break: break-word;
       line-height: 1.2;
-      text-shadow: none;
     }
-
     .envelope-text .click-hint {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.8rem;
@@ -309,7 +236,6 @@
       animation: pulseHint 2s ease-in-out infinite;
       color: #0e2340;
       margin-bottom: 70px;
-      text-shadow: none;
     }
     @keyframes pulseHint {
       0%, 100% { opacity: 0.3; transform: scale(1); }
@@ -326,13 +252,14 @@
       margin: 0 auto;
       position: relative;
       z-index: 1;
+      width: 100%;
     }
     #mainContent.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ===== FADE IN ANIMATION FOR SECTIONS ===== */
+    /* ===== FADE IN ANIMATION ===== */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
@@ -342,15 +269,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    .fade-section:nth-child(1) { transition-delay: 0.1s; }
-    .fade-section:nth-child(2) { transition-delay: 0.2s; }
-    .fade-section:nth-child(3) { transition-delay: 0.3s; }
-    .fade-section:nth-child(4) { transition-delay: 0.4s; }
-    .fade-section:nth-child(5) { transition-delay: 0.5s; }
-    .fade-section:nth-child(6) { transition-delay: 0.6s; }
-    .fade-section:nth-child(7) { transition-delay: 0.7s; }
-    .fade-section:nth-child(8) { transition-delay: 0.8s; }
-    .fade-section:nth-child(9) { transition-delay: 0.9s; }
 
     /* ===== HERO ===== */
     .hero-section {
@@ -371,10 +289,8 @@
     }
     .hero-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -390,7 +306,6 @@
       opacity: 0.6;
       margin-bottom: 5px;
       color: #0e2340;
-      animation: fadeInDown 1.5s ease forwards;
     }
     .hero-overlay .the-wedding-of {
       font-family: 'Cormorant Garamond', serif;
@@ -400,10 +315,8 @@
       font-style: italic;
       opacity: 0.8;
       color: #0e2340;
-      margin-bottom: 0px;
       margin-top: 50px;
       padding: 0 50px;
-      animation: fadeInDown 1.5s ease 0.2s forwards;
     }
     .hero-overlay .couple-names-hero {
       font-family: 'Great Vibes', cursive;
@@ -411,8 +324,6 @@
       line-height: 1.1;
       margin: 15px 0 0 0;
       color: #0e2340;
-      letter-spacing: 0px;
-      animation: fadeInUp 1.5s ease 0.4s forwards;
     }
     .hero-overlay .couple-names-hero .and {
       font-family: 'Cormorant Garamond', serif;
@@ -423,41 +334,14 @@
       color: #0e2340;
     }
     .hero-overlay .hero-date {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 0px;
-    padding: 0;
-    background: transparent;
-    color: #0e2340;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    animation: fadeInUp 1.5s ease 0.6s forwards;
-    }
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #0e2340;
     }
 
     /* ===== VINYL ===== */
@@ -491,27 +375,20 @@
     }
     .vinyl-disc .disc-lines {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border-radius: 50%;
       background: 
         repeating-radial-gradient(circle at 50% 50%, 
-          transparent 0px, 
-          transparent 10px, 
-          rgba(255,255,255,0.05) 10px, 
-          rgba(255,255,255,0.05) 11px),
+          transparent 0px, transparent 10px, 
+          rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 11px),
         repeating-radial-gradient(circle at 50% 50%, 
-          transparent 0px, 
-          transparent 22px, 
-          rgba(255,255,255,0.02) 22px, 
-          rgba(255,255,255,0.02) 23px);
+          transparent 0px, transparent 22px, 
+          rgba(255,255,255,0.02) 22px, rgba(255,255,255,0.02) 23px);
     }
     .vinyl-disc .couple-photo {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 50px;
       height: 50px;
@@ -522,18 +399,14 @@
       box-shadow: 0 0 30px rgba(255,255,255,0.1);
     }
     .vinyl-disc .couple-photo img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
     }
-    .vinyl-disc.spinning {
-      animation: spinVinyl 10s linear infinite;
-    }
+    .vinyl-disc.spinning { animation: spinVinyl 10s linear infinite; }
     @keyframes spinVinyl {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     .vinyl-controls {
       flex: 1;
       min-width: 180px;
@@ -590,9 +463,7 @@
       padding: 5px;
       transition: all 0.3s ease;
     }
-    .vinyl-buttons button:hover {
-      transform: scale(1.1);
-    }
+    .vinyl-buttons button:hover { transform: scale(1.1); }
     .vinyl-buttons .btn-play-vinyl {
       width: 44px;
       height: 44px;
@@ -610,9 +481,7 @@
       transform: scale(1.05);
       background: #1a3a5c;
     }
-    .vinyl-buttons .btn-play-vinyl:active {
-      transform: scale(0.95);
-    }
+    .vinyl-buttons .btn-play-vinyl:active { transform: scale(0.95); }
 
     /* ===== COUNTDOWN ===== */
     .countdown-section {
@@ -696,10 +565,6 @@
       opacity: 0.85;
       animation: gordenSmooth 8s ease-in-out infinite;
     }
-    @keyframes gordenSmooth {
-      0%, 100% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.005) translateY(2px); }
-    }
     .calendar-header {
       display: flex;
       justify-content: center;
@@ -746,16 +611,11 @@
       position: relative;
       transition: all 0.3s ease;
     }
-    .calendar-grid .day:hover {
-      background: rgba(14, 35, 64, 0.05);
-    }
-    .calendar-grid .day.empty {
-      color: #ddd;
-    }
+    .calendar-grid .day:hover { background: rgba(14, 35, 64, 0.05); }
+    .calendar-grid .day.empty { color: #ddd; }
     .calendar-grid .day .wedding-ring {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 28px;
       height: 28px;
@@ -798,10 +658,8 @@
     }
     .announce-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -823,37 +681,20 @@
       line-height: 1.8;
       text-shadow: 0 2px 15px rgba(0,0,0,0.6);
       max-width: 100%;
-      margin-top: 0;
-      padding-top: 0;
-    }
-    .announce-overlay p .couple-section {
-      display: block;
-      margin: 4px 0;
-    }
-    .announce-overlay p .couple-section .ampersand {
-      display: block;
-      margin: 2px 0;
     }
     .announce-overlay p strong {
       font-weight: 700;
       font-size: 1.05rem;
     }
-
-    /* ===== BUNGA ANNOUNCEMENT (ukuran lebih kecil + object-fit contain agar tidak kepotong) ===== */
-    /* object-fit: contain dipaksa agar tidak ditimpa oleh .announce-section img { object-fit: cover } */
-    .announce-section img.bunga-decoration {
-      object-fit: contain;
-    }
+    .announce-section img.bunga-decoration { object-fit: contain; }
     .announce-section .bunga-decoration {
       width: 90px;
       height: 90px;
     }
-    /* Bunga kiri atas - dinaikkan lebih jauh ke atas */
     .announce-section .bunga-top-left {
       top: -80px;
       left: -25px;
     }
-    /* Kupu-kupu kanan bawah - diturunkan lebih jauh ke bawah */
     .announce-section .bunga-bottom-right {
       bottom: -80px;
       right: -25px;
@@ -870,18 +711,15 @@
       min-height: 400px;
     }
     .venue-section img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       min-height: 400px;
     }
     .venue-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -897,7 +735,6 @@
       font-size: 2.5rem;
       color: #0e2340;
       margin-bottom: 10px;
-      text-shadow: none;
     }
     .venue-overlay .venue-address {
       font-family: 'Cormorant Garamond', serif;
@@ -906,7 +743,6 @@
       color: #0e2340;
       margin-bottom: 20px;
       line-height: 1.6;
-      text-shadow: none;
     }
     .venue-overlay .btn-route {
       display: inline-flex;
@@ -926,9 +762,7 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     }
-    .venue-overlay .btn-route:active {
-      transform: scale(0.97);
-    }
+    .venue-overlay .btn-route:active { transform: scale(0.97); }
 
     /* ===== GIFT ===== */
     .gift-section {
@@ -969,6 +803,7 @@
       font-size: 1rem;
       color: #0e2340;
       font-weight: 600;
+      word-break: break-word;
     }
     .gift-box .bank-detail {
       font-size: 0.85rem;
@@ -1000,6 +835,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
       transition: all 0.3s ease;
+      gap: 10px;
     }
     .rundown-item:hover {
       padding-left: 10px;
@@ -1009,16 +845,16 @@
     .rundown-item .time {
       font-weight: 600;
       color: #0e2340;
+      flex-shrink: 0;
     }
     .rundown-item .event {
       color: #666;
       font-weight: 400;
+      text-align: right;
     }
 
     /* ===== GALLERY ===== */
-    .gallery-section {
-      margin-bottom: 30px;
-    }
+    .gallery-section { margin-bottom: 30px; }
     .gallery-section h3 {
       font-family: 'Great Vibes', cursive;
       font-size: 2.2rem;
@@ -1043,14 +879,11 @@
       box-shadow: 0 8px 30px rgba(14, 35, 64, 0.15);
     }
     .gallery-item img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       transition: all 0.4s ease;
     }
-    .gallery-item img:hover {
-      transform: scale(1.08);
-    }
+    .gallery-item img:hover { transform: scale(1.08); }
 
     /* ===== RSVP & UCAPAN ===== */
     .rsvp-section {
@@ -1068,12 +901,8 @@
       color: #0e2340;
       margin-bottom: 20px;
     }
-    .rsvp-container {
-      max-width: 100%;
-    }
-    .form-group {
-      margin-bottom: 12px;
-    }
+    .rsvp-container { max-width: 100%; }
+    .form-group { margin-bottom: 12px; }
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -1115,13 +944,8 @@
       transform: translateY(-2px);
       box-shadow: 0 5px 20px rgba(14, 35, 64, 0.2);
     }
-    .btn-rsvp:active {
-      transform: scale(0.97);
-    }
-    .btn-rsvp:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
+    .btn-rsvp:active { transform: scale(0.97); }
+    .btn-rsvp:disabled { opacity: 0.7; cursor: not-allowed; }
     #rsvpMessageList {
       margin-top: 25px;
       text-align: left;
@@ -1134,17 +958,6 @@
       border-radius: 15px;
       margin-bottom: 12px;
       box-shadow: 0 3px 15px rgba(14, 35, 64, 0.05);
-      animation: slideIn 0.5s ease forwards;
-    }
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     .message-item strong {
       color: #0e2340;
@@ -1187,6 +1000,8 @@
       box-shadow: 0 5px 25px rgba(0,0,0,0.2);
       z-index: 999;
       animation: toastSlide 3s ease forwards;
+      max-width: 90%;
+      text-align: center;
     }
     @keyframes toastSlide {
       0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
@@ -1203,16 +1018,16 @@
       border-top-color: #fff;
       animation: spin 0.8s ease-in-out infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ===== RESPONSIVE ===== */
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
     @media (max-width: 430px) {
       .envelope-wrapper { width: 280px; height: 370px; }
       .hero-overlay { padding-top: 80px; }
       .hero-overlay .couple-names-hero { font-size: 2.8rem; }
-      .hero-overlay .hero-date { font-size: 0.95rem; padding: 8px 20px; gap: 8px; margin-top: 0px; }
+      .hero-overlay .hero-date { font-size: 0.95rem; gap: 8px; }
       .vinyl-disc { width: 120px; height: 120px; }
       .vinyl-disc .couple-photo { width: 40px; height: 40px; }
       .countdown-item .number { font-size: 1.8rem; }
@@ -1230,9 +1045,6 @@
       .bunga-bottom-left { bottom: -35px; left: -35px; }
       .bunga-bottom-right { bottom: -35px; right: -35px; }
       .bunga-center-top { top: -45px; }
-      .bunga-side-right { right: -45px; }
-      .bunga-side-left { left: -45px; }
-      .bunga-countdown-right { right: -45px; top: 50%; transform: translateY(-50%); }
       .calendar-section .gorden-full-width { height: 150px; top: 20px; }
       .calendar-section { padding-top: 50px; }
       .calendar-header { gap: 8px; }
@@ -1241,33 +1053,20 @@
       .venue-overlay { background: rgba(255, 255, 255, 0.25); }
       .venue-overlay h3 { font-size: 2rem; }
       .venue-overlay .venue-address { font-size: 0.9rem; }
-      
-      /* Bunga Announcement di mobile */
       .announce-section .bunga-decoration { width: 70px; height: 70px; }
       .announce-section .bunga-top-left { top: -45px; left: -20px; }
       .announce-section .bunga-bottom-right { bottom: -45px; right: -20px; }
-      
-      .top-text {
-        margin-top: 10px !important;
-      }
-      .envelope-text .guest-name-env {
-        font-size: 1.4rem !important;
-      }
-      .envelope-text .guest-label {
-        font-size: 1.5rem;
-      }
-      .envelope-text {
-        padding: 50px 20px 30px;
-      }
-      .top-text {
-        transform: translateY(-50px);
-      }
+      .top-text { margin-top: 10px !important; }
+      .envelope-text .guest-name-env { font-size: 1.4rem !important; }
+      .envelope-text .guest-label { font-size: 1.5rem; }
+      .envelope-text { padding: 50px 20px 30px; }
+      .top-text { transform: translateY(-50px); }
     }
     @media (max-width: 380px) {
       .envelope-wrapper { width: 240px; height: 320px; }
       .hero-overlay { padding-top: 70px; }
       .hero-overlay .couple-names-hero { font-size: 2.2rem; }
-      .hero-overlay .hero-date { font-size: 0.8rem; padding: 6px 16px; gap: 6px; margin-top: 0px; }
+      .hero-overlay .hero-date { font-size: 0.8rem; gap: 6px; }
       .vinyl-disc { width: 100px; height: 100px; }
       .vinyl-disc .couple-photo { width: 34px; height: 34px; }
       .venue-section { min-height: 250px; }
@@ -1284,9 +1083,6 @@
       .bunga-bottom-left { bottom: -30px; left: -30px; }
       .bunga-bottom-right { bottom: -30px; right: -30px; }
       .bunga-center-top { top: -40px; }
-      .bunga-side-right { right: -40px; }
-      .bunga-side-left { left: -40px; }
-      .bunga-countdown-right { right: -40px; top: 50%; transform: translateY(-50%); }
       .calendar-section .gorden-full-width { height: 130px; top: 15px; }
       .calendar-section { padding-top: 40px; }
       .calendar-header { gap: 6px; }
@@ -1296,32 +1092,19 @@
       .venue-overlay h3 { font-size: 1.8rem; }
       .venue-overlay .venue-address { font-size: 0.8rem; }
       .venue-overlay .btn-route { padding: 10px 20px; font-size: 0.8rem; }
-      
-      /* Bunga Announcement di mobile kecil */
       .announce-section .bunga-decoration { width: 60px; height: 60px; }
       .announce-section .bunga-top-left { top: -40px; left: -17px; }
       .announce-section .bunga-bottom-right { bottom: -40px; right: -17px; }
-      
-      .top-text {
-        margin-top: 10px !important;
-      }
-      .envelope-text .guest-name-env {
-        font-size: 1.1rem !important;
-      }
-      .envelope-text .guest-label {
-        font-size: 1.2rem;
-      }
-      .envelope-text {
-        padding: 40px 15px 25px;
-      }
-      .top-text {
-        transform: translateY(-40px);
-      }
+      .top-text { margin-top: 10px !important; }
+      .envelope-text .guest-name-env { font-size: 1.1rem !important; }
+      .envelope-text .guest-label { font-size: 1.2rem; }
+      .envelope-text { padding: 40px 15px 25px; }
+      .top-text { transform: translateY(-40px); }
     }
     @media (min-width: 431px) and (max-width: 768px) {
       #mainContent { max-width: 600px; padding: 0 30px 50px; }
       .hero-overlay .couple-names-hero { font-size: 3.6rem; }
-      .hero-overlay .hero-date { font-size: 1.2rem; padding: 12px 32px; margin-top: 0px; }
+      .hero-overlay .hero-date { font-size: 1.2rem; }
       .bunga-decoration { width: 150px; height: 150px; }
       .bunga-timeline { width: 150px; height: 150px; right: -50px; }
       .vinyl-disc { width: 150px; height: 150px; }
@@ -1333,31 +1116,21 @@
       .announce-section img { min-height: 400px; }
       .announce-overlay p { font-size: 1rem; }
       .venue-overlay { background: rgba(255, 255, 255, 0.2); }
-      
-      /* Bunga Announcement di tablet */
       .announce-section .bunga-decoration { width: 80px; height: 80px; }
       .announce-section .bunga-top-left { top: -60px; left: -22px; }
       .announce-section .bunga-bottom-right { bottom: -60px; right: -22px; }
-      
-      .top-text {
-        margin-top: 10px !important;
-      }
-      .envelope-text .guest-name-env {
-        font-size: 1.6rem !important;
-      }
+      .top-text { margin-top: 10px !important; }
+      .envelope-text .guest-name-env { font-size: 1.6rem !important; }
     }
     @media (min-width: 769px) {
       #mainContent { max-width: 500px; padding: 0 40px 60px; }
       .hero-overlay .couple-names-hero { font-size: 3.8rem; }
-      .hero-overlay .hero-date { font-size: 1.3rem; padding: 14px 36px; margin-top: 0px; }
+      .hero-overlay .hero-date { font-size: 1.3rem; }
       .bunga-decoration { width: 200px; height: 200px; }
       .bunga-timeline { width: 200px; height: 200px; right: -60px; }
       .bunga-top-left { top: -50px; left: -50px; }
       .bunga-top-right { top: -50px; right: -50px; }
       .bunga-center-top { top: -60px; }
-      .bunga-side-right { right: -60px; }
-      .bunga-side-left { left: -60px; }
-      .bunga-countdown-right { right: -60px; top: 50%; transform: translateY(-50%); }
       .vinyl-disc { width: 160px; height: 160px; }
       .vinyl-disc .couple-photo { width: 60px; height: 60px; }
       .countdown-item .number { font-size: 2.6rem; }
@@ -1368,17 +1141,11 @@
       .announce-overlay p { font-size: 1rem; }
       .announce-overlay { padding-top: 190px; }
       .venue-overlay { background: rgba(255, 255, 255, 0.15); }
-      
-      .top-text {
-        margin-top: 10px !important;
-      }
+      .top-text { margin-top: 10px !important; }
     }
 
-    /* Perbaikan untuk Safari - background fixed issue */
     @supports (-webkit-touch-callout: none) {
-      body::before {
-        background-attachment: scroll;
-      }
+      body::before { background-attachment: scroll; }
     }
   </style>
 </head>
@@ -1421,7 +1188,6 @@
         <span id="dateMonth">OKT</span>
         <span id="dateYear">2026</span>
       </div>
-      <!-- SCROLL INDICATOR -->
       <div class="scroll-indicator">
         <span>SCROLL</span>
         <i class="fas fa-chevron-down"></i>
@@ -1429,7 +1195,7 @@
     </div>
   </section>
 
-  <!-- VINYL (bunga di atas kanan dan kiri atas) -->
+  <!-- VINYL -->
   <section class="vinyl-section section-with-bunga fade-section">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
@@ -1459,9 +1225,9 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (bunga di ujung KANAN) -->
+  <!-- COUNTDOWN (bunga sama seperti Wedding Timeline) -->
   <section class="countdown-section section-with-bunga fade-section">
-    <img src="bunga4.png" alt="" class="bunga-decoration bunga-countdown-right">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-timeline">
     <div class="countdown-title">Countdown to</div>
     <div class="countdown-subtitle">18 Oktober 2026</div>
     <div class="countdown-grid">
@@ -1472,7 +1238,7 @@
     </div>
   </section>
 
-  <!-- CALENDAR (gorden di atas) -->
+  <!-- CALENDAR -->
   <section class="calendar-section fade-section">
     <img src="bunga6.png" alt="" class="gorden-full-width">
     <div class="calendar-header">
@@ -1482,7 +1248,7 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah) -->
+  <!-- ANNOUNCEMENT -->
   <section class="announce-section section-with-bunga fade-section">
     <img src="announce.png" alt="" id="announceImg">
 
@@ -1514,7 +1280,7 @@
     </div>
   </section>
   
-  <!-- RUNDOWN (bunga di ujung kanan) -->
+  <!-- RUNDOWN -->
   <section class="rundown-section section-with-bunga fade-section">
     <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
     <h3>Wedding Timeline</h3>
@@ -1537,7 +1303,7 @@
     </div>
   </section>
 
-  <!-- GIFT (2 bunga) -->
+  <!-- GIFT -->
   <section class="gift-section section-with-bunga fade-section">
     <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
     <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
@@ -1553,7 +1319,7 @@
     </div>
   </section>
 
-  <!-- GALLERY (1 bunga) -->
+  <!-- GALLERY -->
   <section class="gallery-section section-with-bunga fade-section">
     <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
     <h3>Our Gallery</h3>
@@ -1565,7 +1331,7 @@
     </div>
   </section>
 
-  <!-- RSVP & UCAPAN - SUPABASE -->
+  <!-- RSVP & UCAPAN -->
   <section class="rsvp-section section-with-bunga fade-section">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right">
     <h3>Berikan Ucapan</h3>
@@ -1623,12 +1389,7 @@
       venue: 'venue.png',
       couplePhoto: 'prewed3.jpeg',
       announce: 'announce.png',
-      gallery: [
-        'prewed4.jpeg',
-        'prewed1.jpeg',
-        'prewed2.jpeg',
-        'prewed3.jpeg'
-      ]
+      gallery: ['prewed4.jpeg','prewed1.jpeg','prewed2.jpeg','prewed3.jpeg']
     }
   };
 
@@ -1637,7 +1398,6 @@
   // ============================================================
   const SUPABASE_URL = 'https://rcpuvubsrlwimyorboii.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcHV2dWJzcmx3aW15b3Jib2lpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4NTEzMDcsImV4cCI6MjA5OTQyNzMwN30.Kkpc2rsjUjBSGLvARe85zaJpfkkcfqI6YIEk9ZNXcZQ';
-
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   const TABLE_NAME = 'rsvp';
 
@@ -1652,16 +1412,11 @@
     if (formatted) CONFIG.guestName = formatted;
   })();
 
-  // ============================================================
-  // 🔧 FORMAT TANGGAL OTOMATIS DARI weddingDate
-  // ============================================================
   function formatDateDisplay(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
     const day = d.getDate();
     const monthNames = ['JAN','FEB','MAR','APR','MEI','JUN','JUL','AGT','SEP','OKT','NOV','DES'];
-    const month = monthNames[d.getMonth()];
-    const year = d.getFullYear();
-    return { day, month, year };
+    return { day, month: monthNames[d.getMonth()], year: d.getFullYear() };
   }
 
   function setupImages() {
@@ -1672,26 +1427,19 @@
     document.getElementById('venueImg').src = img.venue;
     document.getElementById('couplePhoto').src = img.couplePhoto;
     document.getElementById('announceImg').src = img.announce;
-    const g = img.gallery;
     ['gallery1','gallery2','gallery3','gallery4'].forEach((id, i) => {
-      document.getElementById(id).src = g[i] || '';
+      document.getElementById(id).src = img.gallery[i] || '';
     });
   }
 
   function populateData() {
     const guestNameEl = document.getElementById('guestNameEnv');
     guestNameEl.textContent = CONFIG.guestName;
-    
     const nameLength = CONFIG.guestName.length;
-    if (nameLength > 20) {
-      guestNameEl.style.fontSize = '1.2rem';
-    } else if (nameLength > 15) {
-      guestNameEl.style.fontSize = '1.4rem';
-    } else if (nameLength > 10) {
-      guestNameEl.style.fontSize = '1.6rem';
-    } else {
-      guestNameEl.style.fontSize = '1.8rem';
-    }
+    if (nameLength > 20) guestNameEl.style.fontSize = '1.2rem';
+    else if (nameLength > 15) guestNameEl.style.fontSize = '1.4rem';
+    else if (nameLength > 10) guestNameEl.style.fontSize = '1.6rem';
+    else guestNameEl.style.fontSize = '1.8rem';
     
     document.getElementById('heroGroom').textContent = CONFIG.groom;
     document.getElementById('heroBride').textContent = CONFIG.bride;
@@ -1716,7 +1464,7 @@
   const envelopeSection = document.getElementById('envelopeSection');
   const mainContent = document.getElementById('mainContent');
 
-  envelopeWrapper.addEventListener('click', function(e) {
+  envelopeWrapper.addEventListener('click', function() {
     if (isEnvelopeOpened) return;
     isEnvelopeOpened = true;
     this.classList.add('clicked');
@@ -1726,7 +1474,6 @@
     }, 300);
     setTimeout(() => {
       document.body.classList.add('bg-show');
-
       if (audio) {
         audio.play().catch(() => {});
         isPlaying = true;
@@ -1736,12 +1483,9 @@
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      
       setTimeout(() => {
         document.querySelectorAll('.fade-section').forEach((el, index) => {
-          setTimeout(() => {
-            el.classList.add('visible');
-          }, index * 150);
+          setTimeout(() => el.classList.add('visible'), index * 150);
         });
       }, 500);
     }, 1400);
@@ -1750,16 +1494,9 @@
   // --- MUSIC ---
   let audio = null;
   let isPlaying = false;
-  let currentSongIndex = 0;
-  const songs = [CONFIG.songSrc];
 
   function initAudio() {
-    if (!CONFIG.songSrc) {
-      audio = new Audio();
-      audio.duration = 225;
-    } else {
-      audio = new Audio(CONFIG.songSrc);
-    }
+    audio = CONFIG.songSrc ? new Audio(CONFIG.songSrc) : new Audio();
     const playBtn = document.getElementById('vinylPlayBtn');
     const progressFill = document.getElementById('vinylProgressFill');
     const currentTimeEl = document.getElementById('vinylCurrentTime');
@@ -1775,12 +1512,7 @@
     };
 
     playBtn.addEventListener('click', () => {
-      if (!CONFIG.songSrc) {
-        isPlaying = !isPlaying;
-        if (isPlaying) { vinylDisc.classList.add('spinning'); playBtn.innerHTML = '<i class="fas fa-pause"></i>'; }
-        else { vinylDisc.classList.remove('spinning'); playBtn.innerHTML = '<i class="fas fa-play"></i>'; }
-        return;
-      }
+      if (!CONFIG.songSrc) return;
       if (isPlaying) {
         audio.pause();
         isPlaying = false;
@@ -1886,7 +1618,6 @@
   // ============================================================
   // 📝 RSVP & UCAPAN - SUPABASE
   // ============================================================
-  
   async function loadMessages() {
     const container = document.getElementById('rsvpMessageList');
     try {
@@ -1924,10 +1655,8 @@
     return div.innerHTML;
   }
 
-  // Submit RSVP ke Supabase
   document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const name = document.getElementById('rsvpName').value.trim();
     const status = document.getElementById('rsvpStatus').value;
     const total = document.getElementById('rsvpTotal').value;
@@ -1945,19 +1674,13 @@
     try {
       const { error } = await supabaseClient
         .from(TABLE_NAME)
-        .insert([{
-          name: name,
-          status: status,
-          total: total || '',
-          message: message || ''
-        }]);
+        .insert([{ name, status, total: total || '', message: message || '' }]);
 
       if (error) throw error;
 
       this.reset();
       showToast('Terima kasih! RSVP dan ucapan Anda telah terkirim. 💕');
       await loadMessages();
-      
     } catch (error) {
       console.error('Error submitting RSVP:', error);
       showToast('Gagal mengirim RSVP. Silakan coba lagi.');
@@ -1977,7 +1700,6 @@
     setTimeout(() => toast.remove(), 3000);
   }
 
-  // --- INIT ---
   document.addEventListener('DOMContentLoaded', function() {
     setupImages();
     populateData();
