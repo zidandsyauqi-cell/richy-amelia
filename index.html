@@ -104,6 +104,13 @@
     .bunga-side-right { top: 50%; right: -60px; transform: translateY(-50%); }
     .bunga-side-left { top: 50%; left: -60px; transform: translateY(-50%); }
 
+    /* Bunga di ujung kanan untuk section countdown */
+    .bunga-countdown-right {
+      top: 50%;
+      right: -60px;
+      transform: translateY(-50%);
+    }
+
     /* Ukuran khusus untuk bunga di wedding timeline (di ujung kanan) */
     .bunga-timeline {
       width: 200px;
@@ -1225,6 +1232,7 @@
       .bunga-center-top { top: -45px; }
       .bunga-side-right { right: -45px; }
       .bunga-side-left { left: -45px; }
+      .bunga-countdown-right { right: -45px; top: 50%; transform: translateY(-50%); }
       .calendar-section .gorden-full-width { height: 150px; top: 20px; }
       .calendar-section { padding-top: 50px; }
       .calendar-header { gap: 8px; }
@@ -1278,6 +1286,7 @@
       .bunga-center-top { top: -40px; }
       .bunga-side-right { right: -40px; }
       .bunga-side-left { left: -40px; }
+      .bunga-countdown-right { right: -40px; top: 50%; transform: translateY(-50%); }
       .calendar-section .gorden-full-width { height: 130px; top: 15px; }
       .calendar-section { padding-top: 40px; }
       .calendar-header { gap: 6px; }
@@ -1348,6 +1357,7 @@
       .bunga-center-top { top: -60px; }
       .bunga-side-right { right: -60px; }
       .bunga-side-left { left: -60px; }
+      .bunga-countdown-right { right: -60px; top: 50%; transform: translateY(-50%); }
       .vinyl-disc { width: 160px; height: 160px; }
       .vinyl-disc .couple-photo { width: 60px; height: 60px; }
       .countdown-item .number { font-size: 2.6rem; }
@@ -1449,9 +1459,9 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (dengan tanggal wedding) -->
+  <!-- COUNTDOWN (bunga di ujung KANAN) -->
   <section class="countdown-section section-with-bunga fade-section">
-    <img src="bunga4.png" alt="" class="bunga-decoration bunga-center-top">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-countdown-right">
     <div class="countdown-title">Countdown to</div>
     <div class="countdown-subtitle">18 Oktober 2026</div>
     <div class="countdown-grid">
@@ -1472,38 +1482,37 @@
     <div class="calendar-grid" id="calendarGrid"></div>
   </section>
 
-  <!-- ANNOUNCEMENT -->
-  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah, gambar tidak terpotong) -->
-<section class="announce-section section-with-bunga fade-section">
-  <img src="announce.png" alt="" id="announceImg">
+  <!-- ANNOUNCEMENT (2 bunga kecil di kiri atas & kanan bawah) -->
+  <section class="announce-section section-with-bunga fade-section">
+    <img src="announce.png" alt="" id="announceImg">
 
-  <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
-  <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
 
-  <div class="announce-overlay">
-    <div class="announce-title">Undangan Pernikahan</div>
-    <p style="margin-bottom: 10px;">
-      Dengan memohon rahmat dan ridho Allah SWT,<br>
-      kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
-      pada acara pernikahan dan resepsi putra-putri kami:
-    </p>
-    <p style="line-height: 1.6;margin-bottom: 10px;">
-      <strong>Amelia Nur Fadhillah</strong><br>
-      Putri dari Ibu Iin Siti Hajar &amp; Bapak Wawan Efendi
-    </p>
-    <p style="line-height: 1.6;">
-      <strong>&amp;</strong>
-    </p>
-    <p style="line-height: 1.6; margin-bottom: 10px;">
-      <strong>Richy Mulyanto</strong><br>
-      Putra dari Ibu Mutiah &amp; Bapak Suwardi
-    </p>
-    <p style="line-height: 1.8; margin-top: 8px;">
-      Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
-      merupakan kebahagiaan bagi kami.
-    </p>
-  </div>
-</section>
+    <div class="announce-overlay">
+      <div class="announce-title">Undangan Pernikahan</div>
+      <p style="margin-bottom: 10px;">
+        Dengan memohon rahmat dan ridho Allah SWT,<br>
+        kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
+        pada acara pernikahan dan resepsi putra-putri kami:
+      </p>
+      <p style="line-height: 1.6;margin-bottom: 10px;">
+        <strong>Amelia Nur Fadhillah</strong><br>
+        Putri dari Ibu Iin Sihaj &amp; Bapak Wawan Efendi
+      </p>
+      <p style="line-height: 1.6;">
+        <strong>&amp;</strong>
+      </p>
+      <p style="line-height: 1.6; margin-bottom: 10px;">
+        <strong>Richy Mulyanto</strong><br>
+        Putra dari Ibu Mutiah &amp; Bapak Suwardi
+      </p>
+      <p style="line-height: 1.8; margin-top: 8px;">
+        Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
+        merupakan kebahagiaan bagi kami.
+      </p>
+    </div>
+  </section>
   
   <!-- RUNDOWN (bunga di ujung kanan) -->
   <section class="rundown-section section-with-bunga fade-section">
@@ -1535,8 +1544,12 @@
     <h3>Wedding Gift</h3>
     <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
     <div class="gift-box">
-      <div class="bank-info" id="giftBank">Bank BCA - 1234567890</div>
-      <div class="bank-detail" id="giftName">a.n Richy &amp; Amelia</div>
+      <div class="bank-info" id="giftBank">Bank BCA - 1570273961</div>
+      <div class="bank-detail" id="giftName">a.n Richy Mulyanto</div>
+    </div>
+    <div class="gift-box" style="margin-top: 12px;">
+      <div class="bank-info" id="giftBank2">Seabank - 901684224413</div>
+      <div class="bank-detail" id="giftName2">a.n Richy Mulyanto</div>
     </div>
   </section>
 
@@ -1596,8 +1609,10 @@
     weddingDate: '2026-10-18',
     venueAddress: 'Sekolah SMA / SMK Puragabaya Bandung',
     gmapsLink: 'https://www.google.com/maps/place/SMA%2FSMK+Puragabaya+Bandung/@-6.8959057,107.5921207,17z/data=!4m14!1m7!3m6!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!2sSMA%2FSMK+Puragabaya+Bandung!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!3m5!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D',
-    giftBank: 'Bank BCA - 1234567890',
-    giftName: 'a.n Richy & Amelia',
+    giftBank: 'Bank BCA - 1570273961',
+    giftName: 'a.n Richy Mulyanto',
+    giftBank2: 'Seabank - 901684224413',
+    giftName2: 'a.n Richy Mulyanto',
     songSrc: 'bermuara.mp3',
     songTitle: 'Bermuara',
     songArtist: 'Mahalini & Rizky Febian',
@@ -1667,7 +1682,6 @@
     const guestNameEl = document.getElementById('guestNameEnv');
     guestNameEl.textContent = CONFIG.guestName;
     
-    // Auto-adjust font size untuk nama tamu yang panjang
     const nameLength = CONFIG.guestName.length;
     if (nameLength > 20) {
       guestNameEl.style.fontSize = '1.2rem';
@@ -1685,6 +1699,8 @@
     document.getElementById('btnRoute').href = CONFIG.gmapsLink;
     document.getElementById('giftBank').textContent = CONFIG.giftBank;
     document.getElementById('giftName').textContent = CONFIG.giftName;
+    document.getElementById('giftBank2').textContent = CONFIG.giftBank2;
+    document.getElementById('giftName2').textContent = CONFIG.giftName2;
     document.getElementById('songTitle').textContent = CONFIG.songTitle;
     document.getElementById('songArtist').textContent = CONFIG.songArtist;
 
@@ -1709,7 +1725,6 @@
       this.classList.add('opened');
     }, 300);
     setTimeout(() => {
-      // 🔥 TAMPILKAN BACKGROUND
       document.body.classList.add('bg-show');
 
       if (audio) {
