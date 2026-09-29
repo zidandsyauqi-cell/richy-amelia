@@ -50,6 +50,40 @@
     ::-webkit-scrollbar-thumb { background: #0e2340; border-radius: 10px; border: 2px solid #f0ede8; }
     ::-webkit-scrollbar-thumb:hover { background: #1a3a5c; }
 
+    /* ============================================================
+       SCROLL REVEAL - Semua elemen animasi
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.reveal-left {
+      transform: translateX(-40px);
+    }
+    .reveal.reveal-right {
+      transform: translateX(40px);
+    }
+    .reveal.reveal-zoom {
+      transform: scale(0.85);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+    }
+
+    /* Delay utilities */
+    .d-1 { transition-delay: 0.1s; }
+    .d-2 { transition-delay: 0.2s; }
+    .d-3 { transition-delay: 0.3s; }
+    .d-4 { transition-delay: 0.4s; }
+    .d-5 { transition-delay: 0.5s; }
+    .d-6 { transition-delay: 0.6s; }
+    .d-7 { transition-delay: 0.7s; }
+    .d-8 { transition-delay: 0.8s; }
+
     /* ===== BUNGA DECORATION ===== */
     .bunga-decoration {
       position: absolute;
@@ -101,7 +135,6 @@
     /* Gorden */
     .gorden-full-width { 
       position: absolute;
-      top: 20px;
       left: 0;
       width: 100%;
       height: 200px;
@@ -264,18 +297,6 @@
       width: 100%;
     }
     #mainContent.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== FADE IN ANIMATION (SCROLL REVEAL) ===== */
-    .fade-section {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: opacity, transform;
-    }
-    .fade-section.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -561,11 +582,12 @@
       margin-bottom: 30px;
       position: relative;
       overflow: hidden;
-      padding-top: 60px;
+      padding-top: 40px;
     }
+    /* Bunga di calendar dinaikkan ±2cm (dari top: 30px menjadi top: -45px) */
     .calendar-section .gorden-full-width {
       position: absolute;
-      top: 30px;
+      top: -45px;
       left: 0;
       width: 100%;
       height: 180px;
@@ -1056,8 +1078,8 @@
       .bunga-bottom-left { bottom: -35px; left: -35px; }
       .bunga-bottom-right { bottom: -35px; right: -35px; }
       .bunga-center-top { top: -45px; }
-      .calendar-section .gorden-full-width { height: 150px; top: 20px; }
-      .calendar-section { padding-top: 50px; }
+      .calendar-section .gorden-full-width { height: 150px; top: -35px; }
+      .calendar-section { padding-top: 30px; }
       .calendar-header { gap: 8px; }
       .calendar-header .month { font-size: 1.6rem; }
       .calendar-header .year { font-size: 1rem; }
@@ -1095,8 +1117,8 @@
       .bunga-bottom-left { bottom: -30px; left: -30px; }
       .bunga-bottom-right { bottom: -30px; right: -30px; }
       .bunga-center-top { top: -40px; }
-      .calendar-section .gorden-full-width { height: 130px; top: 15px; }
-      .calendar-section { padding-top: 40px; }
+      .calendar-section .gorden-full-width { height: 130px; top: -30px; }
+      .calendar-section { padding-top: 25px; }
       .calendar-header { gap: 6px; }
       .calendar-header .month { font-size: 1.3rem; }
       .calendar-header .year { font-size: 0.9rem; }
@@ -1187,22 +1209,22 @@
 <div id="mainContent">
 
   <!-- HERO -->
-  <section class="hero-section fade-section">
-    <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
+  <section class="hero-section">
+    <img src="amplop-3.png" alt="Wedding" id="mainHeroImg" class="reveal reveal-zoom">
     <div class="hero-overlay">
-      <div class="ornament-top">✦ ✦ ✦</div>
-      <div class="the-wedding-of">The Wedding of</div>
-      <div class="couple-names-hero">
+      <div class="ornament-top reveal d-1">✦ ✦ ✦</div>
+      <div class="the-wedding-of reveal d-2">The Wedding of</div>
+      <div class="couple-names-hero reveal d-3">
         <span id="heroGroom">Richy</span>
         <span class="and">&</span>
         <span id="heroBride">Amelia</span>
       </div>
-      <div class="hero-date" id="heroDate">
+      <div class="hero-date reveal d-4" id="heroDate">
         <span id="dateDay">18</span>
         <span id="dateMonth">OKT</span>
         <span id="dateYear">2026</span>
       </div>
-      <div class="scroll-indicator">
+      <div class="scroll-indicator reveal d-5">
         <span>SCROLL</span>
         <i class="fas fa-chevron-down"></i>
       </div>
@@ -1210,17 +1232,17 @@
   </section>
 
   <!-- VINYL -->
-  <section class="vinyl-section section-with-bunga fade-section">
-    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right">
-    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
+  <section class="vinyl-section section-with-bunga">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-right reveal reveal-right">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left reveal reveal-left">
     <div class="vinyl-player">
-      <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-disc reveal reveal-zoom d-1" id="vinylDisc">
         <div class="disc-lines"></div>
         <div class="couple-photo">
           <img src="prewed2.jpeg" alt="Couple" id="couplePhoto">
         </div>
       </div>
-      <div class="vinyl-controls">
+      <div class="vinyl-controls reveal d-2">
         <div class="song-title" id="songTitle">Bermuara</div>
         <div class="song-artist" id="songArtist">Mahalini & Rizky Febian</div>
         <div class="vinyl-progress" id="vinylProgress">
@@ -1240,55 +1262,55 @@
   </section>
 
   <!-- COUNTDOWN (bunga4 kanan + bunga5 kiri) -->
-  <section class="countdown-section section-with-bunga fade-section">
-    <img src="bunga4.png" alt="" class="bunga-decoration bunga-timeline">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-countdown-left">
-    <div class="countdown-title">Countdown to</div>
-    <div class="countdown-subtitle">18 Oktober 2026</div>
+  <section class="countdown-section section-with-bunga">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-timeline reveal reveal-right">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-countdown-left reveal reveal-left">
+    <div class="countdown-title reveal d-1">Countdown to</div>
+    <div class="countdown-subtitle reveal d-2">18 Oktober 2026</div>
     <div class="countdown-grid">
-      <div class="countdown-item"><div class="number" id="days">00</div><div class="label">Days</div></div>
-      <div class="countdown-item"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
-      <div class="countdown-item"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
-      <div class="countdown-item"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
+      <div class="countdown-item reveal d-3"><div class="number" id="days">00</div><div class="label">Days</div></div>
+      <div class="countdown-item reveal d-4"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+      <div class="countdown-item reveal d-5"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
+      <div class="countdown-item reveal d-6"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
     </div>
   </section>
 
   <!-- CALENDAR -->
-  <section class="calendar-section fade-section">
-    <img src="bunga6.png" alt="" class="gorden-full-width">
+  <section class="calendar-section">
+    <img src="bunga6.png" alt="" class="gorden-full-width reveal reveal-zoom">
     <div class="calendar-header">
-      <span class="month" id="calendarMonth">October</span>
-      <span class="year" id="calendarYear">2026</span>
+      <span class="month reveal d-1" id="calendarMonth">October</span>
+      <span class="year reveal d-2" id="calendarYear">2026</span>
     </div>
-    <div class="calendar-grid" id="calendarGrid"></div>
+    <div class="calendar-grid reveal d-3" id="calendarGrid"></div>
   </section>
 
   <!-- ANNOUNCEMENT -->
-  <section class="announce-section section-with-bunga fade-section">
-    <img src="announce.png" alt="" id="announceImg">
+  <section class="announce-section section-with-bunga">
+    <img src="announce.png" alt="" id="announceImg" class="reveal reveal-zoom">
 
-    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left reveal reveal-left">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right reveal reveal-right">
 
     <div class="announce-overlay">
-      <div class="announce-title">Undangan Pernikahan</div>
-      <p style="margin-bottom: 10px;">
+      <div class="announce-title reveal d-1">Undangan Pernikahan</div>
+      <p class="reveal d-2" style="margin-bottom: 10px;">
         Dengan memohon rahmat dan ridho Allah SWT,<br>
         kami mengundang Bapak/Ibu/Saudara/i untuk hadir<br>
         pada acara pernikahan dan resepsi putra-putri kami:
       </p>
-      <p style="line-height: 1.6;margin-bottom: 10px;">
+      <p class="reveal d-3" style="line-height: 1.6;margin-bottom: 10px;">
         <strong>Amelia Nur Fadhillah</strong><br>
         Putri dari Ibu Iin Sihaj &amp; Bapak Wawan Efendi
       </p>
-      <p style="line-height: 1.6;">
+      <p class="reveal d-4" style="line-height: 1.6;">
         <strong>&amp;</strong>
       </p>
-      <p style="line-height: 1.6; margin-bottom: 10px;">
+      <p class="reveal d-5" style="line-height: 1.6; margin-bottom: 10px;">
         <strong>Richy Mulyanto</strong><br>
         Putra dari Ibu Mutiah &amp; Bapak Suwardi
       </p>
-      <p style="line-height: 1.8; margin-top: 8px;">
+      <p class="reveal d-6" style="line-height: 1.8; margin-top: 8px;">
         Kehadiran dan doa restu Bapak/Ibu/Saudara/i<br>
         merupakan kebahagiaan bagi kami.
       </p>
@@ -1296,66 +1318,66 @@
   </section>
   
   <!-- RUNDOWN -->
-  <section class="rundown-section section-with-bunga fade-section">
-    <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline">
-    <h3>Wedding Timeline</h3>
-    <div class="rundown-item"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
-    <div class="rundown-item"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
-    <div class="rundown-item"><span class="time">11:00</span><span class="event">Resepsi Makan Siang</span></div>
-    <div class="rundown-item"><span class="time">13:00</span><span class="event">Acara Keluarga</span></div>
-    <div class="rundown-item"><span class="time">15:00</span><span class="event">Penutupan</span></div>
+  <section class="rundown-section section-with-bunga">
+    <img src="bunga2.png" alt="" class="bunga-decoration bunga-timeline reveal reveal-right">
+    <h3 class="reveal d-1">Wedding Timeline</h3>
+    <div class="rundown-item reveal d-2"><span class="time">09:00</span><span class="event">Pembukaan &amp; Sambutan</span></div>
+    <div class="rundown-item reveal d-3"><span class="time">09:30</span><span class="event">Akad Nikah</span></div>
+    <div class="rundown-item reveal d-4"><span class="time">11:00</span><span class="event">Resepsi Makan Siang</span></div>
+    <div class="rundown-item reveal d-5"><span class="time">13:00</span><span class="event">Acara Keluarga</span></div>
+    <div class="rundown-item reveal d-6"><span class="time">15:00</span><span class="event">Penutupan</span></div>
   </section>
 
   <!-- VENUE -->
-  <section class="venue-section section-with-bunga fade-section">
-    <img src="venue.png" alt="Venue" id="venueImg">
+  <section class="venue-section section-with-bunga">
+    <img src="venue.png" alt="Venue" id="venueImg" class="reveal reveal-zoom">
     <div class="venue-overlay">
-      <h3>Our Venue</h3>
-      <div class="venue-address" id="venueAddress">Sekolah SMA / SMK Puragabaya Bandung</div>
-      <a href="https://www.google.com/maps/place/SMA%2FSMK+Puragabaya+Bandung/@-6.8959057,107.5921207,17z/data=!4m14!1m7!3m6!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!2sSMA%2FSMK+Puragabaya+Bandung!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!3m5!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-route" id="btnRoute">
+      <h3 class="reveal d-1">Our Venue</h3>
+      <div class="venue-address reveal d-2" id="venueAddress">Sekolah SMA / SMK Puragabaya Bandung</div>
+      <a href="https://www.google.com/maps/place/SMA%2FSMK+Puragabaya+Bandung/@-6.8959057,107.5921207,17z/data=!4m14!1m7!3m6!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!2sSMA%2FSMK+Puragabaya+Bandung!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!3m5!1s0x2e68e6681568c4fb:0x7655bf386cecdf36!8m2!3d-6.8957274!4d107.5923445!16s%2Fg%2F1hm4fgnwj!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-route reveal d-3" id="btnRoute">
         <i class="fas fa-directions"></i> Buka Rute
       </a>
     </div>
   </section>
 
   <!-- GIFT -->
-  <section class="gift-section section-with-bunga fade-section">
-    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left">
-    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right">
-    <h3>Wedding Gift</h3>
-    <p class="gift-text">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
-    <div class="gift-box">
+  <section class="gift-section section-with-bunga">
+    <img src="bunga3.png" alt="" class="bunga-decoration bunga-top-left reveal reveal-left">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-bottom-right reveal reveal-right">
+    <h3 class="reveal d-1">Wedding Gift</h3>
+    <p class="gift-text reveal d-2">Doa dan kehadiran Anda adalah hadiah terbaik.<br>Namun bagi yang ingin memberikan tanda kasih:</p>
+    <div class="gift-box reveal d-3">
       <div class="bank-info" id="giftBank">Bank BCA - 1570273961</div>
       <div class="bank-detail" id="giftName">a.n Richy Mulyanto</div>
     </div>
-    <div class="gift-box" style="margin-top: 12px;">
+    <div class="gift-box reveal d-4" style="margin-top: 12px;">
       <div class="bank-info" id="giftBank2">Seabank - 901684224413</div>
       <div class="bank-detail" id="giftName2">a.n Richy Mulyanto</div>
     </div>
   </section>
 
   <!-- GALLERY -->
-  <section class="gallery-section section-with-bunga fade-section">
-    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left">
-    <h3>Our Gallery</h3>
+  <section class="gallery-section section-with-bunga">
+    <img src="bunga1.png" alt="" class="bunga-decoration bunga-top-left reveal reveal-left">
+    <h3 class="reveal d-1">Our Gallery</h3>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="prewed4.jpeg" alt="Gallery 1" id="gallery1"></div>
-      <div class="gallery-item"><img src="prewed1.jpeg" alt="Gallery 2" id="gallery2"></div>
-      <div class="gallery-item"><img src="prewed2.jpeg" alt="Gallery 3" id="gallery3"></div>
-      <div class="gallery-item"><img src="prewed3.jpeg" alt="Gallery 4" id="gallery4"></div>
+      <div class="gallery-item reveal reveal-zoom d-2"><img src="prewed4.jpeg" alt="Gallery 1" id="gallery1"></div>
+      <div class="gallery-item reveal reveal-zoom d-3"><img src="prewed1.jpeg" alt="Gallery 2" id="gallery2"></div>
+      <div class="gallery-item reveal reveal-zoom d-4"><img src="prewed2.jpeg" alt="Gallery 3" id="gallery3"></div>
+      <div class="gallery-item reveal reveal-zoom d-5"><img src="prewed3.jpeg" alt="Gallery 4" id="gallery4"></div>
     </div>
   </section>
 
   <!-- RSVP & UCAPAN -->
-  <section class="rsvp-section section-with-bunga fade-section">
-    <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right">
-    <h3>Berikan Ucapan</h3>
+  <section class="rsvp-section section-with-bunga">
+    <img src="bunga4.png" alt="" class="bunga-decoration bunga-top-right reveal reveal-right">
+    <h3 class="reveal d-1">Berikan Ucapan</h3>
     <div class="rsvp-container">
       <form id="rsvpForm">
-        <div class="form-group">
+        <div class="form-group reveal d-2">
           <input type="text" id="rsvpName" placeholder="Nama Anda" required>
         </div>
-        <div class="form-group">
+        <div class="form-group reveal d-3">
           <select id="rsvpStatus" required>
             <option value="">Kehadiran Anda</option>
             <option value="hadir">Hadir</option>
@@ -1363,13 +1385,13 @@
             <option value="ragu">Masih Ragu</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group reveal d-4">
           <input type="number" id="rsvpTotal" placeholder="Jumlah Tamu" min="1">
         </div>
-        <div class="form-group">
+        <div class="form-group reveal d-5">
           <textarea id="rsvpMessage" rows="3" placeholder="Ucapan &amp; Doa untuk Pengantin..."></textarea>
         </div>
-        <button type="submit" class="btn-rsvp" id="btnSubmit">Kirim RSVP</button>
+        <button type="submit" class="btn-rsvp reveal d-6" id="btnSubmit">Kirim RSVP</button>
       </form>
       <div id="rsvpMessageList">
         <p style="text-align:center;color:#999;padding:20px;">Memuat ucapan...</p>
@@ -1474,26 +1496,39 @@
   }
 
   // ============================================================
-  // 📜 SCROLL REVEAL (Intersection Observer)
+  // 📜 SCROLL REVEAL - Semua elemen
   // ============================================================
-  function initScrollReveal() {
-    const sections = document.querySelectorAll('.fade-section');
-    if (!sections.length) return;
+  let revealObserver = null;
 
-    const observer = new IntersectionObserver((entries) => {
+  function initScrollReveal() {
+    const elements = document.querySelectorAll('.reveal');
+    if (!elements.length) return;
+
+    // Jika sudah ada observer, disconnect dulu
+    if (revealObserver) {
+      revealObserver.disconnect();
+    }
+
+    revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          // Tetap observe agar saat scroll balik ke atas dan turun lagi tetap muncul
+          // Tapi kita hanya perlu sekali reveal per elemen; biarkan terlihat
+          revealObserver.unobserve(entry.target);
         }
       });
     }, {
       root: null,
-      rootMargin: '0px 0px -60px 0px',
+      rootMargin: '0px 0px -40px 0px',
       threshold: 0.08
     });
 
-    sections.forEach(section => observer.observe(section));
+    elements.forEach(el => {
+      // Reset dulu supaya semua animasi mulai dari awal
+      el.classList.remove('visible');
+      revealObserver.observe(el);
+    });
   }
 
   // --- ENVELOPE ---
@@ -1524,14 +1559,16 @@
 
       // Aktifkan scroll reveal setelah konten utama terbuka
       setTimeout(() => {
-        initScrollReveal();
-        // Paksa cek section yang sudah terlihat di viewport
-        document.querySelectorAll('.fade-section').forEach((el, index) => {
+        // Paksa semua elemen di viewport pertama langsung muncul
+        const firstViewElements = document.querySelectorAll('.reveal');
+        firstViewElements.forEach((el, i) => {
           const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.92) {
-            setTimeout(() => el.classList.add('visible'), index * 120);
+          if (rect.top < window.innerHeight * 0.95) {
+            setTimeout(() => el.classList.add('visible'), i * 80);
           }
         });
+        // Init observer untuk elemen selanjutnya
+        setTimeout(() => initScrollReveal(), 400);
       }, 300);
     }, 1400);
   });
