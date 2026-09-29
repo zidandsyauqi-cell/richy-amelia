@@ -84,6 +84,15 @@
       transform: translateY(-50%);
     }
 
+    /* Bunga kiri untuk countdown */
+    .bunga-countdown-left {
+      width: 200px;
+      height: 200px;
+      top: 0%;
+      left: -60px;
+      transform: translateY(-50%);
+    }
+
     .section-with-bunga {
       position: relative;
       overflow: visible;
@@ -259,11 +268,12 @@
       transform: translateY(0);
     }
 
-    /* ===== FADE IN ANIMATION ===== */
+    /* ===== FADE IN ANIMATION (SCROLL REVEAL) ===== */
     .fade-section {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
     }
     .fade-section.visible {
       opacity: 1;
@@ -1040,6 +1050,7 @@
       .announce-overlay .announce-title { font-size: 1.8rem; }
       .bunga-decoration { width: 120px; height: 120px; }
       .bunga-timeline { width: 120px; height: 120px; right: -40px; }
+      .bunga-countdown-left { width: 120px; height: 120px; left: -40px; }
       .bunga-top-left { top: -35px; left: -35px; }
       .bunga-top-right { top: -35px; right: -35px; }
       .bunga-bottom-left { bottom: -35px; left: -35px; }
@@ -1078,6 +1089,7 @@
       .announce-overlay .announce-title { font-size: 1.5rem; }
       .bunga-decoration { width: 100px; height: 100px; }
       .bunga-timeline { width: 100px; height: 100px; right: -35px; }
+      .bunga-countdown-left { width: 100px; height: 100px; left: -35px; }
       .bunga-top-left { top: -30px; left: -30px; }
       .bunga-top-right { top: -30px; right: -30px; }
       .bunga-bottom-left { bottom: -30px; left: -30px; }
@@ -1107,6 +1119,7 @@
       .hero-overlay .hero-date { font-size: 1.2rem; }
       .bunga-decoration { width: 150px; height: 150px; }
       .bunga-timeline { width: 150px; height: 150px; right: -50px; }
+      .bunga-countdown-left { width: 150px; height: 150px; left: -50px; }
       .vinyl-disc { width: 150px; height: 150px; }
       .vinyl-disc .couple-photo { width: 55px; height: 55px; }
       .countdown-item .number { font-size: 2.4rem; }
@@ -1128,6 +1141,7 @@
       .hero-overlay .hero-date { font-size: 1.3rem; }
       .bunga-decoration { width: 200px; height: 200px; }
       .bunga-timeline { width: 200px; height: 200px; right: -60px; }
+      .bunga-countdown-left { width: 200px; height: 200px; left: -60px; }
       .bunga-top-left { top: -50px; left: -50px; }
       .bunga-top-right { top: -50px; right: -50px; }
       .bunga-center-top { top: -60px; }
@@ -1173,7 +1187,7 @@
 <div id="mainContent">
 
   <!-- HERO -->
-  <section class="hero-section fade-section visible">
+  <section class="hero-section fade-section">
     <img src="amplop-3.png" alt="Wedding" id="mainHeroImg">
     <div class="hero-overlay">
       <div class="ornament-top">✦ ✦ ✦</div>
@@ -1225,9 +1239,10 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (bunga sama seperti Wedding Timeline) -->
+  <!-- COUNTDOWN (bunga4 kanan + bunga5 kiri) -->
   <section class="countdown-section section-with-bunga fade-section">
     <img src="bunga4.png" alt="" class="bunga-decoration bunga-timeline">
+    <img src="bunga5.png" alt="" class="bunga-decoration bunga-countdown-left">
     <div class="countdown-title">Countdown to</div>
     <div class="countdown-subtitle">18 Oktober 2026</div>
     <div class="countdown-grid">
@@ -1458,6 +1473,29 @@
     document.getElementById('dateYear').textContent = dateInfo.year;
   }
 
+  // ============================================================
+  // 📜 SCROLL REVEAL (Intersection Observer)
+  // ============================================================
+  function initScrollReveal() {
+    const sections = document.querySelectorAll('.fade-section');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.08
+    });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
   // --- ENVELOPE ---
   let isEnvelopeOpened = false;
   const envelopeWrapper = document.getElementById('envelopeWrapper');
@@ -1483,11 +1521,18 @@
       envelopeSection.classList.add('hidden');
       mainContent.classList.add('show');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Aktifkan scroll reveal setelah konten utama terbuka
       setTimeout(() => {
+        initScrollReveal();
+        // Paksa cek section yang sudah terlihat di viewport
         document.querySelectorAll('.fade-section').forEach((el, index) => {
-          setTimeout(() => el.classList.add('visible'), index * 150);
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) {
+            setTimeout(() => el.classList.add('visible'), index * 120);
+          }
         });
-      }, 500);
+      }, 300);
     }, 1400);
   });
 
