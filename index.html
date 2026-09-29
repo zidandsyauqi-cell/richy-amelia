@@ -51,7 +51,7 @@
     ::-webkit-scrollbar-thumb:hover { background: #1a3a5c; }
 
     /* ============================================================
-       SCROLL REVEAL - Semua elemen animasi
+       SCROLL REVEAL - Semua elemen animasi (muncul & sembunyi)
        ============================================================ */
     .reveal {
       opacity: 0;
@@ -584,7 +584,7 @@
       overflow: hidden;
       padding-top: 40px;
     }
-    /* Bunga di calendar dinaikkan ±2cm (dari top: 30px menjadi top: -45px) */
+    /* Bunga di calendar dinaikkan ±2cm */
     .calendar-section .gorden-full-width {
       position: absolute;
       top: -45px;
@@ -1496,15 +1496,16 @@
   }
 
   // ============================================================
-  // 📜 SCROLL REVEAL - Semua elemen
+  // 📜 SCROLL REVEAL - Muncul & Sembunyi saat scroll
   // ============================================================
   let revealObserver = null;
+  let revealEnabled = false;
 
   function initScrollReveal() {
     const elements = document.querySelectorAll('.reveal');
     if (!elements.length) return;
 
-    // Jika sudah ada observer, disconnect dulu
+    // Disconnect observer lama jika ada
     if (revealObserver) {
       revealObserver.disconnect();
     }
@@ -1512,10 +1513,14 @@
     revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // Masuk viewport -> muncul
           entry.target.classList.add('visible');
-          // Tetap observe agar saat scroll balik ke atas dan turun lagi tetap muncul
-          // Tapi kita hanya perlu sekali reveal per elemen; biarkan terlihat
-          revealObserver.unobserve(entry.target);
+        } else {
+          // Keluar viewport -> sembunyi lagi
+          // (kecuali saat awal, biar tidak flash)
+          if (revealEnabled) {
+            entry.target.classList.remove('visible');
+          }
         }
       });
     }, {
@@ -1525,10 +1530,10 @@
     });
 
     elements.forEach(el => {
-      // Reset dulu supaya semua animasi mulai dari awal
-      el.classList.remove('visible');
       revealObserver.observe(el);
     });
+
+    revealEnabled = true;
   }
 
   // --- ENVELOPE ---
@@ -1559,16 +1564,16 @@
 
       // Aktifkan scroll reveal setelah konten utama terbuka
       setTimeout(() => {
-        // Paksa semua elemen di viewport pertama langsung muncul
-        const firstViewElements = document.querySelectorAll('.reveal');
-        firstViewElements.forEach((el, i) => {
+        // Tampilkan dulu elemen yang ada di viewport pertama
+        const allReveal = document.querySelectorAll('.reveal');
+        allReveal.forEach((el, i) => {
           const rect = el.getBoundingClientRect();
           if (rect.top < window.innerHeight * 0.95) {
             setTimeout(() => el.classList.add('visible'), i * 80);
           }
         });
-        // Init observer untuk elemen selanjutnya
-        setTimeout(() => initScrollReveal(), 400);
+        // Aktifkan observer untuk muncul & sembunyi
+        setTimeout(() => initScrollReveal(), 600);
       }, 300);
     }, 1400);
   });
